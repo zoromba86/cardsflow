@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme {
+  /* Page */
+  --color-background: #F4F6F8;
+  --color-foreground: #0F172A;
+
+  /* Brand */
+  --color-navy: #0F1B2D;
+  --color-navy-dark: #0A1220;
+  --color-gold: #E5B220;
+
+  /* Surfaces */
+  --color-card: #FFFFFF;
+  --color-card-border: #E2E8F0;
+
+  /* Text */
+  --color-text-muted: #64748B;
+
+  /* Font */
+  --font-sans: var(--font-roboto), Roboto, sans-serif;
+
+  /* Accordion animations */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
+  }
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
+  }
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+  }
+}
