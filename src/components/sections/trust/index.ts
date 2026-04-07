@@ -1,0 +1,1 @@
+export { TrustMarquee } from "./TrustMarquee";

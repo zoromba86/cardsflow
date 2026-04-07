@@ -1,0 +1,11 @@
+
+> temp_next@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://172.21.32.1:3000
+
+✓ Starting...
+✓ Ready in 8s
+○ Compiling / ...
