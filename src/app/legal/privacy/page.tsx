@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function privacyPage() {
   return (
     <SubPageLayout>
-      <HeroSection 
+      <HeroSection
         title="Privacy Policy"
         supportCopy="Cardsflow policies and documentation for users and partners."
       />
@@ -19,18 +19,18 @@ export default function privacyPage() {
         <p className="text-sm text-zinc-500 italic mb-8">Last updated: April 2026</p>
 
         <p className="lead text-xl text-zinc-300">
-          This Privacy Policy explains how CardsFlow collects, uses, stores, and shares information when you visit our website, use our services, or contact us.
+          This Privacy Policy explains how Cardsflow collects, uses, stores, and shares information when you visit our website, use our services, or contact us.
         </p>
 
         <p>Please read this policy carefully before using the site or relying on any service-related content.</p>
 
         <h3>1. Who we are</h3>
-        <p>CardsFlow operates this website and related services.</p>
+        <p>Cardsflow operates this website and related services.</p>
         <p>If you have questions about this Privacy Policy, you can contact us at:</p>
         <ul>
-          <li><strong>Email:</strong> legal@cardsflow.com</li>
-          <li><strong>Support page:</strong> <a href="/trust/support-and-escalations">/trust/support-and-escalations</a></li>
-          <li><strong>Company name:</strong> CardsFlow Technologies</li>
+          <li><strong>Email:</strong> support@cardsflow.net</li>
+          <li><strong>Support page:</strong> <a href="/trust/support-and-escalations">/trust/support-and-escalations/</a></li>
+          <li><strong>Company name:</strong> Cardsflow</li>
         </ul>
 
         <h3>2. What information we may collect</h3>
@@ -95,6 +95,10 @@ export default function privacyPage() {
 
         <h3>7. Security</h3>
         <p>We take reasonable steps to protect information through operational, administrative, and technical safeguards. However, no system can guarantee complete security. Users should also take reasonable steps to protect their own accounts, devices, and communications.</p>
+        <p>For more information, see:</p>
+        <ul>
+          <li><a href="/trust/security-and-data-handling">Security & Data Handling</a></li>
+        </ul>
 
         <h3>8. Your rights and choices</h3>
         <p>Depending on your jurisdiction, you may have rights relating to your personal information, such as:</p>
@@ -105,15 +109,39 @@ export default function privacyPage() {
           <li>objecting to certain uses</li>
           <li>withdrawing consent where processing is based on consent</li>
         </ul>
+        <p>To make a privacy-related request, contact:</p>
+        <ul>
+          <li><strong>Email:</strong> support@cardsflow.net</li>
+        </ul>
 
         <h3>9. International use</h3>
-        <p>If you access the site from outside the country where CardsFlow operates, you understand that your information may be processed in jurisdictions with different data protection rules.</p>
+        <p>If you access the site from outside the country where Cardsflow operates, you understand that your information may be processed in jurisdictions with different data protection rules.</p>
+
+        <h3>10. Third-party links and services</h3>
+        <p>Our website may link to third-party websites or services. We are not responsible for their privacy practices, content, or policies.</p>
+        <p>You should review the privacy policies of any third-party service you use.</p>
+
+        <h3>11. Children&apos;s privacy</h3>
+        <p>This site and its services are not intended for children under the age required by applicable law. We do not knowingly collect personal information from children where prohibited.</p>
+
+        <h3>12. Changes to this Privacy Policy</h3>
+        <p>We may update this Privacy Policy from time to time.</p>
+        <p>When we do, we will revise the &quot;Last updated&quot; date at the top of the page. Material changes may also be communicated through the site or other appropriate channels.</p>
+
+        <h3>Contact</h3>
+        <p>For privacy questions, contact:</p>
+        <ul>
+          <li><strong>Email:</strong> support@cardsflow.net</li>
+          <li><strong>Support:</strong> <a href="/trust/support-and-escalations">/trust/support-and-escalations/</a></li>
+        </ul>
       </div>
-      <RelatedLinksModule 
+      <RelatedLinksModule
         links={[
-          { title: "Trust Center", href: "/trust" },
-          { title: "Contact Support", href: "/trust/support-and-escalations" }
-        ]} 
+          { title: "Terms of Service", href: "/legal/terms" },
+          { title: "Cookie Policy", href: "/legal/cookies" },
+          { title: "Security & Data Handling", href: "/trust/security-and-data-handling" },
+          { title: "Support & Escalations", href: "/trust/support-and-escalations" }
+        ]}
       />
     </SubPageLayout>
   );

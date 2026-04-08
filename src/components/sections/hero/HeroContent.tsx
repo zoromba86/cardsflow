@@ -85,16 +85,6 @@ export default function HeroContent({
             </motion.button>
           </Link>
 
-          {/* Secondary */}
-          <Link href="/guides/how-virtual-cards-work-for-online-payments" className="w-full sm:w-auto">
-            <motion.button
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              className="font-semibold text-white/75 hover:text-white bg-white/8 hover:bg-white/12 border border-white/15 hover:border-white/25 backdrop-blur-sm rounded-xl px-7 py-3.5 text-sm sm:text-base transition-all flex items-center justify-center w-full"
-            >
-              View Documentation
-            </motion.button>
-          </Link>
         </motion.div>
 
         {/* Trust line */}
@@ -104,7 +94,7 @@ export default function HeroContent({
           transition={{ delay: 1.0, duration: 0.7 }}
           className="mt-5 sm:mt-6 text-zinc-600 text-[11px] sm:text-xs font-medium tracking-wide"
         >
-          99.8% merchant acceptance · Zero-knowledge · Instant issuance
+          95% merchant acceptance · Zero-knowledge · Instant issuance
         </motion.p>
       </div>
 

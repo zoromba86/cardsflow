@@ -14,27 +14,32 @@ import HeroContent from "./HeroContent";
 // ─── Constants ────────────────────────────────────────────────────────────────
 const FRAME_COUNT = 40;
 const START_FRAME = 1;
-const BATCH_SIZE = 5; // images loaded per tick
+const BATCH_SIZE = 5;       // images loaded per tick
 const BATCH_DELAY_MS = 100; // ms between batches — keeps network calm
 const MOBILE_BP = 768;
+
+// ─── Dev-mode guard ───────────────────────────────────────────────────────────
+// In development, Next.js Fast Refresh re-mounts components on every file save.
+// The preloader (which needs images to load before hiding) would block the entire
+// screen for 5-10 seconds after every save — causing the "freeze" the user sees.
+// Bypassing the preloader in dev means the canvas just fades in silently while
+// images load, with zero blocking. Production is unaffected.
+const IS_DEV = process.env.NODE_ENV === "development";
 
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function CardsflowCanvas() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const canvasRef    = useRef<HTMLCanvasElement>(null);
 
   // All loaded Image objects stored in a plain ref — never triggers re-renders
-  const imagesRef = useRef<(HTMLImageElement | null)[]>(
-    Array(FRAME_COUNT).fill(null),
-  );
+  const imagesRef      = useRef<(HTMLImageElement | null)[]>(Array(FRAME_COUNT).fill(null));
   const loadedCountRef = useRef(0);
-  const rafRef = useRef<number | null>(null);
-  const firstFrameDrawn = useRef(false); // draw frame-0 exactly once
-  const isReadyRef = useRef(false); // set once after first paint
+  const rafRef         = useRef<number | null>(null);
+  const firstFrameDrawn = useRef(false);
 
-  // State — kept minimal to avoid cascade re-renders
-  const [progress, setProgress] = useState(0); // 0–100
-  const [isReady, setIsReady] = useState(false);
+  // In dev: start ready so the preloader never blocks after a hot-reload
+  const [progress, setProgress] = useState(IS_DEV ? 100 : 0);
+  const [isReady,  setIsReady]  = useState(IS_DEV);        // ← key fix
   const [isMobile, setIsMobile] = useState(false);
 
   // ─── Mobile detection ──────────────────────────────────────────────────────
@@ -46,8 +51,6 @@ export default function CardsflowCanvas() {
   }, []);
 
   // ─── Batched image loader ──────────────────────────────────────────────────
-  // Loads BATCH_SIZE frames every BATCH_DELAY_MS to avoid spiking memory or
-  // overwhelming the dev server with 79 simultaneous requests.
   useEffect(() => {
     let cancelled = false;
     loadedCountRef.current = 0;
@@ -60,9 +63,9 @@ export default function CardsflowCanvas() {
       images[idx] = img;
       loadedCountRef.current += 1;
 
-      // Update progress state only at milestones (not 79 individual updates)
       const pct = Math.floor((loadedCountRef.current / FRAME_COUNT) * 100);
-      setProgress(pct);
+      // In dev we never show the preloader, so no need to track progress state
+      if (!IS_DEV) setProgress(pct);
     };
 
     const loadBatch = (startIdx: number) => {
@@ -75,8 +78,8 @@ export default function CardsflowCanvas() {
         img.decoding = "async";
 
         const capturedIdx = i;
-        img.onload = () => onFrameLoaded(capturedIdx, img);
-        img.onerror = () => onFrameLoaded(capturedIdx, null); // still count it
+        img.onload  = () => onFrameLoaded(capturedIdx, img);
+        img.onerror = () => onFrameLoaded(capturedIdx, null);
 
         const paddedNum = String(frameNum).padStart(3, "0");
         img.src = `/frames/ezgif-frame-${paddedNum}.jpg`;
@@ -88,14 +91,10 @@ export default function CardsflowCanvas() {
     };
 
     loadBatch(0);
-    return () => {
-      cancelled = true;
-    };
+    return () => { cancelled = true; };
   }, []); // runs once — no deps
 
   // ─── drawFrame — stable ref, zero state deps ───────────────────────────────
-  // IMPORTANT: this function intentionally has NO state in its dependency array.
-  // isReadyRef is a ref so we can update it without recreating the function.
   const drawFrame = useCallback((rawIndex: number) => {
     const idx = Math.max(0, Math.min(Math.floor(rawIndex), FRAME_COUNT - 1));
     const img = imagesRef.current[idx];
@@ -106,16 +105,15 @@ export default function CardsflowCanvas() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const dpr = 1; // Forced to 1 to save GPU fill-rate on low-power devices
+    const dpr  = 1; // Forced to 1 to save GPU fill-rate on low-power devices
     const rect = canvas.getBoundingClientRect();
     if (rect.width === 0 || rect.height === 0) return;
 
-    const targetW = Math.round(rect.width * dpr);
+    const targetW = Math.round(rect.width  * dpr);
     const targetH = Math.round(rect.height * dpr);
 
-    // Only resize backing store when dimensions actually change
     if (canvas.width !== targetW || canvas.height !== targetH) {
-      canvas.width = targetW;
+      canvas.width  = targetW;
       canvas.height = targetH;
     }
 
@@ -130,37 +128,26 @@ export default function CardsflowCanvas() {
 
     let dw: number, dh: number;
     if (canR > imgR) {
-      // Canvas is wider relative to height than the image -> match width
       dw = rect.width;
       dh = dw / imgR;
     } else {
-      // Canvas is taller relative to width than the image -> match height
       dh = rect.height;
       dw = dh * imgR;
     }
 
-    // On mobile, the focal point (cart) is generally near the center-bottom, 
-    // but the default center-cropping might chop it off.
-    // However, exact center horizontal cropping is usually fine.
-    const offsetX = (rect.width - dw) / 2;
-    // Shift slightly down on mobile to make room for top text, or keep centered
+    const offsetX = (rect.width  - dw) / 2;
     const offsetY = (rect.height - dh) / 2;
 
     ctx.drawImage(img, 0, 0, srcW, srcH, offsetX, offsetY, dw, dh);
 
-    // Mark ready — use ref to avoid recreating this callback
-    if (!isReadyRef.current) {
-      isReadyRef.current = true;
-      setIsReady(true);
-    }
-  }, []); // ← intentionally empty; all mutable state is via refs
+    // Mark ready — functional update is safe across Fast Refresh cycles
+    setIsReady((prev) => prev ? prev : true);
+  }, []); // intentionally empty; all mutable state is via refs
 
   // ─── Schedule a RAF draw, cancelling any pending one ──────────────────────
   const scheduleFrame = useCallback(
     (idx: number) => {
-      if (rafRef.current !== null) {
-        cancelAnimationFrame(rafRef.current);
-      }
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
       rafRef.current = requestAnimationFrame(() => {
         rafRef.current = null;
         drawFrame(idx);
@@ -171,45 +158,39 @@ export default function CardsflowCanvas() {
 
   // ─── Cleanup on unmount ────────────────────────────────────────────────────
   useEffect(() => {
-    return () => {
-      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
-    };
+    return () => { if (rafRef.current !== null) cancelAnimationFrame(rafRef.current); };
   }, []);
 
   // ─── Draw frame 0 exactly once when it becomes available ──────────────────
   useEffect(() => {
     if (firstFrameDrawn.current) return;
-    if (progress < 1) return; // at least one frame loaded
+    if (progress < 1 && !IS_DEV) return;
 
     const img = imagesRef.current[0];
     if (!img) return;
 
     firstFrameDrawn.current = true;
     scheduleFrame(0);
-  }, [progress, scheduleFrame]); // progress changes ~8 times (milestones), not 79
+  }, [progress, scheduleFrame]);
 
-  // ─── Scroll hook — 600vh container + sticky panel on all screen sizes ─────
+  // ─── Scroll hook ───────────────────────────────────────────────────────────
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  // Soften the raw scroll value to prevent CPU locking on heavy scroll events
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 80,
     damping: 20,
-    restDelta: 0.001
+    restDelta: 0.001,
   });
 
-  // Map the scroll progress so the 40 frames finish playing right around
-  // the time the next section begins sliding over the hero (at ~50% scroll progress).
   const frameIndex = useTransform(
     smoothProgress,
     [0, 0.5],
     [0, FRAME_COUNT - 1],
   );
 
-  // Drive animation on every device — guard removed so mobile works too
   useMotionValueEvent(frameIndex, "change", (latest) => {
     scheduleFrame(latest);
   });
@@ -224,60 +205,53 @@ export default function CardsflowCanvas() {
   // ─── Render ────────────────────────────────────────────────────────────────
   return (
     <>
-      {/* Preloader — shown until the first frame is painted */}
-      <AnimatePresence>
-        {!isReady && (
-          <motion.div
-            key="preloader"
-            className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-[#0F1B2D]"
-            exit={{
-              opacity: 0,
-              transition: { duration: 0.6, ease: "easeOut" },
-            }}
-          >
-            {/* Logo */}
+      {/* Preloader — shown in PRODUCTION only until first frame is painted */}
+      {!IS_DEV && (
+        <AnimatePresence>
+          {!isReady && (
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4 }}
-              className="w-12 h-12 bg-[#E5B220] rounded-xl flex items-center justify-center mb-8 shadow-[0_0_40px_rgba(229,178,32,0.4)]"
+              key="preloader"
+              className="fixed inset-0 z-[60] flex flex-col items-center justify-center bg-[#0F1B2D]"
+              exit={{
+                opacity: 0,
+                transition: { duration: 0.6, ease: "easeOut" },
+              }}
             >
-              <svg width="22" height="22" viewBox="0 0 16 16" fill="none">
-                <path d="M8 2L14 8L8 14L2 8L8 2Z" fill="#0F1B2D" />
-              </svg>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4 }}
+                className="w-12 h-12 bg-[#E5B220] rounded-xl flex items-center justify-center mb-8 shadow-[0_0_40px_rgba(229,178,32,0.4)]"
+              >
+                <svg width="22" height="22" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 2L14 8L8 14L2 8L8 2Z" fill="#0F1B2D" />
+                </svg>
+              </motion.div>
+
+              <div className="w-48 h-[2px] bg-zinc-800 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-[#E5B220] rounded-full transition-all duration-300 ease-out"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
+              <span className="mt-4 text-zinc-600 text-[10px] uppercase tracking-[0.25em] font-bold">
+                {progress < 100 ? `Loading ${progress}%` : "Starting…"}
+              </span>
             </motion.div>
+          )}
+        </AnimatePresence>
+      )}
 
-            {/* Progress bar */}
-            <div className="w-48 h-[2px] bg-zinc-800 rounded-full overflow-hidden">
-              <div
-                className="h-full bg-[#E5B220] rounded-full transition-all duration-300 ease-out"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
-            <span className="mt-4 text-zinc-600 text-[10px] uppercase tracking-[0.25em] font-bold">
-              {progress < 100 ? `Loading ${progress}%` : "Starting…"}
-            </span>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/*
-        Hero wrapper:
-          • Always 250vh so useScroll has room to track on mobile + desktop
-          • Inner panel is sticky top-0 so it fills the viewport the entire time
-      */}
       <div
         id="main-layout"
         ref={containerRef}
         className="relative w-full"
         style={{ height: "250vh" }}
       >
-        {/* Sticky full-screen panel */}
         <div
           className="sticky top-0 w-full overflow-hidden bg-[#0F1B2D]"
           style={{ height: "100dvh" }}
         >
-          {/* Canvas — z-0, behind all overlays */}
           <canvas
             ref={canvasRef}
             aria-hidden="true"
@@ -289,7 +263,6 @@ export default function CardsflowCanvas() {
             }}
           />
 
-          {/* Readability gradient over canvas */}
           <div
             aria-hidden="true"
             className="absolute inset-0 pointer-events-none"
@@ -300,7 +273,6 @@ export default function CardsflowCanvas() {
             }}
           />
 
-          {/* Bottom fade into the section below (now slate-50 for light mode) */}
           <div
             aria-hidden="true"
             className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none"
@@ -311,7 +283,6 @@ export default function CardsflowCanvas() {
             }}
           />
 
-          {/* Hero text — z-10, always on top */}
           <div className="relative w-full h-full" style={{ zIndex: 10 }}>
             <HeroContent isMobile={isMobile} isLoaded={progress === 100} />
           </div>

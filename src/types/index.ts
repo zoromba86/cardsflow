@@ -13,6 +13,7 @@ export interface UseCaseCard {
 export interface NavLink {
   label: string;
   sectionId: string;
+  href?: string; // if set, navigates to this URL instead of scrolling
 }
 
 export interface FooterLink {

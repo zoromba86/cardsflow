@@ -13,11 +13,11 @@ export default function ProhibitedUsePage() {
     <SubPageLayout>
       <HeroSection 
         title="Prohibited Use"
-        supportCopy="Clear boundaries around what CardsFlow does and does not support."
+        supportCopy="Clear boundaries around what Cardsflow does and does not support."
       />
       <div className="max-w-4xl mx-auto px-5 sm:px-12 lg:px-20 py-16 prose prose-invert prose-p:text-zinc-400 prose-headings:text-zinc-200 prose-li:text-zinc-400 prose-a:text-[#E5B220]">
         <p className="lead text-xl text-zinc-300">
-          This page explains the types of activity that are prohibited, unsupported, or outside the intended scope of CardsFlow.
+          This page explains the types of activity that are prohibited, unsupported, or outside the intended scope of Cardsflow.
         </p>
 
         <p>Our product is designed for lawful, clearly defined payment workflows such as:</p>
@@ -33,19 +33,19 @@ export default function ProhibitedUsePage() {
         <p>We publish this page so users can understand where the product fits — and where it does not.</p>
 
         <h3>Prohibited use categories</h3>
-        <p>The following categories are prohibited or unsupported on CardsFlow.</p>
+        <p>The following categories are prohibited or unsupported on Cardsflow.</p>
 
         <h4>1. Illegal activity</h4>
-        <p>You may not use CardsFlow for any unlawful activity, including the purchase of illegal goods or services, fraudulent activity, or transactions that violate applicable law or regulation.</p>
+        <p>You may not use Cardsflow for any unlawful activity, including the purchase of illegal goods or services, fraudulent activity, or transactions that violate applicable law or regulation.</p>
 
         <h4>2. Deceptive or misleading payment behavior</h4>
-        <p>You may not use CardsFlow to misrepresent identity, conceal unauthorized activity, create deceptive billing patterns, or otherwise engage in misleading payment behavior.</p>
+        <p>You may not use Cardsflow to misrepresent identity, conceal unauthorized activity, create deceptive billing patterns, or otherwise engage in misleading payment behavior.</p>
 
         <h4>3. Sanctions, restricted jurisdictions, or prohibited counterparties</h4>
-        <p>You may not use CardsFlow in connection with sanctioned persons, prohibited jurisdictions, restricted entities, or any transaction that would create legal or regulatory exposure for the service.</p>
+        <p>You may not use Cardsflow in connection with sanctioned persons, prohibited jurisdictions, restricted entities, or any transaction that would create legal or regulatory exposure for the service.</p>
 
         <h4>4. Fraud, abuse, or unauthorized use</h4>
-        <p>You may not use CardsFlow for:</p>
+        <p>You may not use Cardsflow for:</p>
         <ul>
           <li>stolen or unauthorized funds</li>
           <li>card testing</li>
@@ -59,7 +59,7 @@ export default function ProhibitedUsePage() {
         <p>Some merchant categories, purchase categories, or operational uses may be unsupported even if they are lawful in some contexts. If a use case is not clearly listed as supported, you should contact support before relying on the service.</p>
 
         <h4>6. Resale, sublicensing, or third-party misuse without authorization</h4>
-        <p>You may not provide access to CardsFlow in a way that transfers responsibility to unauthorized third parties or uses the service outside the intended account structure.</p>
+        <p>You may not provide access to Cardsflow in a way that transfers responsibility to unauthorized third parties or uses the service outside the intended account structure.</p>
 
         <h3>Supported use cases</h3>
         <p>At this time, our content and product positioning focus on a defined set of supported workflows:</p>
@@ -82,7 +82,11 @@ export default function ProhibitedUsePage() {
 
         <h3>If you are unsure whether a use case is allowed</h3>
         <p>If you are uncertain whether your intended workflow is supported, contact us before relying on the service.</p>
+        <p><strong>Support email:</strong> support@cardsflow.net</p>
         <p><strong>Support page:</strong> <a href="/trust/support-and-escalations">/trust/support-and-escalations/</a></p>
+
+        <div className="h-px w-full bg-white/10 my-8"></div>
+        <p className="text-sm text-zinc-500 italic">Last updated: April 2026</p>
       </div>
       <RelatedLinksModule 
         links={[

@@ -36,6 +36,8 @@ export default function adspendmanagementPage() {
             src="/use-cases/ad-spend.png" 
             alt="Ad Spend Management Dashboard" 
             fill 
+            loading="lazy"
+            decoding="async"
             className="object-cover"
           />
         </div>

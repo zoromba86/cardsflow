@@ -17,7 +17,7 @@ export default function HowWeReviewContentPage() {
       />
       <div className="max-w-4xl mx-auto px-5 sm:px-12 lg:px-20 py-16 prose prose-invert prose-p:text-zinc-400 prose-headings:text-zinc-200 prose-li:text-zinc-400 prose-a:text-[#E5B220]">
         <p className="lead text-xl text-zinc-300">
-          This page explains how CardsFlow creates, reviews, and updates the content published on this site.
+          This page explains how Cardsflow creates, reviews, and updates the content published on this site.
         </p>
 
         <p>Our goal is to make payment-related information clear, practical, and easy to evaluate. Because people use this content to make operational and financial decisions, we aim to present information in a way that is transparent, responsibly scoped, and easy to verify.</p>
@@ -92,6 +92,7 @@ export default function HowWeReviewContentPage() {
 
         <h3>How to report an issue</h3>
         <p>If you believe a page is unclear, outdated, incomplete, or inaccurate, please contact us:</p>
+        <p><strong>Support email:</strong> support@cardsflow.net</p>
         <p><strong>Support page:</strong> <a href="/trust/support-and-escalations">/trust/support-and-escalations/</a></p>
         <p>Please include:</p>
         <ul>
@@ -99,12 +100,16 @@ export default function HowWeReviewContentPage() {
           <li>the issue you noticed</li>
           <li>any correction or clarification you recommend</li>
         </ul>
+
+        <div className="h-px w-full bg-white/10 my-8"></div>
+        <p className="text-sm text-zinc-500 italic">Last updated: April 2026</p>
       </div>
       <RelatedLinksModule 
         links={[
           { title: "Trust Center", href: "/trust" },
           { title: "Prohibited Use", href: "/trust/prohibited-use" },
           { title: "Security & Data Handling", href: "/trust/security-and-data-handling" },
+          { title: "Support & Escalations", href: "/trust/support-and-escalations" },
           { title: "Fees & Disclosures", href: "/trust/fees-and-disclosures" }
         ]} 
       />

@@ -28,7 +28,7 @@ export default function UseCaseTabs() {
           <p className="text-slate-600 text-base md:text-lg mt-4 max-w-xl mx-auto font-light px-2">
             Issue unlimited virtual cards instantly. Our zero-knowledge
             infrastructure ensures your identity stays private while providing
-            an unmatched 99.8% success rate across platforms.
+            an unmatched 95% success rate across platforms.
           </p>
         </motion.div>
 

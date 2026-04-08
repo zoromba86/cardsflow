@@ -2,10 +2,18 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const STATS = [
+interface StatItem {
+  value: number;
+  suffix: string;
+  label: string;
+  prefix?: string;
+  decimals?: number;
+}
+
+const STATS: StatItem[] = [
   { value: 8, suffix: "s", label: "Card Issuance" },
   { value: 0, suffix: "%", label: "Transaction Fees", prefix: "" },
-  { value: 99.8, suffix: "%", label: "Global Acceptance", decimals: 1 },
+  { value: 95, suffix: "%", label: "Global Acceptance" },
   { value: 50, suffix: "M+", label: "Monthly Volume", prefix: "$" },
 ];
 

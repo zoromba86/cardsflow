@@ -11,15 +11,15 @@ export const metadata: Metadata = {
 export default function CookiePolicyPage() {
   return (
     <SubPageLayout>
-      <HeroSection 
+      <HeroSection
         title="Cookie Policy"
-        supportCopy="How CardsFlow uses cookies and similar technologies."
+        supportCopy="How Cardsflow uses cookies and similar technologies."
       />
       <div className="max-w-4xl mx-auto px-5 sm:px-12 lg:px-20 py-16 prose prose-invert prose-p:text-zinc-400 prose-headings:text-zinc-200 prose-li:text-zinc-400 prose-a:text-[#E5B220]">
         <p className="text-sm text-zinc-500 italic mb-8">Last updated: April 2026</p>
 
         <p className="lead text-xl text-zinc-300">
-          This Cookie Policy explains how CardsFlow uses cookies and similar technologies when you visit our website.
+          This Cookie Policy explains how Cardsflow uses cookies and similar technologies when you visit our website.
         </p>
 
         <h3>1. What are cookies?</h3>
@@ -74,15 +74,19 @@ export default function CookiePolicyPage() {
         </ul>
 
         <h3>Contact</h3>
-        <p>If you have questions about our use of cookies, contact legal@cardsflow.com or visit our <a href="/trust/support-and-escalations">Support page</a>.</p>
+        <p>If you have questions about our use of cookies, contact:</p>
+        <ul>
+          <li><strong>Email:</strong> support@cardsflow.net</li>
+          <li><strong>Support:</strong> <a href="/trust/support-and-escalations">/trust/support-and-escalations/</a></li>
+        </ul>
       </div>
-      <RelatedLinksModule 
+      <RelatedLinksModule
         links={[
           { title: "Privacy Policy", href: "/legal/privacy" },
           { title: "Terms of Service", href: "/legal/terms" },
           { title: "Trust Center", href: "/trust" },
           { title: "Contact Support", href: "/trust/support-and-escalations" }
-        ]} 
+        ]}
       />
     </SubPageLayout>
   );

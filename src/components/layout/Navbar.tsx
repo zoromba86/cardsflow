@@ -24,11 +24,16 @@ export default function Navbar() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const handleNavClick = (sectionId: string) => {
+  const handleNavClick = (link: { sectionId: string; href?: string }) => {
+    if (link.href) {
+      router.push(link.href);
+      setMenuOpen(false);
+      return;
+    }
     if (pathname !== "/") {
-      router.push(`/#${sectionId}`);
+      router.push(`/#${link.sectionId}`);
     } else {
-      const el = document.getElementById(sectionId);
+      const el = document.getElementById(link.sectionId);
       if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
     setMenuOpen(false);
@@ -84,7 +89,7 @@ export default function Navbar() {
             {NAV_LINKS.map((link) => (
               <button
                 key={link.sectionId}
-                onClick={() => handleNavClick(link.sectionId)}
+                onClick={() => handleNavClick(link)}
                 className={`transition-colors duration-200 cursor-pointer outline-none bg-transparent border-none ${
                   scrolled ? "hover:text-slate-900" : "hover:text-white"
                 }`}
@@ -136,7 +141,7 @@ export default function Navbar() {
             {NAV_LINKS.map((link) => (
               <button
                 key={link.sectionId}
-                onClick={() => handleNavClick(link.sectionId)}
+                onClick={() => handleNavClick(link)}
                 className={`text-left text-base font-semibold py-3 px-4 rounded-xl transition-colors ${
                   scrolled 
                     ? "text-slate-600 hover:text-slate-900 hover:bg-slate-100" 

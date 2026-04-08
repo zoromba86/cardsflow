@@ -17,7 +17,7 @@ export default function SupportAndEscalationsPage() {
       />
       <div className="max-w-4xl mx-auto px-5 sm:px-12 lg:px-20 py-16 prose prose-invert prose-p:text-zinc-400 prose-headings:text-zinc-200 prose-li:text-zinc-400 prose-a:text-[#E5B220]">
         <p className="lead text-xl text-zinc-300">
-          This page explains how to contact CardsFlow support, what details to include in your request, and how issues are prioritized or escalated.
+          This page explains how to contact Cardsflow support, what details to include in your request, and how issues are prioritized or escalated.
         </p>
 
         <p>Our goal is to make support requests easier to route and easier to resolve.</p>
@@ -25,10 +25,9 @@ export default function SupportAndEscalationsPage() {
         <h3>How to contact support</h3>
         <div className="not-prose bg-white/5 border border-white/10 rounded-2xl p-6 my-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
-            <div><span className="text-zinc-500 block mb-1">Email</span><span className="text-zinc-200">support@cardsflow.com</span></div>
-            <div><span className="text-zinc-500 block mb-1">Support Hours</span><span className="text-zinc-200">Monday – Friday, 9:00 – 18:00 UTC</span></div>
-            <div><span className="text-zinc-500 block mb-1">Primary Channel</span><span className="text-zinc-200">Email + Telegram</span></div>
-            <div><span className="text-zinc-500 block mb-1">Billing Inquiries</span><span className="text-zinc-200">billing@cardsflow.com</span></div>
+            <div><span className="text-zinc-500 block mb-1">Email</span><span className="text-zinc-200">support@cardsflow.net</span></div>
+            <div><span className="text-zinc-500 block mb-1">Support Hours</span><span className="text-zinc-200">24/7</span></div>
+            <div><span className="text-zinc-500 block mb-1">Primary Channel</span><span className="text-zinc-200">Live chat or through our social media official channels</span></div>
           </div>
         </div>
         <p>If you have an urgent issue, include <strong>&quot;URGENT&quot;</strong> in the subject line and provide the most relevant details upfront.</p>
@@ -111,6 +110,9 @@ export default function SupportAndEscalationsPage() {
           <li><a href="/use-cases">Use Cases</a></li>
         </ul>
         <p>Many common questions can be resolved faster when the relevant documentation is reviewed first.</p>
+
+        <div className="h-px w-full bg-white/10 my-8"></div>
+        <p className="text-sm text-zinc-500 italic">Last updated: April 2026</p>
       </div>
       <RelatedLinksModule 
         links={[

@@ -11,13 +11,13 @@ export const metadata: Metadata = {
 export default function securityanddatahandlingPage() {
   return (
     <SubPageLayout>
-      <HeroSection 
+      <HeroSection
         title="Security & Data Handling"
         supportCopy="Cardsflow policies and documentation for users and partners."
       />
       <div className="max-w-4xl mx-auto px-5 sm:px-12 lg:px-20 py-16 prose prose-invert prose-p:text-zinc-400 prose-headings:text-zinc-200 prose-li:text-zinc-400 prose-a:text-[#E5B220]">
         <p className="lead text-xl text-zinc-300">
-          This page explains how CardsFlow approaches account protection, operational safeguards, and the handling of user information.
+          This page explains how Cardsflow approaches account protection, operational safeguards, and the handling of user information.
         </p>
 
         <p>We aim to keep this page practical and readable. It is intended to help users understand the kinds of safeguards we use, the limits of those safeguards, and the steps users should take to protect their own accounts and workflows.</p>
@@ -81,13 +81,27 @@ export default function securityanddatahandlingPage() {
 
         <h3>If you need help with a security or account concern</h3>
         <p>If you believe there is an account issue, security concern, or operational problem that requires attention, please contact support as soon as possible.</p>
+        <p><strong>Support email:</strong> support@cardsflow.net</p>
         <p><strong>Support page:</strong> <a href="/trust/support-and-escalations">/trust/support-and-escalations/</a></p>
+        <p>If your issue is urgent, include:</p>
+        <ul>
+          <li>the word &quot;URGENT&quot; in the subject line</li>
+          <li>the account email or identifier</li>
+          <li>a brief description of the issue</li>
+          <li>any relevant timestamps or transaction context</li>
+        </ul>
+
+        <div className="h-px w-full bg-white/10 my-8"></div>
+        <p className="text-sm text-zinc-500 italic">Last updated: April 2026</p>
       </div>
-      <RelatedLinksModule 
+      <RelatedLinksModule
         links={[
           { title: "Trust Center", href: "/trust" },
-          { title: "Contact Support", href: "/trust/support-and-escalations" }
-        ]} 
+          { title: "Fees & Disclosures", href: "/trust/fees-and-disclosures" },
+          { title: "Support & Escalations", href: "/trust/support-and-escalations" },
+          { title: "Privacy Policy", href: "/legal/privacy" },
+          { title: "Terms of Service", href: "/legal/terms" }
+        ]}
       />
     </SubPageLayout>
   );
