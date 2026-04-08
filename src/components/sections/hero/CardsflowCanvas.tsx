@@ -163,32 +163,32 @@ export default function CardsflowCanvas() {
 
   // ─── Draw frame 0 as soon as it's available (poll until loaded) ────────────
   useEffect(() => {
-    // Poll every 100ms until frame 0 is loaded, then draw it immediately.
-    // This ensures the canvas renders on first paint without needing a scroll event.
+    // Poll every 80ms until BOTH frame 0 and the canvas have valid dimensions.
+    // On mobile, the canvas can be inside a sticky/dvh container whose
+    // getBoundingClientRect() returns 0 until the browser has completed layout.
+    // We must not clear the interval until drawFrame can actually succeed.
     const interval = setInterval(() => {
       if (firstFrameDrawn.current) {
         clearInterval(interval);
         return;
       }
+
       const img = imagesRef.current[0];
-      if (img && img.complete && img.naturalWidth > 0) {
-        clearInterval(interval);
-        firstFrameDrawn.current = true;
-        scheduleFrame(0);
-      }
+      if (!img || !img.complete || img.naturalWidth === 0) return; // image not ready yet
+
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+      const rect = canvas.getBoundingClientRect();
+      if (rect.width === 0 || rect.height === 0) return; // canvas not laid out yet
+
+      // Both image AND canvas are ready — safe to draw
+      clearInterval(interval);
+      firstFrameDrawn.current = true;
+      scheduleFrame(0);
     }, 80);
 
-    // Safety: also draw when progress changes (production preloader path)
-    if (!IS_DEV && progress >= 1) {
-      const img = imagesRef.current[0];
-      if (img && img.complete && img.naturalWidth > 0 && !firstFrameDrawn.current) {
-        firstFrameDrawn.current = true;
-        scheduleFrame(0);
-      }
-    }
-
     return () => clearInterval(interval);
-  }, [progress, scheduleFrame]);
+  }, [scheduleFrame]); // no dep on progress — polling handles both dev and prod
 
   // ─── Scroll hook ───────────────────────────────────────────────────────────
   const { scrollYProgress } = useScroll({
