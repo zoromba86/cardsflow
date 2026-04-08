@@ -16,7 +16,7 @@ export default function Home() {
     >
       <Navbar />
 
-      {/* Hero — always 600vh with sticky inner panel on all screen sizes */}
+      {/* Hero — always 250vh with sticky inner panel on all screen sizes */}
       <CardsflowCanvas />
 
       {/* Content slides up over the sticky hero on all screen sizes */}

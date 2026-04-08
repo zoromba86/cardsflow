@@ -27,9 +27,11 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
   {
     heading: "Trust & Legal",
     links: [
+      { label: "About Us", href: "/about/" },
       { label: "Trust Center", href: "/trust/" },
       { label: "Security & Data", href: "/trust/security-and-data-handling/" },
       { label: "Fees & Disclosures", href: "/trust/fees-and-disclosures/" },
+      { label: "Refund Policy", href: "/refund-policy/" },
       { label: "Privacy Policy", href: "/legal/privacy/" },
       { label: "Terms of Service", href: "/legal/terms/" },
     ],

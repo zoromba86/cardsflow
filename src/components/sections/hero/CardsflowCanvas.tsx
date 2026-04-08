@@ -201,9 +201,11 @@ export default function CardsflowCanvas() {
     restDelta: 0.001
   });
 
+  // Map the scroll progress so the 40 frames finish playing right around
+  // the time the next section begins sliding over the hero (at ~50% scroll progress).
   const frameIndex = useTransform(
     smoothProgress,
-    [0, 1],
+    [0, 0.5],
     [0, FRAME_COUNT - 1],
   );
 
@@ -261,14 +263,14 @@ export default function CardsflowCanvas() {
 
       {/*
         Hero wrapper:
-          • Always 600vh so useScroll has room to track on mobile + desktop
+          • Always 250vh so useScroll has room to track on mobile + desktop
           • Inner panel is sticky top-0 so it fills the viewport the entire time
       */}
       <div
         id="main-layout"
         ref={containerRef}
         className="relative w-full"
-        style={{ height: "600vh" }}
+        style={{ height: "250vh" }}
       >
         {/* Sticky full-screen panel */}
         <div

@@ -1,6 +1,6 @@
 import React from "react";
-import Image from "next/image";
 import { Metadata } from "next";
+import Image from "next/image";
 import { SubPageLayout } from "@/components/layout";
 import { 
   HeroSection, 
@@ -27,20 +27,20 @@ export default function travelspendmanagementPage() {
         primaryCtaText="Get Started"
         primaryCtaLink="/onboarding"
         secondaryCtaText="View Demo"
+        secondaryCtaLink="/contact"
       />
       
-      <div className="w-full px-5 sm:px-12 lg:px-20 max-w-[1400px] mx-auto mt-[-40px] relative z-20">
-        <div className="rounded-3xl overflow-hidden border border-white/10 shadow-[0_0_100px_rgba(229,178,32,0.15)] relative aspect-[21/9]">
+      <div className="w-full max-w-5xl mx-auto px-5 sm:px-12 -mt-12 sm:-mt-20 z-10 relative mb-16">
+        <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#0F1B2D]">
           <Image 
-            src="/images/use-cases/travel-spend.png" 
-            alt="Travel Spend Management Visualization" 
+            src="/use-cases/travel.png" 
+            alt="Travel Spend Management Dashboard" 
             fill 
             className="object-cover"
-            priority
           />
         </div>
       </div>
-
+      
       <DirectAnswerBlock>
         To effectively manage travel spend management with virtual cards, a virtual card provides isolated risk, strict spending limits, and transparent tracking compared to traditional shared physical cards.
       </DirectAnswerBlock>

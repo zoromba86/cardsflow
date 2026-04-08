@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 
 export function FinalCTA() {
   const ref = useRef<HTMLDivElement>(null);
@@ -68,15 +69,19 @@ export function FinalCTA() {
         </p>
 
         {/* CTA buttons */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button className="group relative px-8 py-4 bg-[#E5B220] text-white text-sm font-black uppercase tracking-wider rounded-xl overflow-hidden transition-all duration-300 hover:shadow-[0_10px_40px_rgba(229,178,32,0.4)] hover:scale-[1.03] active:scale-[0.98]">
-            <span className="relative z-10">Get Your Card Now</span>
-            <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-amber-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          </button>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 cursor-pointer pointer-events-auto">
+          <Link href="/use-cases">
+            <button className="group relative px-8 py-4 bg-[#E5B220] text-white text-sm font-black uppercase tracking-wider rounded-xl overflow-hidden transition-all duration-300 hover:shadow-[0_10px_40px_rgba(229,178,32,0.4)] hover:scale-[1.03] active:scale-[0.98]">
+              <span className="relative z-10">Get Your Card Now</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-amber-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </button>
+          </Link>
 
-          <button className="px-8 py-4 text-slate-600 text-sm font-bold uppercase tracking-wider rounded-xl border border-slate-200 hover:border-slate-300 hover:text-slate-900 transition-all duration-300 bg-slate-50 hover:bg-slate-100">
-            See Fees & Disclosures
-          </button>
+          <Link href="/trust/fees-and-disclosures">
+            <button className="px-8 py-4 text-slate-600 text-sm font-bold uppercase tracking-wider rounded-xl border border-slate-200 hover:border-slate-300 hover:text-slate-900 transition-all duration-300 bg-slate-50 hover:bg-slate-100">
+              See Fees & Disclosures
+            </button>
+          </Link>
         </div>
 
         {/* Trust signals */}

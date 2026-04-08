@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 interface HeroContentProps {
   isMobile?: boolean;
@@ -59,37 +60,41 @@ export default function HeroContent({
           className="mt-7 sm:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pointer-events-auto w-full sm:w-auto"
         >
           {/* Primary */}
-          <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-            className="relative group bg-[#E5B220] text-[#0F1B2D] font-black rounded-xl px-7 py-3.5 text-sm sm:text-base shadow-[0_0_32px_rgba(229,178,32,0.35)] hover:shadow-[0_0_52px_rgba(229,178,32,0.55)] transition-shadow overflow-hidden flex items-center justify-center gap-2"
-          >
-            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-700" />
-            <span className="relative z-10 flex items-center gap-2">
-              Get Started Now
-              <svg
-                width="15"
-                height="15"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </span>
-          </motion.button>
+          <Link href="/use-cases" className="w-full sm:w-auto">
+            <motion.button
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              className="relative group bg-[#E5B220] text-[#0F1B2D] font-black rounded-xl px-7 py-3.5 text-sm sm:text-base shadow-[0_0_32px_rgba(229,178,32,0.35)] hover:shadow-[0_0_52px_rgba(229,178,32,0.55)] transition-shadow overflow-hidden flex items-center justify-center gap-2 w-full"
+            >
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-700" />
+              <span className="relative z-10 flex items-center gap-2">
+                Get Started Now
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </span>
+            </motion.button>
+          </Link>
 
           {/* Secondary */}
-          <motion.button
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-            className="font-semibold text-white/75 hover:text-white bg-white/8 hover:bg-white/12 border border-white/15 hover:border-white/25 backdrop-blur-sm rounded-xl px-7 py-3.5 text-sm sm:text-base transition-all flex items-center justify-center"
-          >
-            View Documentation
-          </motion.button>
+          <Link href="/guides/how-virtual-cards-work-for-online-payments" className="w-full sm:w-auto">
+            <motion.button
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              className="font-semibold text-white/75 hover:text-white bg-white/8 hover:bg-white/12 border border-white/15 hover:border-white/25 backdrop-blur-sm rounded-xl px-7 py-3.5 text-sm sm:text-base transition-all flex items-center justify-center w-full"
+            >
+              View Documentation
+            </motion.button>
+          </Link>
         </motion.div>
 
         {/* Trust line */}
