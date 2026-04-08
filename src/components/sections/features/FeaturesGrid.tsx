@@ -93,7 +93,7 @@ export function FeaturesGrid() {
                 <span className="text-slate-400">Nothing you don&apos;t.</span>
               </h2>
               <p className="text-slate-500 text-lg md:text-xl font-light leading-relaxed max-w-md">
-                We stripped away the legacy banking bloat. What's left is a razor-sharp toolkit designed exclusively for speed, privacy, and absolute financial control.
+                We stripped away the legacy banking bloat. What&apos;s left is a razor-sharp toolkit designed exclusively for speed, privacy, and absolute financial control.
               </p>
             </div>
           </div>

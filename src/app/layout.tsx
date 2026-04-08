@@ -11,6 +11,27 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "CardsFlow — Reliable Virtual Cards for Modern Online Payments",
   description: "The world's first virtual card issuance platform built on absolute zero-knowledge protocols. Experience total financial privacy with an industry-leading global merchant acceptance rate.",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "CardsFlow",
+    title: "CardsFlow — Privacy-First Virtual Cards for Modern Online Payments",
+    description: "Create virtual cards for ad budgets, travel spend, and online service subscriptions. Reduce card exposure, isolate merchants, and control recurring billing.",
+    images: [
+      {
+        url: "/og/og-facebook.png",
+        width: 1200,
+        height: 630,
+        alt: "CardsFlow — Privacy-First Virtual Cards",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "CardsFlow — Privacy-First Virtual Cards",
+    description: "Create virtual cards for ad budgets, travel spend, and online subscriptions.",
+    images: ["/og/og-twitter.png"],
+  },
 };
 
 export const viewport = {

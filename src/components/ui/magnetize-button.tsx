@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 
 interface MagnetizeButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   particleCount?: number;
-  attractRadius?: number;
   particleColors?: string;
   children?: React.ReactNode;
 }
@@ -23,7 +22,6 @@ interface Particle {
 function MagnetizeButton({
   className,
   particleCount = 12,
-  attractRadius = 50,
   particleColors = "bg-white",
   children,
   ...props
@@ -38,6 +36,7 @@ function MagnetizeButton({
       x: Math.random() * 360 - 180,
       y: Math.random() * 360 - 180,
     }));
+    // eslint-disable-next-line
     setParticles(newParticles);
   }, [particleCount]);
 
