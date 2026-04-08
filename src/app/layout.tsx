@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const plusJakarta = Plus_Jakarta_Sans({
+  variable: "--font-jakarta",
   subsets: ["latin"],
   display: "swap",
 });
@@ -48,7 +48,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} font-sans antialiased bg-slate-50`}
+        className={`${plusJakarta.variable} font-sans antialiased bg-slate-50`}
         suppressHydrationWarning
       >
         <link rel="preload" href="/frames/ezgif-frame-001.jpg" as="image" type="image/jpeg" fetchPriority="high" />

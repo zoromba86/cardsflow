@@ -10,17 +10,14 @@ import { FinalCTA } from "@/components/sections/cta";
 
 export default function Home() {
   return (
-    <main
-      className="min-h-screen w-full"
-      style={{ fontFamily: "var(--font-sans)" }}
-    >
+    <main className="min-h-screen w-full">
       <Navbar />
 
       {/* Hero — always 250vh with sticky inner panel on all screen sizes */}
       <CardsflowCanvas />
 
       {/* Content slides up over the sticky hero on all screen sizes */}
-      <div className="relative z-20 rounded-t-[2rem] md:rounded-t-[3rem] -mt-[100vh] bg-slate-50">
+      <div className="relative z-20 rounded-t-[2rem] md:rounded-t-[3rem] -mt-[100vh] bg-slate-50 shadow-[0_-20px_40px_rgba(0,0,0,0.2)] md:shadow-[0_-40px_80px_rgba(0,0,0,0.3)] border-t border-white/10">
         <div className="pt-16 md:pt-20">
           <TrustMarquee />
           <StatsBar />

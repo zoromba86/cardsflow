@@ -161,16 +161,33 @@ export default function CardsflowCanvas() {
     return () => { if (rafRef.current !== null) cancelAnimationFrame(rafRef.current); };
   }, []);
 
-  // ─── Draw frame 0 exactly once when it becomes available ──────────────────
+  // ─── Draw frame 0 as soon as it's available (poll until loaded) ────────────
   useEffect(() => {
-    if (firstFrameDrawn.current) return;
-    if (progress < 1 && !IS_DEV) return;
+    // Poll every 100ms until frame 0 is loaded, then draw it immediately.
+    // This ensures the canvas renders on first paint without needing a scroll event.
+    const interval = setInterval(() => {
+      if (firstFrameDrawn.current) {
+        clearInterval(interval);
+        return;
+      }
+      const img = imagesRef.current[0];
+      if (img && img.complete && img.naturalWidth > 0) {
+        clearInterval(interval);
+        firstFrameDrawn.current = true;
+        scheduleFrame(0);
+      }
+    }, 80);
 
-    const img = imagesRef.current[0];
-    if (!img) return;
+    // Safety: also draw when progress changes (production preloader path)
+    if (!IS_DEV && progress >= 1) {
+      const img = imagesRef.current[0];
+      if (img && img.complete && img.naturalWidth > 0 && !firstFrameDrawn.current) {
+        firstFrameDrawn.current = true;
+        scheduleFrame(0);
+      }
+    }
 
-    firstFrameDrawn.current = true;
-    scheduleFrame(0);
+    return () => clearInterval(interval);
   }, [progress, scheduleFrame]);
 
   // ─── Scroll hook ───────────────────────────────────────────────────────────
@@ -259,7 +276,7 @@ export default function CardsflowCanvas() {
             style={{
               zIndex: 0,
               opacity: isReady ? 1 : 0,
-              transition: "opacity 0.8s ease-in-out",
+              transition: isReady ? "opacity 0.8s ease-in-out" : "none",
             }}
           />
 

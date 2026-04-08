@@ -64,10 +64,7 @@ const FAQ_ITEMS: { category: string; question: string; answer: string }[] = [
 
 export default function FAQPage() {
   return (
-    <main
-      className="min-h-screen w-full bg-slate-50 flex flex-col"
-      style={{ fontFamily: "var(--font-sans)" }}
-    >
+    <main className="min-h-screen w-full bg-slate-50">
       <Navbar />
 
       {/* ── Hero ──────────────────────────────────────────────────────────────── */}

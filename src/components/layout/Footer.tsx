@@ -33,7 +33,7 @@ export default function Footer() {
                 <path d="M20 31L10 25.2V14.8L20 9L25 11.9L15 17.6V22.4L25 28.1L20 31Z" fill="#F8FAFC" />
               </svg>
             </div>
-            <span className="text-slate-900 font-extrabold text-xl tracking-tight" style={{ fontFamily: "Inter, sans-serif" }}>
+            <span className="text-slate-900 font-extrabold text-xl tracking-tight">
               CardsFlow
             </span>
           </Link>

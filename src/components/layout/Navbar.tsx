@@ -77,7 +77,7 @@ export default function Navbar() {
                 <path d="M20 31L10 25.2V14.8L20 9L25 11.9L15 17.6V22.4L25 28.1L20 31Z" fill={scrolled ? "#FFFFFF" : "#0F1B2D"} className="transition-colors duration-300"/>
               </svg>
             </div>
-            <span className={`font-black text-xl tracking-tight transition-colors duration-300 ${scrolled ? "text-slate-900" : "text-white"}`} style={{ fontFamily: "Inter, sans-serif" }}>
+            <span className={`font-black text-xl tracking-tight transition-colors duration-300 ${scrolled ? "text-slate-900" : "text-white"}`}>
               CardsFlow
             </span>
           </Link>

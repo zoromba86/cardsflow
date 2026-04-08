@@ -64,7 +64,7 @@ export default function HeroContent({
             <motion.button
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
-              className="relative group bg-[#E5B220] text-[#0F1B2D] font-black rounded-xl px-7 py-3.5 text-sm sm:text-base shadow-[0_0_32px_rgba(229,178,32,0.35)] hover:shadow-[0_0_52px_rgba(229,178,32,0.55)] transition-shadow overflow-hidden flex items-center justify-center gap-2 w-full"
+              className="relative group bg-[#E5B220] text-[#0F1B2D] font-black rounded-xl px-7 py-3.5 text-sm sm:text-base shadow-[0_0_32px_rgba(229,178,32,0.35)] hover:shadow-[0_0_52px_rgba(229,178,32,0.55)] transition-shadow overflow-hidden flex items-center justify-center gap-2 w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E5B220] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A1220]"
             >
               <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-700" />
               <span className="relative z-10 flex items-center gap-2">
@@ -87,12 +87,11 @@ export default function HeroContent({
 
         </motion.div>
 
-        {/* Trust line */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.0, duration: 0.7 }}
-          className="mt-5 sm:mt-6 text-zinc-600 text-[11px] sm:text-xs font-medium tracking-wide"
+          className="mt-5 sm:mt-6 text-zinc-400/80 text-[11px] sm:text-xs font-medium tracking-wide"
         >
           95% merchant acceptance · Zero-knowledge · Instant issuance
         </motion.p>
@@ -106,7 +105,7 @@ export default function HeroContent({
           transition={{ duration: 1, delay: 1.5 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none"
         >
-          <span className="text-zinc-600 text-[9px] uppercase tracking-[0.25em] font-bold">
+          <span className="text-zinc-400/70 text-[9px] uppercase tracking-[0.25em] font-bold">
             Scroll
           </span>
           <motion.div
