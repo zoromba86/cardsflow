@@ -31,7 +31,7 @@ export default function onlineservicesubscriptionsPage() {
       />
       
       <div className="w-full max-w-5xl mx-auto px-5 sm:px-12 -mt-12 sm:-mt-20 z-10 relative mb-16">
-        <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#0F1B2D]">
+        <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden border border-slate-200 shadow-2xl bg-slate-50">
           <Image 
             src="/use-cases/subscriptions.png" 
             alt="Online Subscriptions Management Dashboard" 

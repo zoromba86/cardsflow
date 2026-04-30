@@ -101,13 +101,15 @@ export default function Navbar() {
 
           {/* CTA + mobile hamburger */}
           <div className="flex items-center gap-3">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-[#E5B220] text-black px-5 py-2 rounded-md text-sm font-bold shadow-md"
-            >
-              Sign In
-            </motion.button>
+            <Link href="https://cardsflow.net/register">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-[#E5B220] text-black px-5 py-2 rounded-md text-sm font-bold shadow-md"
+              >
+                Sign In
+              </motion.button>
+            </Link>
             <button
               className={`md:hidden flex items-center justify-center w-9 h-9 rounded-md transition-colors ${
                 scrolled 

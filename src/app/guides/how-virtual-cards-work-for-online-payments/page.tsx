@@ -24,7 +24,7 @@ export default function HowVirtualCardsWorkPage() {
         A virtual card is a digital payment method designed for online transactions. It gives businesses and professionals a way to make card-based payments without relying on a single physical card for every workflow.
       </DirectAnswerBlock>
 
-      <div className="max-w-4xl mx-auto px-5 sm:px-12 lg:px-20 py-16 prose prose-invert prose-p:text-zinc-400 prose-headings:text-zinc-200 prose-li:text-zinc-400 prose-a:text-[#E5B220]">
+      <div className="max-w-4xl mx-auto px-5 sm:px-12 lg:px-20 py-16 prose prose-slate prose-p:text-slate-600 prose-headings:text-slate-900 prose-headings:font-bold prose-headings:tracking-tight prose-li:text-slate-600 prose-a:text-teal-600">
         <h3>What a virtual card actually does</h3>
         <p>Instead of exposing one shared card everywhere, a virtual card lets you separate payment workflows by:</p>
         <ul>
@@ -41,20 +41,20 @@ export default function HowVirtualCardsWorkPage() {
         <p>Most teams use virtual cards for three reasons:</p>
 
         <div className="not-prose grid grid-cols-1 md:grid-cols-3 gap-6 my-8">
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
+          <div className="bg-white border border-slate-200 shadow-sm rounded-2xl p-6 text-center">
             <div className="text-3xl mb-3">🎯</div>
-            <h4 className="text-zinc-200 font-bold mb-2 text-base">Better control</h4>
-            <p className="text-zinc-400 text-sm m-0">Separate ad spend, travel spending, and recurring services instead of mixing them all together.</p>
+            <h4 className="text-slate-900 font-bold mb-2 text-base">Better control</h4>
+            <p className="text-slate-600 text-sm m-0">Separate ad spend, travel spending, and recurring services instead of mixing them all together.</p>
           </div>
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
+          <div className="bg-white border border-slate-200 shadow-sm rounded-2xl p-6 text-center">
             <div className="text-3xl mb-3">👁️</div>
-            <h4 className="text-zinc-200 font-bold mb-2 text-base">Better visibility</h4>
-            <p className="text-zinc-400 text-sm m-0">Understand which vendor or workflow is attached to each card.</p>
+            <h4 className="text-slate-900 font-bold mb-2 text-base">Better visibility</h4>
+            <p className="text-slate-600 text-sm m-0">Understand which vendor or workflow is attached to each card.</p>
           </div>
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
+          <div className="bg-white border border-slate-200 shadow-sm rounded-2xl p-6 text-center">
             <div className="text-3xl mb-3">🛡️</div>
-            <h4 className="text-zinc-200 font-bold mb-2 text-base">Better containment</h4>
-            <p className="text-zinc-400 text-sm m-0">If one billing issue occurs, you only need to update the affected workflow.</p>
+            <h4 className="text-slate-900 font-bold mb-2 text-base">Better containment</h4>
+            <p className="text-slate-600 text-sm m-0">If one billing issue occurs, you only need to update the affected workflow.</p>
           </div>
         </div>
 

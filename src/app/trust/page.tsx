@@ -15,8 +15,8 @@ export default function trustPage() {
         title="Trust Center"
         supportCopy="Cardsflow policies and documentation for users and partners."
       />
-      <div className="max-w-4xl mx-auto px-5 sm:px-12 lg:px-20 py-16 prose prose-invert prose-p:text-zinc-400 prose-headings:text-zinc-200 prose-li:text-zinc-400 prose-a:text-[#E5B220]">
-        <p className="lead text-xl text-zinc-300">
+      <div className="max-w-4xl mx-auto px-5 sm:px-12 lg:px-20 py-16 prose prose-slate prose-p:text-slate-600 prose-headings:text-slate-900 prose-headings:font-bold prose-headings:tracking-tight prose-li:text-slate-600 prose-a:text-teal-600">
+        <p className="lead text-xl text-slate-700">
           This Trust Center explains how Cardsflow presents information, how supported use cases are defined, where fees and disclosures are published, and how users can evaluate the service responsibly.
         </p>
 

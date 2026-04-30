@@ -20,13 +20,13 @@ export function HeroSection({
   secondaryCtaLink,
 }: HeroSectionProps) {
   return (
-    <div className="relative w-full py-24 sm:py-32 flex flex-col items-start px-5 sm:px-12 lg:px-20 bg-[#0F1B2D]">
-      <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-tight text-transparent bg-clip-text bg-gradient-to-br from-white via-zinc-200 to-zinc-400 max-w-4xl">
+    <div className="relative w-full py-24 sm:py-32 flex flex-col items-start px-5 sm:px-12 lg:px-20 bg-slate-50">
+      <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight leading-tight text-transparent bg-clip-text bg-gradient-to-br from-slate-900 via-slate-800 to-slate-600 max-w-4xl">
         {title}
       </h1>
       
       {supportCopy && (
-        <p className="mt-6 text-base sm:text-lg lg:text-xl text-zinc-400 font-light leading-relaxed max-w-2xl">
+        <p className="mt-6 text-base sm:text-lg lg:text-xl text-slate-600 font-medium leading-relaxed max-w-2xl">
           {supportCopy}
         </p>
       )}
@@ -36,23 +36,23 @@ export function HeroSection({
           {primaryCtaText && (
             primaryCtaLink ? (
               <Link href={primaryCtaLink}>
-                <MagnetizeButton className="bg-[#E5B220] text-[#0F1B2D]">
+                <MagnetizeButton className="bg-teal-600 text-white hover:bg-teal-700">
                   {primaryCtaText}
                 </MagnetizeButton>
               </Link>
             ) : (
-              <MagnetizeButton className="bg-[#E5B220] text-[#0F1B2D]">
+              <MagnetizeButton className="bg-teal-600 text-white hover:bg-teal-700">
                  {primaryCtaText}
               </MagnetizeButton>
             )
           )}
           {secondaryCtaText && (
             secondaryCtaLink ? (
-               <Link href={secondaryCtaLink} className="font-semibold text-white/75 hover:text-white bg-white/8 hover:bg-white/12 border border-white/15 hover:border-white/25 rounded-xl px-7 py-3 transition-all flex items-center justify-center">
+               <Link href={secondaryCtaLink} className="font-semibold text-slate-600 hover:text-slate-900 bg-white hover:bg-slate-50 border border-slate-200 hover:border-slate-300 rounded-xl px-7 py-3 shadow-sm transition-all flex items-center justify-center">
                   {secondaryCtaText}
                </Link>
             ) : (
-               <button className="font-semibold text-white/75 hover:text-white bg-white/8 hover:bg-white/12 border border-white/15 hover:border-white/25 rounded-xl px-7 py-3 transition-all flex items-center justify-center">
+               <button className="font-semibold text-slate-600 hover:text-slate-900 bg-white hover:bg-slate-50 border border-slate-200 hover:border-slate-300 rounded-xl px-7 py-3 shadow-sm transition-all flex items-center justify-center">
                   {secondaryCtaText}
                </button>
             )

@@ -25,21 +25,21 @@ export default function CompareTravelSpendPage() {
       </DirectAnswerBlock>
 
       <div className="max-w-5xl mx-auto px-5 sm:px-12 lg:px-20 py-16">
-        <h2 className="text-2xl font-bold text-zinc-200 mb-4">The short answer</h2>
-        <p className="text-zinc-400 text-lg mb-12">If you want general-purpose employee spend flexibility, a corporate card may still work well. If you want tighter travel controls and better vendor separation, virtual cards are usually the stronger option.</p>
+        <h2 className="text-2xl font-bold text-slate-900 mb-4">The short answer</h2>
+        <p className="text-slate-600 text-lg mb-12">If you want general-purpose employee spend flexibility, a corporate card may still work well. If you want tighter travel controls and better vendor separation, virtual cards are usually the stronger option.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Corporate cards */}
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
+          <div className="bg-white border border-slate-200 shadow-sm rounded-2xl p-8">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-lg">🏦</div>
-              <h3 className="text-xl font-bold text-zinc-200 m-0">Corporate Card</h3>
+              <h3 className="text-xl font-bold text-slate-900 m-0">Corporate Card</h3>
             </div>
-            <p className="text-zinc-500 text-xs uppercase tracking-wider font-semibold mb-4">Where it fits</p>
-            <ul className="space-y-3 text-sm text-zinc-400">
-              <li className="flex items-start gap-2"><span className="text-zinc-500 mt-0.5">•</span> employees need broad spending flexibility</li>
-              <li className="flex items-start gap-2"><span className="text-zinc-500 mt-0.5">•</span> travel is only one part of a wider expense profile</li>
-              <li className="flex items-start gap-2"><span className="text-zinc-500 mt-0.5">•</span> spending is ongoing and general-purpose</li>
+            <p className="text-slate-500 text-xs uppercase tracking-wider font-semibold mb-4">Where it fits</p>
+            <ul className="space-y-3 text-sm text-slate-600">
+              <li className="flex items-start gap-2"><span className="text-slate-500 mt-0.5">•</span> employees need broad spending flexibility</li>
+              <li className="flex items-start gap-2"><span className="text-slate-500 mt-0.5">•</span> travel is only one part of a wider expense profile</li>
+              <li className="flex items-start gap-2"><span className="text-slate-500 mt-0.5">•</span> spending is ongoing and general-purpose</li>
             </ul>
           </div>
 
@@ -48,10 +48,10 @@ export default function CompareTravelSpendPage() {
             <div className="absolute top-4 right-4 text-xs font-bold uppercase tracking-wider text-[#E5B220] bg-[#E5B220]/10 px-3 py-1 rounded-full">Recommended</div>
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-xl bg-[#E5B220]/20 flex items-center justify-center text-lg">💳</div>
-              <h3 className="text-xl font-bold text-zinc-200 m-0">Virtual Cards</h3>
+              <h3 className="text-xl font-bold text-slate-900 m-0">Virtual Cards</h3>
             </div>
-            <p className="text-zinc-500 text-xs uppercase tracking-wider font-semibold mb-4">Where they fit</p>
-            <ul className="space-y-3 text-sm text-zinc-400">
+            <p className="text-slate-500 text-xs uppercase tracking-wider font-semibold mb-4">Where they fit</p>
+            <ul className="space-y-3 text-sm text-slate-600">
               <li className="flex items-start gap-2"><span className="text-[#E5B220] mt-0.5">✓</span> travel vendors should be separated from other business expenses</li>
               <li className="flex items-start gap-2"><span className="text-[#E5B220] mt-0.5">✓</span> temporary access is needed for trips or coordinators</li>
               <li className="flex items-start gap-2"><span className="text-[#E5B220] mt-0.5">✓</span> booking workflows need more structure</li>
@@ -60,9 +60,9 @@ export default function CompareTravelSpendPage() {
           </div>
         </div>
 
-        <div className="mt-12 bg-white/5 border border-white/10 rounded-2xl p-8">
-          <h3 className="text-lg font-bold text-zinc-200 mb-4">Bottom line</h3>
-          <p className="text-zinc-400">Use virtual cards when travel needs its own payment process. Use corporate cards when general employee expense coverage matters more than operational separation.</p>
+        <div className="mt-12 bg-white border border-slate-200 shadow-sm rounded-2xl p-8">
+          <h3 className="text-lg font-bold text-slate-900 mb-4">Bottom line</h3>
+          <p className="text-slate-600">Use virtual cards when travel needs its own payment process. Use corporate cards when general employee expense coverage matters more than operational separation.</p>
         </div>
       </div>
 

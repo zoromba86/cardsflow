@@ -1,44 +1,56 @@
 import type { FaqItem } from "@/types";
 
+/**
+ * AIO / AEO-optimised FAQ content.
+ *
+ * Writing rules applied to every item:
+ *  1. ANSWER-FIRST  — first sentence is a complete, standalone answer.
+ *  2. ENTITY-RICH   — specific brands, numbers, and product names in every answer.
+ *  3. SELF-CONTAINED — each answer makes sense without reading the question.
+ *  4. NATURAL QUERY — question mirrors how a user asks an AI assistant.
+ *  5. NO VAGUENESS  — no "may", "sometimes", "generally" without specifics.
+ *
+ * JSON-LD FAQPage schema is auto-generated from this array in FaqAccordion.tsx.
+ */
 export const FAQ_ITEMS: FaqItem[] = [
   {
-    question: "What cryptocurrencies can I use to fund my virtual card?",
+    question: "Does CardsFlow store my personal documents or identity information?",
     answer:
-      "You can fund your Cardsflow virtual card using dozens of major cryptocurrencies through our secure NOWPayments integration. We accept top digital assets including Bitcoin (BTC), Tether (USDT), USD Coin (USDC), and privacy-focused coins like Monero (XMR) to ensure flexible, secure, and borderless transactions.",
+      "No — CardsFlow never stores passports, government IDs, selfies, or any raw identity documents. Eligibility is verified using zero-knowledge cryptographic proofs: our system receives only a mathematical confirmation that you meet the required conditions, not the underlying data itself. Your real-world identity remains exclusively in your possession. Even in a worst-case security event, there is no identity database on CardsFlow servers to expose.",
   },
   {
-    question: "Can I buy a virtual credit card completely anonymously with Monero?",
+    question: "What cryptocurrencies can I use to deposit funds into CardsFlow?",
     answer:
-      "Yes, you can purchase and fund your virtual credit card using Monero (XMR) to maximize your financial privacy. By utilizing privacy-centric cryptocurrencies alongside our invisible verification systems, your underlying identity and transaction history remain protected from third-party data brokers and tracking.",
+      "CardsFlow accepts deposits in 100+ cryptocurrencies via the NOWPayments gateway, including Bitcoin (BTC), Ethereum (ETH), USDT (TRC20, ERC20, and other networks), USDC, BNB, Solana (SOL), Litecoin (LTC), and many more. NOWPayments automatically converts your chosen currency into your account balance. The minimum deposit is $60 USD equivalent. There are no deposit fees on CardsFlow's side — standard network transaction fees from your sending wallet may apply.",
   },
   {
-    question: "How fast will I receive my crypto virtual card after paying?",
+    question: "How much does it cost to issue a CardsFlow virtual card?",
     answer:
-      "Your virtual crypto debit card is generated instantly upon payment confirmation. Since we utilize automated crypto payment gateways, your card number, expiration date, and CVV are issued within minutes, allowing you to make online purchases or pay for SaaS subscriptions immediately.",
+      "Issuing a virtual CardsFlow Visa card costs $5 (one-time, per card). A physical CardsFlow Visa card costs $50 (one-time, per card). After issuance, loading funds onto a card incurs a top-up fee: 7% for amounts between $25–$1,999; 6% for $2,000–$4,999; and 5% for $5,000 and above. There are no monthly subscription fees, no inactivity fees, and no account closure fees.",
   },
   {
-    question: "Can I use a crypto-funded virtual card if I live outside the US?",
+    question: "If a merchant charges my card fraudulently, does my main account get affected?",
     answer:
-      "Yes, our crypto-funded virtual cards are designed for global users to bypass regional payment restrictions. By funding your account with borderless cryptocurrencies like BTC or USDT, you can successfully pay for international services, US-based ad networks, and global SaaS platforms regardless of your physical location.",
+      "No — each CardsFlow card is fully isolated and carries only the balance you explicitly load onto it. A fraudulent charge or data breach at a merchant can only affect that individual card's loaded balance, not your CardsFlow wallet or any other active card. You can freeze or permanently delete any compromised card instantly from your dashboard, stopping all further charges within seconds.",
   },
   {
-    question: "How can I pay for ChatGPT Plus or the OpenAI API using cryptocurrency?",
+    question: "What is the minimum deposit to get started with CardsFlow?",
     answer:
-      "You can use a crypto-funded virtual Mastercard to seamlessly pay for ChatGPT Plus and OpenAI API usage. By funding a disposable virtual card with cryptocurrency, you bypass regional banking restrictions and traditional credit card requirements, allowing instant, uninterrupted access to global AI subscription services.",
+      "The minimum initial deposit is $60 USD equivalent, payable in any of 100+ supported cryptocurrencies via NOWPayments. CardsFlow charges no deposit fee — the full $60 credits to your wallet. Once funded, you can immediately issue a virtual card ($5 issuance fee) or a physical card ($50 issuance fee), with the remaining balance available for top-ups.",
   },
   {
-    question: "Are virtual cards safe to use for digital marketing and Facebook Ads?",
+    question: "Where are CardsFlow Visa cards accepted for payments?",
     answer:
-      "Yes, virtual cards are highly secure for digital marketing because they allow you to issue reloadable, merchant-locked cards for specific ad accounts. This strict financial compartmentalization prevents cross-platform suspensions and gives media buyers complete control over their daily ad spend without risking primary accounts.",
+      "CardsFlow issues standard US-based Visa cards accepted at 80+ million merchant locations worldwide. This includes online advertising platforms (Meta Ads, Google Ads, TikTok for Business), SaaS and cloud billing portals (AWS, Notion, Adobe, Stripe), e-commerce stores, travel booking sites (Booking.com, Expedia, Airbnb), and physical point-of-sale terminals globally. Physical CardsFlow cards also support ATM cash withdrawals wherever Visa is accepted.",
   },
   {
-    question: "Do I need to provide traditional ID to get a crypto virtual card?",
+    question: "Can I issue cards for my team without giving them access to my account?",
     answer:
-      "No. While traditional banking requires extensive personal documentation, our privacy-preserving infrastructure protects your underlying financial identity from data brokers while ensuring the payment network remains secure and compliant with global anti-fraud standards.",
+      "Yes — you can issue multiple cards from a single dashboard without sharing login credentials. Each card can be assigned to a specific team member, vendor, or spend category. You set per-card spending limits (up to $100,000 per day and $1,000,000 per month), apply merchant-category restrictions, and freeze or delete any card instantly. All cards are managed centrally while remaining operationally independent.",
   },
   {
-    question: "Why do some merchants decline virtual credit cards?",
+    question: "How does CardsFlow protect my wallet and account from unauthorised access?",
     answer:
-      "Merchants occasionally decline virtual cards due to aggressive AI-driven fraud filters, mismatched billing ZIP codes, or strict Merchant Category Code (MCC) blocks. Using a premium virtual card with superior payment routing and clean transaction metadata significantly improves your merchant acceptance rates for online purchases.",
+      "CardsFlow uses layered security controls: encrypted session management, multi-factor authentication (MFA), and real-time anomaly detection on wallet activity. Wallet funds cannot be transferred without authenticated user actions. Critically, because CardsFlow stores no identity documents, there is no KYC database that can be breached and used to impersonate you at another financial institution — a structural privacy advantage over traditional card providers.",
   },
 ];

@@ -19,10 +19,10 @@ export function TrustStrip() {
             href={link.href}
             className="flex flex-col items-center justify-center text-center group"
           >
-            <div className="text-zinc-500 group-hover:text-[#E5B220] transition-colors mb-3">
+            <div className="text-slate-500 group-hover:text-[#E5B220] transition-colors mb-3">
               {link.icon}
             </div>
-            <span className="text-sm font-semibold text-zinc-400 group-hover:text-white transition-colors">
+            <span className="text-sm font-semibold text-slate-600 group-hover:text-slate-900 transition-colors">
               {link.label}
             </span>
           </Link>

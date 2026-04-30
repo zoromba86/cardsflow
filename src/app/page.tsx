@@ -7,6 +7,7 @@ import { StatsBar } from "@/components/sections/stats";
 import { FeaturesGrid } from "@/components/sections/features";
 import { HowItWorks } from "@/components/sections/how-it-works";
 import { FinalCTA } from "@/components/sections/cta";
+import { LatestArticles } from "@/components/sections/blog";
 
 export default function Home() {
   return (
@@ -17,7 +18,7 @@ export default function Home() {
       <CardsflowCanvas />
 
       {/* Content slides up over the sticky hero on all screen sizes */}
-      <div className="relative z-20 rounded-t-[2rem] md:rounded-t-[3rem] -mt-[100vh] bg-slate-50 shadow-[0_-20px_40px_rgba(0,0,0,0.2)] md:shadow-[0_-40px_80px_rgba(0,0,0,0.3)] border-t border-white/10">
+      <div className="relative z-20 rounded-t-[2rem] md:rounded-t-[3rem] -mt-[100vh] bg-slate-50 shadow-[0_-20px_40px_rgba(0,0,0,0.2)] md:shadow-[0_-40px_80px_rgba(0,0,0,0.3)] border-t border-slate-200">
         <div className="pt-16 md:pt-20">
           <TrustMarquee />
           <StatsBar />
@@ -26,6 +27,7 @@ export default function Home() {
         <FeaturesGrid />
         <HowItWorks />
         <AccordionComponent />
+        <LatestArticles />
         <FinalCTA />
         <Footer />
       </div>

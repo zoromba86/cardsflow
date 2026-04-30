@@ -30,53 +30,53 @@ export default function ManageRenewalsPage() {
           <div className="flex gap-6">
             <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-[#E5B220]/20 border border-[#E5B220]/30 flex items-center justify-center text-[#E5B220] font-black text-lg">1</div>
             <div>
-              <h3 className="text-xl font-bold text-zinc-200 mb-3">Make a complete list of active online services</h3>
-              <p className="text-zinc-400 mb-3">Start with every recurring digital vendor, not just the largest ones.</p>
-              <p className="text-zinc-400 text-sm">Your list should include: software tools, service platforms, recurring digital subscriptions, team-owned services, and long-tail tools that quietly renew.</p>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Make a complete list of active online services</h3>
+              <p className="text-slate-600 mb-3">Start with every recurring digital vendor, not just the largest ones.</p>
+              <p className="text-slate-600 text-sm">Your list should include: software tools, service platforms, recurring digital subscriptions, team-owned services, and long-tail tools that quietly renew.</p>
             </div>
           </div>
 
-          <div className="h-px w-full bg-white/5"></div>
+          <div className="h-px w-full bg-slate-100"></div>
 
           <div className="flex gap-6">
             <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-[#E5B220]/20 border border-[#E5B220]/30 flex items-center justify-center text-[#E5B220] font-black text-lg">2</div>
             <div>
-              <h3 className="text-xl font-bold text-zinc-200 mb-3">Assign ownership</h3>
-              <p className="text-zinc-400 mb-3">Every recurring service should have an internal owner.</p>
-              <p className="text-zinc-400 text-sm">If no one owns the service, it becomes harder to review and easier to forget.</p>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Assign ownership</h3>
+              <p className="text-slate-600 mb-3">Every recurring service should have an internal owner.</p>
+              <p className="text-slate-600 text-sm">If no one owns the service, it becomes harder to review and easier to forget.</p>
             </div>
           </div>
 
-          <div className="h-px w-full bg-white/5"></div>
+          <div className="h-px w-full bg-slate-100"></div>
 
           <div className="flex gap-6">
             <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-[#E5B220]/20 border border-[#E5B220]/30 flex items-center justify-center text-[#E5B220] font-black text-lg">3</div>
             <div>
-              <h3 className="text-xl font-bold text-zinc-200 mb-3">Separate billing</h3>
-              <p className="text-zinc-400 mb-3">Move important or high-risk services onto dedicated virtual cards.</p>
-              <p className="text-zinc-400 text-sm">This is especially useful for: critical tools, services with frequent changes, vendors that need clear internal accountability, and categories where billing disruption would matter.</p>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Separate billing</h3>
+              <p className="text-slate-600 mb-3">Move important or high-risk services onto dedicated virtual cards.</p>
+              <p className="text-slate-600 text-sm">This is especially useful for: critical tools, services with frequent changes, vendors that need clear internal accountability, and categories where billing disruption would matter.</p>
             </div>
           </div>
 
-          <div className="h-px w-full bg-white/5"></div>
+          <div className="h-px w-full bg-slate-100"></div>
 
           <div className="flex gap-6">
             <div className="flex-shrink-0 w-12 h-12 rounded-2xl bg-[#E5B220]/20 border border-[#E5B220]/30 flex items-center justify-center text-[#E5B220] font-black text-lg">4</div>
             <div>
-              <h3 className="text-xl font-bold text-zinc-200 mb-3">Review regularly</h3>
-              <p className="text-zinc-400 mb-3">Once renewals are structured, review them on a schedule.</p>
-              <p className="text-zinc-400 text-sm">A structured payment map makes it easier to understand: what is still active, what can be canceled, what should move to a different billing lane, and what has no clear owner.</p>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Review regularly</h3>
+              <p className="text-slate-600 mb-3">Once renewals are structured, review them on a schedule.</p>
+              <p className="text-slate-600 text-sm">A structured payment map makes it easier to understand: what is still active, what can be canceled, what should move to a different billing lane, and what has no clear owner.</p>
             </div>
           </div>
         </div>
 
         {/* Why this works */}
-        <div className="mt-16 bg-white/5 border border-white/10 rounded-2xl p-8">
-          <h3 className="text-xl font-bold text-zinc-200 mb-4">Why this works</h3>
-          <p className="text-zinc-400 mb-4">A dedicated renewal structure reduces confusion during:</p>
+        <div className="mt-16 bg-white border border-slate-200 shadow-sm rounded-2xl p-8">
+          <h3 className="text-xl font-bold text-slate-900 mb-4">Why this works</h3>
+          <p className="text-slate-600 mb-4">A dedicated renewal structure reduces confusion during:</p>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {["Vendor changes", "Team offboarding", "Software stack cleanup", "Card replacement", "Budgeting reviews"].map((item) => (
-              <div key={item} className="flex items-center gap-2 text-sm text-zinc-400">
+              <div key={item} className="flex items-center gap-2 text-sm text-slate-600">
                 <span className="text-[#E5B220]">✓</span> {item}
               </div>
             ))}

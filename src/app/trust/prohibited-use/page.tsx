@@ -15,8 +15,8 @@ export default function ProhibitedUsePage() {
         title="Prohibited Use"
         supportCopy="Clear boundaries around what Cardsflow does and does not support."
       />
-      <div className="max-w-4xl mx-auto px-5 sm:px-12 lg:px-20 py-16 prose prose-invert prose-p:text-zinc-400 prose-headings:text-zinc-200 prose-li:text-zinc-400 prose-a:text-[#E5B220]">
-        <p className="lead text-xl text-zinc-300">
+      <div className="max-w-4xl mx-auto px-5 sm:px-12 lg:px-20 py-16 prose prose-slate prose-p:text-slate-600 prose-headings:text-slate-900 prose-headings:font-bold prose-headings:tracking-tight prose-li:text-slate-600 prose-a:text-teal-600">
+        <p className="lead text-xl text-slate-700">
           This page explains the types of activity that are prohibited, unsupported, or outside the intended scope of Cardsflow.
         </p>
 
@@ -86,7 +86,7 @@ export default function ProhibitedUsePage() {
         <p><strong>Support page:</strong> <a href="/trust/support-and-escalations">/trust/support-and-escalations/</a></p>
 
         <div className="h-px w-full bg-white/10 my-8"></div>
-        <p className="text-sm text-zinc-500 italic">Last updated: April 2026</p>
+        <p className="text-sm text-slate-500 italic">Last updated: April 2026</p>
       </div>
       <RelatedLinksModule 
         links={[

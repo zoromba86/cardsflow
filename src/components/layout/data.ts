@@ -1,7 +1,7 @@
 import type { NavLink, FooterColumn } from "@/types";
 
 export const NAV_LINKS: NavLink[] = [
-  { label: "Use Cases", sectionId: "user-case" },
+  { label: "Use Cases", sectionId: "use-cases" },
   { label: "Features", sectionId: "features" },
   { label: "FAQ", sectionId: "faq", href: "/faq" },
 ];
@@ -18,6 +18,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
   {
     heading: "Resources & Guides",
     links: [
+      { label: "Blog", href: "/blog" },
       { label: "Virtual vs Shared Team Card", href: "/compare/virtual-card-vs-shared-team-card-for-ad-spend/" },
       { label: "Virtual vs Corporate Card", href: "/compare/virtual-card-vs-corporate-card-for-travel-spend/" },
       { label: "How Virtual Cards Work", href: "/guides/how-virtual-cards-work-for-online-payments/" },

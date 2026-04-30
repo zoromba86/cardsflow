@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Dev artifacts
+extracted_materials.html
+page_output.html
+temp_structure.html
+dev_output.txt
+build_pages.js
+generate_pages.js
+get-colors.ps1
+temp_next/

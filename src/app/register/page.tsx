@@ -34,7 +34,7 @@ export default function RegisterPage() {
             ))}
           </ul>
           <p className="mt-8 text-sm text-slate-400">
-            Registration will be available once the backend is connected. This is a frontend preview.
+            Registration opens soon. Join the waitlist to be notified when accounts go live.
           </p>
         </div>
       </div>

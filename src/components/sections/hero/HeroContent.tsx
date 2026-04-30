@@ -23,33 +23,31 @@ export default function HeroContent({
           className="flex items-center gap-2 text-[10px] sm:text-xs font-bold tracking-[0.22em] uppercase text-zinc-400 mb-4 sm:mb-6"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-[#E5B220]" />
-          <span>Secure</span>
+          <span>No KYC</span>
           <span className="w-1 h-1 rounded-full bg-zinc-600" />
-          <span>Instant</span>
+          <span>Zero-Knowledge</span>
           <span className="w-1 h-1 rounded-full bg-zinc-600" />
-          <span>Global</span>
+          <span>Instant Visa Issuance</span>
         </motion.div>
 
-        {/* Headline */}
+        {/* Headline — Primary SEO keyword phrase in H1 */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.35 }}
           className="font-black tracking-tight leading-[1.06] bg-clip-text text-transparent bg-gradient-to-br from-white via-zinc-100 to-zinc-400 text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl max-w-[15rem] sm:max-w-xl md:max-w-2xl"
         >
-          Reliable Virtual Cards for Modern Online Payments
+          Virtual & Physical Cards With Zero Identity Exposure
         </motion.h1>
 
-        {/* Subtext */}
+        {/* Subtext — answers the user's core fear with a specific, credible resolution */}
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
           className="text-zinc-400 mt-4 sm:mt-6 text-sm sm:text-base md:text-lg lg:text-xl max-w-[16rem] sm:max-w-sm md:max-w-xl font-light leading-relaxed"
         >
-          A premium virtual card issuing platform built on absolute
-          zero-knowledge protocols — ensuring total financial privacy and
-          industry-leading global acceptance rates.
+          CardsFlow issues dedicated Visa cards that shield your real account from merchants, advertisers, and data brokers. No document upload. No personal data stored. Every card is isolated so one compromised vendor can never touch another.
         </motion.p>
 
         {/* CTA buttons */}
@@ -60,7 +58,7 @@ export default function HeroContent({
           className="mt-7 sm:mt-10 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pointer-events-auto w-full sm:w-auto"
         >
           {/* Primary */}
-          <Link href="/use-cases" className="w-full sm:w-auto">
+          <Link href="https://cardsflow.net/register" className="w-full sm:w-auto">
             <motion.button
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
@@ -68,7 +66,7 @@ export default function HeroContent({
             >
               <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-12 translate-x-[-150%] group-hover:translate-x-[150%] transition-transform duration-700" />
               <span className="relative z-10 flex items-center gap-2">
-                Get Started Now
+                Issue My First Card
                 <svg
                   width="15"
                   height="15"
@@ -87,13 +85,14 @@ export default function HeroContent({
 
         </motion.div>
 
+        {/* Social proof — measurable, specific, builds YMYL trust */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.0, duration: 0.7 }}
           className="mt-5 sm:mt-6 text-zinc-400/80 text-[11px] sm:text-xs font-medium tracking-wide"
         >
-          95% merchant acceptance · Zero-knowledge · Instant issuance
+          95%+ merchant acceptance · No raw identity stored · Cards live in seconds
         </motion.p>
       </div>
 

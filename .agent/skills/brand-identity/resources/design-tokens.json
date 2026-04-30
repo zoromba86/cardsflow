@@ -1,34 +1,38 @@
 {
   "meta": {
-    "brand_name": "[INSERT NAME]",
+    "brand_name": "Cardsflow",
     "description": "Core design tokens for UI implementation."
   },
   "colors": {
     "primary": {
-      "DEFAULT": "#000000",
-      "hover": "#333333",
+      "DEFAULT": "#0F172A",
+      "hover": "#1E293B",
       "foreground": "#FFFFFF"
     },
     "secondary": {
-      "DEFAULT": "#F4F4F5",
-      "foreground": "#18181B"
+      "DEFAULT": "#64748B",
+      "foreground": "#FFFFFF"
     },
-    "background": "#FFFFFF",
-    "foreground": "#09090B",
-    "muted": "#F4F4F5",
-    "accent": "#F4F4F5",
+    "background": "#F8FAFC",
+    "surface": "#FFFFFF",
+    "foreground": "#0F172A",
+    "muted": "#F1F5F9",
+    "accent": "#0D9488",
     "destructive": "#EF4444",
     "success": "#10B981"
   },
   "typography": {
-    "font_family_headings": ["Inter", "sans-serif"],
-    "font_family_body": ["Roboto", "sans-serif"],
+    "font_family_headings": ["Plus Jakarta Sans", "sans-serif"],
+    "font_family_body": ["Plus Jakarta Sans", "sans-serif"],
+    "font_family_data": ["Plus Jakarta Sans", "tabular-nums"],
     "font_weight_bold": "700",
+    "font_weight_semibold": "600",
+    "font_weight_medium": "500",
     "font_weight_normal": "400"
   },
   "ui": {
-    "border_radius_default": "0.5rem",
-    "border_radius_small": "0.25rem",
-    "spacing_base_unit": "4px"
+    "border_radius_default": "0.75rem",
+    "border_radius_small": "0.375rem",
+    "spacing_base_unit": "8px"
   }
 }

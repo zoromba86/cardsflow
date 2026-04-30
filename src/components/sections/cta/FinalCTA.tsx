@@ -65,21 +65,21 @@ export function FinalCTA() {
         </h2>
 
         <p className="text-slate-500 text-lg md:text-xl font-light max-w-xl mx-auto mb-10 leading-relaxed">
-          Create your first virtual card in under 8 seconds. No verification. No hidden fees. Just instant, global payment power.
+          Issue your first CardsFlow virtual card in seconds. No credit checks, no long approval workflows, and backed by a 95%+ success rate.
         </p>
 
         {/* CTA buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 cursor-pointer pointer-events-auto">
           <Link href="/use-cases">
             <button className="group relative px-8 py-4 bg-[#E5B220] text-white text-sm font-black uppercase tracking-wider rounded-xl overflow-hidden transition-all duration-300 hover:shadow-[0_10px_40px_rgba(229,178,32,0.4)] hover:scale-[1.03] active:scale-[0.98]">
-              <span className="relative z-10">Get Your Card Now</span>
+              <span className="relative z-10">Get Your First Card</span>
               <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-amber-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </button>
           </Link>
 
           <Link href="/trust/fees-and-disclosures">
             <button className="px-8 py-4 text-slate-600 text-sm font-bold uppercase tracking-wider rounded-xl border border-slate-200 hover:border-slate-300 hover:text-slate-900 transition-all duration-300 bg-slate-50 hover:bg-slate-100">
-              See Fees & Disclosures
+              Review Fees & Disclosures
             </button>
           </Link>
         </div>
@@ -87,16 +87,15 @@ export function FinalCTA() {
         {/* Trust signals */}
         <div className="flex items-center justify-center gap-6 mt-10 text-xs text-slate-400 font-medium">
           <span className="flex items-center gap-1.5">
-            <svg className="w-3.5 h-3.5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
-            No KYC Required
+            Zero-knowledge eligibility
           </span>
+          <span className="text-slate-300">·</span>
           <span className="flex items-center gap-1.5">
-            <svg className="w-3.5 h-3.5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
-            Instant Activation
+            Global Visa Network
           </span>
+          <span className="text-slate-300">·</span>
           <span className="flex items-center gap-1.5">
-            <svg className="w-3.5 h-3.5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
-            No Deposit Fee
+            24/7 Tech Support
           </span>
         </div>
       </div>

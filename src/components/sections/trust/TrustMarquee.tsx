@@ -3,14 +3,14 @@
 import { motion } from "framer-motion";
 
 const LOGOS = [
-  { name: "Meta", text: "META ADS" },
-  { name: "Google", text: "GOOGLE ADS" },
-  { name: "TikTok", text: "TIKTOK FOR BUSINESS" },
+  { name: "Apple", text: "APPLE PAY" },
+  { name: "GooglePay", text: "GOOGLE PAY" },
   { name: "OpenAI", text: "OPENAI API" },
   { name: "AWS", text: "AMAZON WEB SERVICES" },
   { name: "Stripe", text: "STRIPE BILLING" },
   { name: "X", text: "X ADS" },
   { name: "Snapchat", text: "SNAPCHAT ADS" },
+  { name: "Meta", text: "META ADS" },
 ];
 
 const marqueeLogos = [...LOGOS, ...LOGOS, ...LOGOS];
@@ -18,10 +18,10 @@ const marqueeLogos = [...LOGOS, ...LOGOS, ...LOGOS];
 export function TrustMarquee() {
   return (
     <section className="w-full py-16 bg-transparent border-b border-slate-900/5 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 mb-10">
-        <p className="text-center text-sm font-semibold tracking-widest uppercase text-slate-500">
+      <div className="flex justify-center mb-10">
+        <span className="inline-block text-slate-800 text-[10px] sm:text-xs font-bold uppercase tracking-[0.15em] px-3 py-1 bg-[#fbe7b6]">
           Powering over $50M in monthly spend across global platforms
-        </p>
+        </span>
       </div>
 
       <div className="relative flex overflow-hidden w-full">

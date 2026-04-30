@@ -15,7 +15,7 @@ export default function AboutPage() {
         title="About Cardsflow"
         supportCopy="We don't just sell virtual cards. We provide financial compartmentalization infrastructure for the global subscription economy."
       />
-      <div className="max-w-4xl mx-auto px-5 sm:px-12 lg:px-20 py-8 prose prose-invert prose-p:text-zinc-400 prose-headings:text-zinc-200">
+      <div className="max-w-4xl mx-auto px-5 sm:px-12 lg:px-20 py-8 prose prose-slate prose-p:text-slate-600 prose-headings:text-slate-900 prose-headings:font-bold prose-headings:tracking-tight">
         <p>
           The modern digital landscape is defined by recurring payments, access-over-ownership models, and SaaS platforms. The global subscription economy is projected to grow from $557.8 billion in 2025 to a staggering $1,944.4 billion by 2035, with B2B models leading the market. Today, the average consumer manages roughly 8.2 active subscriptions. However, tying a primary bank account or physical credit card to dozens of disparate digital platforms creates severe vulnerabilities. Between aggressive auto-renewals, unpredictable SaaS billing, and massive cyber events—like the recent 2025 breaches that exposed partial credit card data across major tech platforms and retailers traditional payment methods are no longer sufficient to protect your capital.
         </p>

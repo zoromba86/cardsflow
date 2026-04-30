@@ -15,7 +15,7 @@ export default function RefundPolicyPage() {
         title="Refund Policy"
         supportCopy="Information regarding our manual refund processes and applicable withdrawal fees."
       />
-      <div className="max-w-4xl mx-auto px-5 sm:px-12 lg:px-20 py-8 prose prose-invert prose-p:text-zinc-400 prose-headings:text-zinc-200">
+      <div className="max-w-4xl mx-auto px-5 sm:px-12 lg:px-20 py-8 prose prose-slate prose-p:text-slate-600 prose-headings:text-slate-900 prose-headings:font-bold prose-headings:tracking-tight">
         <h2>Manual Processing & Timeframes</h2>
         <p>
           Cardsflow processes refunds manually. Processing time typically ranges from <strong>one day to the next business day</strong>, subject to our internal review and network confirmations.
@@ -34,7 +34,7 @@ export default function RefundPolicyPage() {
         <p>
           To ensure clarity and operational efficiency in a globally accessible cryptocurrency framework, we restrict our refund disbursements to a single supported network.
         </p>
-        <div className="p-4 bg-zinc-800/50 rounded-lg border border-amber-500/20 text-emerald-400">
+        <div className="p-4 bg-teal-50/50 rounded-xl border border-teal-100 text-teal-800 shadow-sm">
           <p className="m-0 font-medium">We strictly process and send refunds <strong>only in USDT via the TRON network (TRC20)</strong>.</p>
         </div>
       </div>

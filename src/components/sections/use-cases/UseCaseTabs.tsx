@@ -20,20 +20,18 @@ export default function UseCaseTabs() {
           className="mb-10 md:mb-14 text-center"
         >
           <span className="text-[#E5B220] text-xs font-black uppercase tracking-[0.2em] mb-3 block">
-            User Case
+            Use Cases
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-black text-slate-900 tracking-tight leading-tight">
             Built for every payment scenario
           </h2>
           <p className="text-slate-600 text-base md:text-lg mt-4 max-w-xl mx-auto font-light px-2">
-            Issue unlimited virtual cards instantly. Our zero-knowledge
-            infrastructure ensures your identity stays private while providing
-            an unmatched 95% success rate across platforms.
+            Virtual and physical cards for ad spend, travel, and subscriptions — each isolated by vendor to protect your primary accounts.
           </p>
         </motion.div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 justify-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-10 justify-items-center max-w-5xl mx-auto">
           {USE_CASE_CARDS.map((uc, i) => (
             <motion.div
               key={uc.title}

@@ -16,13 +16,13 @@ export default function ContactPage() {
         title="Contact Us"
         supportCopy="We're here to help with questions about virtual card workflows, billing, and account support."
         primaryCtaText="Email Support"
-        primaryCtaLink="mailto:support@cardsflow.com"
+        primaryCtaLink="mailto:support@cardsflow.net"
       />
 
       <div className="max-w-4xl mx-auto px-6 py-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
-            { Icon: Mail, title: "Email", desc: "support@cardsflow.com", sub: "Response within 24 hours" },
+            { Icon: Mail, title: "Email", desc: "support@cardsflow.net", sub: "Response within 24 hours" },
             { Icon: MessageCircle, title: "Live Chat", desc: "Available on dashboard", sub: "For active account holders" },
             { Icon: Clock, title: "Support Hours", desc: "Mon–Fri, 9am–6pm UTC", sub: "Urgent issues flagged 24/7" },
           ].map(({ Icon, title, desc, sub }) => (

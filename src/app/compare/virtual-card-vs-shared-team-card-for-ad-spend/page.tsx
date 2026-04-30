@@ -25,22 +25,22 @@ export default function CompareAdSpendPage() {
       </DirectAnswerBlock>
 
       <div className="max-w-5xl mx-auto px-5 sm:px-12 lg:px-20 py-16">
-        <h2 className="text-2xl font-bold text-zinc-200 mb-4">The short answer</h2>
-        <p className="text-zinc-400 text-lg mb-12">If ad spend is important enough to manage closely, it is usually important enough to separate operationally.</p>
+        <h2 className="text-2xl font-bold text-slate-900 mb-4">The short answer</h2>
+        <p className="text-slate-600 text-lg mb-12">If ad spend is important enough to manage closely, it is usually important enough to separate operationally.</p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Shared team card */}
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
+          <div className="bg-white border border-slate-200 shadow-sm rounded-2xl p-8">
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-lg">🏢</div>
-              <h3 className="text-xl font-bold text-zinc-200 m-0">Shared Team Card</h3>
+              <h3 className="text-xl font-bold text-slate-900 m-0">Shared Team Card</h3>
             </div>
-            <p className="text-zinc-500 text-xs uppercase tracking-wider font-semibold mb-4">When it can still work</p>
-            <ul className="space-y-3 text-sm text-zinc-400">
-              <li className="flex items-start gap-2"><span className="text-zinc-500 mt-0.5">•</span> one small team manages one limited ad workflow</li>
-              <li className="flex items-start gap-2"><span className="text-zinc-500 mt-0.5">•</span> budgets are centralized and simple</li>
-              <li className="flex items-start gap-2"><span className="text-zinc-500 mt-0.5">•</span> billing changes are rare</li>
-              <li className="flex items-start gap-2"><span className="text-zinc-500 mt-0.5">•</span> there is very little risk of account overlap</li>
+            <p className="text-slate-500 text-xs uppercase tracking-wider font-semibold mb-4">When it can still work</p>
+            <ul className="space-y-3 text-sm text-slate-600">
+              <li className="flex items-start gap-2"><span className="text-slate-500 mt-0.5">•</span> one small team manages one limited ad workflow</li>
+              <li className="flex items-start gap-2"><span className="text-slate-500 mt-0.5">•</span> budgets are centralized and simple</li>
+              <li className="flex items-start gap-2"><span className="text-slate-500 mt-0.5">•</span> billing changes are rare</li>
+              <li className="flex items-start gap-2"><span className="text-slate-500 mt-0.5">•</span> there is very little risk of account overlap</li>
             </ul>
           </div>
 
@@ -49,10 +49,10 @@ export default function CompareAdSpendPage() {
             <div className="absolute top-4 right-4 text-xs font-bold uppercase tracking-wider text-[#E5B220] bg-[#E5B220]/10 px-3 py-1 rounded-full">Recommended</div>
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-xl bg-[#E5B220]/20 flex items-center justify-center text-lg">💳</div>
-              <h3 className="text-xl font-bold text-zinc-200 m-0">Dedicated Virtual Cards</h3>
+              <h3 className="text-xl font-bold text-slate-900 m-0">Dedicated Virtual Cards</h3>
             </div>
-            <p className="text-zinc-500 text-xs uppercase tracking-wider font-semibold mb-4">When they are better</p>
-            <ul className="space-y-3 text-sm text-zinc-400">
+            <p className="text-slate-500 text-xs uppercase tracking-wider font-semibold mb-4">When they are better</p>
+            <ul className="space-y-3 text-sm text-slate-600">
               <li className="flex items-start gap-2"><span className="text-[#E5B220] mt-0.5">✓</span> multiple ad accounts are active</li>
               <li className="flex items-start gap-2"><span className="text-[#E5B220] mt-0.5">✓</span> different buyers or teams manage separate budgets</li>
               <li className="flex items-start gap-2"><span className="text-[#E5B220] mt-0.5">✓</span> multiple ad platforms are used</li>
@@ -62,9 +62,9 @@ export default function CompareAdSpendPage() {
           </div>
         </div>
 
-        <div className="mt-12 bg-white/5 border border-white/10 rounded-2xl p-8">
-          <h3 className="text-lg font-bold text-zinc-200 mb-4">Key tradeoff</h3>
-          <p className="text-zinc-400">A shared card may look simpler at first. But as account complexity grows, simplicity often becomes fragility. Dedicated cards add structure. That structure usually improves control, troubleshooting, and budgeting.</p>
+        <div className="mt-12 bg-white border border-slate-200 shadow-sm rounded-2xl p-8">
+          <h3 className="text-lg font-bold text-slate-900 mb-4">Key tradeoff</h3>
+          <p className="text-slate-600">A shared card may look simpler at first. But as account complexity grows, simplicity often becomes fragility. Dedicated cards add structure. That structure usually improves control, troubleshooting, and budgeting.</p>
         </div>
       </div>
 
