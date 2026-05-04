@@ -23,11 +23,11 @@ export default function HeroContent({
           className="flex items-center gap-2 text-[10px] sm:text-xs font-bold tracking-[0.22em] uppercase text-zinc-400 mb-4 sm:mb-6"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-[#E5B220]" />
-          <span>No KYC</span>
+          <span>Privacy-First</span>
           <span className="w-1 h-1 rounded-full bg-zinc-600" />
           <span>Zero-Knowledge</span>
           <span className="w-1 h-1 rounded-full bg-zinc-600" />
-          <span>Instant Visa Issuance</span>
+          <span>Instant Issuance</span>
         </motion.div>
 
         {/* Headline — Primary SEO keyword phrase in H1 */}
@@ -37,7 +37,7 @@ export default function HeroContent({
           transition={{ duration: 0.8, delay: 0.35 }}
           className="font-black tracking-tight leading-[1.06] bg-clip-text text-transparent bg-gradient-to-br from-white via-zinc-100 to-zinc-400 text-[2rem] sm:text-5xl md:text-6xl lg:text-7xl max-w-[15rem] sm:max-w-xl md:max-w-2xl"
         >
-          Virtual & Physical Cards With Zero Identity Exposure
+          Premium Visa Cards Built for Absolute Privacy
         </motion.h1>
 
         {/* Subtext — answers the user's core fear with a specific, credible resolution */}
@@ -45,9 +45,9 @@ export default function HeroContent({
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-zinc-400 mt-4 sm:mt-6 text-sm sm:text-base md:text-lg lg:text-xl max-w-[16rem] sm:max-w-sm md:max-w-xl font-light leading-relaxed"
+          className="text-zinc-200 mt-4 sm:mt-6 text-sm sm:text-base md:text-lg lg:text-xl max-w-[16rem] sm:max-w-sm md:max-w-xl font-medium leading-relaxed drop-shadow-md"
         >
-          CardsFlow issues dedicated Visa cards that shield your real account from merchants, advertisers, and data brokers. No document upload. No personal data stored. Every card is isolated so one compromised vendor can never touch another.
+          CardsFlow issues dedicated virtual and physical cards that shield your financial data from merchants and breaches. Powered by zero-knowledge architecture, we require no document uploads and store no personal data—ensuring your spending remains completely secure and isolated.
         </motion.p>
 
         {/* CTA buttons */}

@@ -120,36 +120,32 @@ export default function termsPage() {
         <h3>5.  FEES AND CHARGES</h3>
         <h4>5.1  Fee Schedule</h4>
         <p>All fees are inclusive of applicable VAT unless stated otherwise.</p>
-        <p>Service</p>
-        <p>Fee</p>
-        <p>Account Setup</p>
-        <p>Free</p>
-        <p>Monthly Platform Fee</p>
-        <p>None</p>
-        <p>Virtual Card Issuance (per card)</p>
-        <p>$5.00</p>
-        <p>Physical Card Issuance (per card)</p>
-        <p>$50.00</p>
-        <p>Top-Up Fee &mdash; $25 to $1,999</p>
-        <p>Flat 7% (minimum $25)</p>
-        <p>Top-Up Fee &mdash; $2,000 to $4,999</p>
-        <p>Flat 6%</p>
-        <p>Top-Up Fee &mdash; $5,000 and above</p>
-        <p>Flat 5%</p>
-        <p>Foreign Exchange (non-USD merchants)</p>
-        <p>1.2% above interbank rate</p>
-        <p>Per-authorisation network fee</p>
-        <p>$0.20 per transaction</p>
-        <p>ATM withdrawal handling fee</p>
-        <p>$2.00 + 2.0% of amount</p>
-        <p>Dispute / chargeback handling</p>
-        <p>$35 per case (refunded if upheld)</p>
-        <p>Refund / manual processing fee</p>
-        <p>4% — returned in USDT (TRC20) only (1–10 business days)</p>
-        <p>Inactivity Fee</p>
-        <p>None</p>
-        <p>Account Closure</p>
-        <p>Free</p>
+        <div className="overflow-x-auto my-6 not-prose">
+          <table className="w-full text-left border-collapse border border-slate-200 rounded-lg overflow-hidden">
+            <thead>
+              <tr className="bg-slate-50 border-b border-slate-200">
+                <th className="py-3 px-4 font-bold text-slate-900 text-sm">Service</th>
+                <th className="py-3 px-4 font-bold text-slate-900 text-sm">Fee</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100 text-sm text-slate-600">
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Account Setup</td><td className="py-3 px-4">Free</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Monthly Platform Fee</td><td className="py-3 px-4">None</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Virtual Card Issuance (per card)</td><td className="py-3 px-4">$5.00</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Physical Card Issuance (per card)</td><td className="py-3 px-4">$50.00</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Top-Up Fee &mdash; $25 to $1,999</td><td className="py-3 px-4">Flat 7% (minimum $25)</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Top-Up Fee &mdash; $2,000 to $4,999</td><td className="py-3 px-4">Flat 6%</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Top-Up Fee &mdash; $5,000 and above</td><td className="py-3 px-4">Flat 5%</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Foreign Exchange (non-USD merchants)</td><td className="py-3 px-4">1.2% above interbank rate</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Per-authorisation network fee</td><td className="py-3 px-4">$0.20 per transaction</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">ATM withdrawal handling fee</td><td className="py-3 px-4">$2.00 + 2.0% of amount</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Dispute / chargeback handling</td><td className="py-3 px-4">$35 per case (refunded if upheld)</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Refund / manual processing fee</td><td className="py-3 px-4">4% &mdash; returned in USDT (TRC20) only (1&ndash;10 business days)</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Inactivity Fee</td><td className="py-3 px-4">None</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Account Closure</td><td className="py-3 px-4">Free</td></tr>
+            </tbody>
+          </table>
+        </div>
         <h4>5.2  Fee Changes</h4>
         <p>We will provide 30 days written notice by email of any fee changes. Continued use after the effective date constitutes acceptance of revised fees.</p>
         <h4>5.3  How Fees Are Charged</h4>
@@ -159,26 +155,27 @@ export default function termsPage() {
         <h3>6.  TRANSACTION LIMITS AND CONTROLS</h3>
         <h4>6.1  Default Limits</h4>
         <p>Limits vary by account tier. Higher limits are available subject to additional eligibility confirmation.</p>
-        <p>Limit Type</p>
-        <p>Default Value</p>
-        <p>Maximum single transaction</p>
-        <p>$30,000</p>
-        <p>Maximum daily spend per card</p>
-        <p>$180,000</p>
-        <p>Maximum monthly spend per card</p>
-        <p>$1,000,000</p>
-        <p>Maximum cards per account</p>
-        <p>3</p>
-        <p>Single ATM withdrawal</p>
-        <p>$3,500</p>
-        <p>Daily ATM withdrawals</p>
-        <p>6 per day</p>
-        <p>Monthly ATM cap</p>
-        <p>$100,000</p>
-        <p>Card validity</p>
-        <p>5 years from issuance</p>
-        <p>Maximum E-Money balance</p>
-        <p>$1,000,000</p>
+        <div className="overflow-x-auto my-6 not-prose">
+          <table className="w-full text-left border-collapse border border-slate-200 rounded-lg overflow-hidden">
+            <thead>
+              <tr className="bg-slate-50 border-b border-slate-200">
+                <th className="py-3 px-4 font-bold text-slate-900 text-sm">Limit Type</th>
+                <th className="py-3 px-4 font-bold text-slate-900 text-sm">Default Value</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100 text-sm text-slate-600">
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Maximum single transaction</td><td className="py-3 px-4 font-mono text-slate-800">$30,000</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Maximum daily spend per card</td><td className="py-3 px-4 font-mono text-slate-800">$180,000</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Maximum monthly spend per card</td><td className="py-3 px-4 font-mono text-slate-800">$1,000,000</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Maximum cards per account</td><td className="py-3 px-4">3</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Single ATM withdrawal</td><td className="py-3 px-4 font-mono text-slate-800">$3,500</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Daily ATM withdrawals</td><td className="py-3 px-4">6 per day</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Monthly ATM cap</td><td className="py-3 px-4 font-mono text-slate-800">$100,000</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Card validity</td><td className="py-3 px-4">5 years from issuance</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Maximum E-Money balance</td><td className="py-3 px-4 font-mono text-slate-800">$1,000,000</td></tr>
+            </tbody>
+          </table>
+        </div>
         <h4>6.2  Limit Increases</h4>
         <p>Request a limit increase at support@cardsflow.net. We reserve the right to approve or decline at our sole discretion.</p>
         <h4>6.3  Regulatory Limits</h4>
@@ -198,18 +195,25 @@ export default function termsPage() {
         <p>We may immediately suspend or terminate your Account if we reasonably suspect a breach of this Section without prior notice. We may report suspected criminal activity to the NCA, FCA, HMRC, or other relevant authorities as required by law.</p>
         <h3>8.  DISPUTE RESOLUTION</h3>
         <h4>8.1  Contact Us First</h4>
-        <p>Step</p>
-        <p>Detail</p>
-        <p>Contact</p>
-        <p>support@cardsflow.net</p>
-        <p>Acknowledge</p>
-        <p>Within 5 business days</p>
-        <p>Resolution</p>
-        <p>Within 15 business days</p>
+        <div className="overflow-x-auto my-6 not-prose">
+          <table className="w-full text-left border-collapse border border-slate-200 rounded-lg overflow-hidden">
+            <thead>
+              <tr className="bg-slate-50 border-b border-slate-200">
+                <th className="py-3 px-4 font-bold text-slate-900 text-sm">Step</th>
+                <th className="py-3 px-4 font-bold text-slate-900 text-sm">Detail</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100 text-sm text-slate-600">
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Contact</td><td className="py-3 px-4"><a href="mailto:support@cardsflow.net" className="text-teal-600 hover:text-teal-700">support@cardsflow.net</a></td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Acknowledge</td><td className="py-3 px-4">Within 5 business days</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Resolution</td><td className="py-3 px-4">Within 15 business days</td></tr>
+            </tbody>
+          </table>
+        </div>
         <h4>8.2  Raising a Transaction Dispute</h4>
-        <p>Option A — Dashboard:</p>
-        <p>Log in أ¢â€ â€™ navigate to Transaction أ¢â€ â€™ select &quot;Report an Issue&quot; أ¢â€ â€™ follow the on-screen steps.</p>
-        <p>Option B — Email:</p>
+        <p>Option A &mdash; Dashboard:</p>
+        <p>Log in &rarr; navigate to Transaction &rarr; select &quot;Report an Issue&quot; &rarr; follow the on-screen steps.</p>
+        <p>Option B &mdash; Email:</p>
         <p>Email disputes@cardsflow.net including your Transaction ID, date, amount, and reason.</p>
         <p>Time limits:</p>
         <p>Unauthorised transactions — within 13 months of the Transaction date</p>
@@ -266,23 +270,26 @@ export default function termsPage() {
         <h3>13.  CHANGES TO THESE TERMS</h3>
         <p>We may update these Terms at any time. Where changes are material, we will notify you by email at least 30 days before they take effect. Continued use after the effective date constitutes acceptance. If you do not agree, close your Account before the effective date.</p>
         <h3>14.  CONTACT</h3>
-        <p>Purpose</p>
-        <p>Email Address</p>
-        <p>General support</p>
-        <p>support@cardsflow.net</p>
-        <p>Legal matters</p>
-        <p>legal@cardsflow.net</p>
-        <p>Billing disputes</p>
-        <p>billing@cardsflow.net</p>
-        <p>Transaction disputes</p>
-        <p>disputes@cardsflow.net</p>
-        <p>Security issues</p>
-        <p>security@cardsflow.net</p>
-        <p>Complaints</p>
-        <p>complaints@cardsflow.net</p>
-        <p>Compliance / MLRO</p>
-        <p>compliance@cardsflow.net</p>
-        <p>CardsFlow  |  legal@cardsflow.net</p>
+        <div className="overflow-x-auto my-6 not-prose">
+          <table className="w-full text-left border-collapse border border-slate-200 rounded-lg overflow-hidden">
+            <thead>
+              <tr className="bg-slate-50 border-b border-slate-200">
+                <th className="py-3 px-4 font-bold text-slate-900 text-sm">Purpose</th>
+                <th className="py-3 px-4 font-bold text-slate-900 text-sm">Email Address</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100 text-sm text-slate-600">
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">General support</td><td className="py-3 px-4"><a href="mailto:support@cardsflow.net" className="text-teal-600 hover:text-teal-700">support@cardsflow.net</a></td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Legal matters</td><td className="py-3 px-4"><a href="mailto:legal@cardsflow.net" className="text-teal-600 hover:text-teal-700">legal@cardsflow.net</a></td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Billing disputes</td><td className="py-3 px-4"><a href="mailto:billing@cardsflow.net" className="text-teal-600 hover:text-teal-700">billing@cardsflow.net</a></td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Transaction disputes</td><td className="py-3 px-4"><a href="mailto:disputes@cardsflow.net" className="text-teal-600 hover:text-teal-700">disputes@cardsflow.net</a></td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Security issues</td><td className="py-3 px-4"><a href="mailto:security@cardsflow.net" className="text-teal-600 hover:text-teal-700">security@cardsflow.net</a></td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Complaints</td><td className="py-3 px-4"><a href="mailto:complaints@cardsflow.net" className="text-teal-600 hover:text-teal-700">complaints@cardsflow.net</a></td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Compliance / MLRO</td><td className="py-3 px-4"><a href="mailto:compliance@cardsflow.net" className="text-teal-600 hover:text-teal-700">compliance@cardsflow.net</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-8 text-sm font-bold text-slate-500">CardsFlow  |  legal@cardsflow.net</p>
 
       </div>
       <RelatedLinksModule
