@@ -3,21 +3,19 @@
 import { motion } from "framer-motion";
 
 const LOGOS = [
-  { name: "Apple", text: "APPLE PAY" },
-  { name: "GooglePay", text: "GOOGLE PAY" },
-  { name: "OpenAI", text: "OPENAI API" },
-  { name: "AWS", text: "AMAZON WEB SERVICES" },
-  { name: "Stripe", text: "STRIPE BILLING" },
-  { name: "X", text: "X ADS" },
-  { name: "Snapchat", text: "SNAPCHAT ADS" },
-  { name: "Meta", text: "META ADS" },
-];
+  "APPLE PAY", "GOOGLE PAY", "ALIPAY", "WECHAT HK", "EBAY", "LAZADA", 
+  "AMAZON", "SHOPIFY", "ALIEXPRESS", "TIKTOK", "FACEBOOK", "YANGO", 
+  "WOLT", "STARBUCKS", "MCDONALDS", "GODADDY", "APPLE.COM", "MEITUAN", 
+  "PINDUODUO", "EXPRESSVPN", "TELEGRAM PREMIUM", "FEDAFONE", 
+  "CARVERTICAL", "DUBAI DUTY FREE", "PLAYSTATION NETWORK", "UBER", 
+  "BOLT", "TACO BELL", "ZARA", "7-ELEVEN", "OZON", "DISCORD", "SHEIN", "CAREEM"
+].map(name => ({ name, text: name }));
 
 const marqueeLogos = [...LOGOS, ...LOGOS, ...LOGOS];
 
 export function TrustMarquee() {
   return (
-    <section className="w-full py-16 bg-transparent border-b border-slate-900/5 overflow-hidden">
+    <section className="w-full py-10 bg-transparent border-b border-slate-900/5 overflow-hidden">
       <div className="flex justify-center mb-10">
         <span className="inline-block text-slate-800 text-[10px] sm:text-xs font-bold uppercase tracking-[0.15em] px-3 py-1 bg-[#fbe7b6]">
           Powering over $50M in monthly spend across global platforms

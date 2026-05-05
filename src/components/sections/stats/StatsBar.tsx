@@ -57,7 +57,7 @@ function CountUp({ target, decimals = 0, prefix = "", suffix = "" }: { target: n
 
 export function StatsBar() {
   return (
-    <section className="w-full py-12 md:py-16 bg-transparent border-b border-slate-900/[0.04]">
+    <section className="w-full py-8 md:py-12 bg-transparent border-b border-slate-900/[0.04]">
       <div className="max-w-6xl mx-auto px-4">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
           {STATS.map((stat) => (

@@ -124,7 +124,7 @@ export default function DashboardOverview() {
         </h2>
         <div className="flex flex-wrap gap-3">
           {[
-            { label: 'New Card', href: '/dashboard/orders', icon: Plus, style: 'bg-[#E5B220] text-[#0F172A] hover:bg-[#D4A017]' },
+            { label: 'New Card', href: '/dashboard/cards/apply', icon: Plus, style: 'bg-[#E5B220] text-[#0F172A] hover:bg-[#D4A017]' },
             { label: 'Deposit', href: '/dashboard/deposits', icon: ArrowDownToLine, style: 'bg-[#0F172A] text-white hover:bg-[#1E293B]' },
             { label: 'Top-up Card', href: '/dashboard/topups', icon: ArrowUpRight, style: 'bg-emerald-600 text-white hover:bg-emerald-700' },
           ].map((action) => {

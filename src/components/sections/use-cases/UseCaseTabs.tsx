@@ -8,7 +8,7 @@ export default function UseCaseTabs() {
   return (
     <section
       id="user-case"
-      className="bg-transparent py-16 md:py-24 px-4 sm:px-6 scroll-mt-20"
+      className="bg-transparent py-12 md:py-16 px-4 sm:px-6 scroll-mt-20"
     >
       <div className="max-w-7xl mx-auto">
         {/* Header */}

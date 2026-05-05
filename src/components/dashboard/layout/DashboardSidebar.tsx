@@ -28,7 +28,7 @@ const navItems = [
   { label: 'Overview', href: '/dashboard', icon: LayoutDashboard },
   { label: 'Wallets', href: '/dashboard/wallets', icon: Wallet },
   { label: 'Cards', href: '/dashboard/cards', icon: CreditCard },
-  { label: 'Orders', href: '/dashboard/orders', icon: ShoppingCart },
+  { label: 'Order Card', href: '/dashboard/cards/apply', icon: ShoppingCart },
   { label: 'Deposits', href: '/dashboard/deposits', icon: ArrowDownToLine },
   { label: 'Withdrawals', href: '/dashboard/withdrawals', icon: ArrowUpFromLine },
   { label: 'Transactions', href: '/dashboard/transactions', icon: ArrowLeftRight },

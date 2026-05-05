@@ -1,89 +1,131 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { Plus, Wifi } from 'lucide-react';
+import { Plus, CreditCard, Monitor } from 'lucide-react';
+import { useCardList } from '@/features/cards/hooks/useCardList';
+import { CardTile } from '@/features/cards/components/CardTile';
+import type { CardKind } from '@/features/cards/types';
+import { CARD_ROUTES } from '@/features/cards/types';
 
-const mockCards = [
-  { id: '1', binType: 'onyx', nature: 'VIRTUAL', masked: '•••• •••• •••• 4821', last4: '4821', balance: '1,250.00', status: 'active', expiry: '12/31', apple: true, google: true },
-  { id: '2', binType: 'volt', nature: 'VIRTUAL', masked: '•••• •••• •••• 7392', last4: '7392', balance: '800.00', status: 'active', expiry: '06/30', apple: false, google: true },
-  { id: '3', binType: 'onyx', nature: 'PHYSICAL', masked: '•••• •••• •••• 1105', last4: '1105', balance: '400.00', status: 'frozen', expiry: '09/29', apple: true, google: true },
-];
-
-function CardVisual({ card }: { card: typeof mockCards[0] }) {
-  const isOnyx = card.binType === 'onyx';
-  // Premium subtle gradients
-  const bg = isOnyx ? 'from-[#0A0F1C] via-[#111827] to-[#1E293B]' : 'from-[#1E1B4B] via-[#2E1065] to-[#4C1D95]';
-  
-  // Base64 extremely subtle noise texture for that metallic/plastic feel without performance hit
-  const noiseTexture = "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')";
-
-  return (
-    <div className={`relative bg-gradient-to-br ${bg} rounded-2xl p-6 text-white overflow-hidden aspect-[1.6/1] flex flex-col justify-between shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-white/10 group`}>
-      {/* Noise Overlay */}
-      <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none" style={{ backgroundImage: noiseTexture }} />
-      
-      {/* Glossy Reflection Highlight */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-tr from-transparent via-white/5 to-transparent transition-opacity duration-500 pointer-events-none" />
-
-      {/* Decorative Geometry */}
-      <div className="absolute top-0 right-0 w-48 h-48 bg-white/[0.02] rounded-full blur-2xl -translate-y-1/2 translate-x-1/2" />
-      <div className="flex justify-between relative z-10">
-        <div>
-          <p className="text-[10px] font-bold uppercase tracking-widest text-white/60">CardsFlow {isOnyx ? 'Onyx' : 'Volt'}</p>
-          <p className="text-[10px] text-white/40 mt-0.5">{card.nature === 'VIRTUAL' ? 'Virtual' : 'Physical'}</p>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <Wifi size={14} className="text-white/60 rotate-90" />
-          {card.status === 'frozen' && <span className="text-[9px] font-bold bg-blue-400/30 text-blue-200 px-1.5 py-0.5 rounded">FROZEN</span>}
-        </div>
-      </div>
-      <p className="text-lg font-mono tracking-[0.15em] text-white/90 relative z-10">{card.masked}</p>
-      <div className="flex items-end justify-between relative z-10">
-        <div><p className="text-[9px] text-white/40 uppercase">Expires</p><p className="text-xs font-semibold">{card.expiry}</p></div>
-        <div className="flex items-center gap-2">
-          {card.apple && <span className="text-[8px] font-bold bg-white/15 px-1.5 py-0.5 rounded text-white/80">Apple Pay</span>}
-          {card.google && <span className="text-[8px] font-bold bg-white/15 px-1.5 py-0.5 rounded text-white/80">G Pay</span>}
-          <span className="text-xl font-extrabold italic text-white/80">VISA</span>
-        </div>
-      </div>
-    </div>
-  );
-}
+type FilterTab = 'all' | 'VIRTUAL' | 'PHYSICAL';
 
 export default function CardsPage() {
+  const { cards, loading, error, refetch } = useCardList();
+  const [filter, setFilter] = useState<FilterTab>('all');
+
+  const filteredCards = filter === 'all' ? cards : cards.filter((c) => c.bankCardNature === filter);
+
+  const tabs: { key: FilterTab; label: string; icon: React.ReactNode }[] = [
+    { key: 'all', label: 'All Cards', icon: <CreditCard size={14} /> },
+    { key: 'VIRTUAL', label: 'Virtual', icon: <Monitor size={14} /> },
+    { key: 'PHYSICAL', label: 'Physical', icon: <CreditCard size={14} /> },
+  ];
+
   return (
-    <div className="space-y-8">
+    <div className="relative min-h-[80vh] space-y-8">
+      {/* Ambient background glow */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none -z-10">
+        <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-teal-500/5 blur-[120px] mix-blend-multiply" />
+        <div className="absolute top-[40%] -right-[10%] w-[40%] h-[60%] rounded-full bg-indigo-500/5 blur-[100px] mix-blend-multiply" />
+      </div>
+
+      {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl sm:text-3xl font-extrabold text-[#0F172A] tracking-tight">Cards</h1>
           <p className="text-slate-500 text-sm mt-1">Manage your virtual and physical Visa cards.</p>
         </div>
-        <Link href="/dashboard/orders" className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#E5B220] text-[#0F172A] text-sm font-bold rounded-xl hover:bg-[#D4A017] transition-colors self-start">
+        <Link
+          href={CARD_ROUTES.apply}
+          className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#E5B220] text-[#0F172A] text-sm font-bold rounded-xl hover:bg-[#D4A017] transition-colors self-start"
+        >
           <Plus size={16} /> Order New Card
         </Link>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {mockCards.map((card) => (
-          <div key={card.id} className="space-y-3">
-            <CardVisual card={card} />
-            <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
-              <div className="flex items-center justify-between mb-3">
-                <div>
-                  <p className="text-xs text-slate-500">Balance</p>
-                  <p className="text-lg font-extrabold text-[#0F172A] tabular-nums">${card.balance}</p>
-                </div>
-                <span className={`text-[10px] font-bold uppercase px-2.5 py-1 rounded-full ${card.status === 'active' ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' : card.status === 'frozen' ? 'bg-blue-50 text-blue-600 border border-blue-200' : 'bg-red-50 text-red-600 border border-red-200'}`}>{card.status}</span>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                <Link href={`/dashboard/cards/${card.id}`} className="flex-1 text-center text-xs font-bold bg-[#0F172A] text-white rounded-lg py-2 hover:bg-[#1E293B] transition-colors">View Details</Link>
-                <Link href="/dashboard/topups" className="flex-1 text-center text-xs font-bold bg-emerald-50 text-emerald-700 rounded-lg py-2 hover:bg-emerald-100 transition-colors">Top-up</Link>
-                <button className={`flex-1 text-xs font-bold rounded-lg py-2 transition-colors ${card.status === 'frozen' ? 'bg-blue-50 text-blue-700 hover:bg-blue-100' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'}`}>{card.status === 'frozen' ? 'Unfreeze' : 'Freeze'}</button>
-              </div>
-            </div>
-          </div>
+
+      {/* Filter Tabs */}
+      <div className="flex gap-2 border-b border-slate-200 pb-0">
+        {tabs.map((tab) => (
+          <button
+            key={tab.key}
+            onClick={() => setFilter(tab.key)}
+            className={`flex items-center gap-1.5 px-4 py-2.5 text-xs font-bold rounded-t-lg transition-colors border-b-2 -mb-[1px] ${
+              filter === tab.key
+                ? 'border-[#E5B220] text-[#0F172A] bg-white'
+                : 'border-transparent text-slate-500 hover:text-slate-700 hover:bg-slate-50'
+            }`}
+          >
+            {tab.icon}
+            {tab.label}
+            {filter === tab.key && (
+              <span className="ml-1 text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded-full font-bold">
+                {filteredCards.length}
+              </span>
+            )}
+          </button>
         ))}
       </div>
+
+      {/* Loading State */}
+      {loading && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {[1, 2, 3, 4].map((i) => (
+            <div key={i} className="space-y-3 animate-pulse">
+              <div className="bg-slate-200 rounded-2xl aspect-[1.6/1]" />
+              <div className="bg-white border border-slate-200 rounded-xl p-4 space-y-3">
+                <div className="h-5 bg-slate-200 rounded w-1/3" />
+                <div className="h-4 bg-slate-100 rounded w-1/2" />
+                <div className="flex gap-2">
+                  <div className="h-8 bg-slate-100 rounded-lg flex-1" />
+                  <div className="h-8 bg-slate-100 rounded-lg flex-1" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Error State */}
+      {error && !loading && (
+        <div className="bg-red-50 border border-red-200 rounded-2xl p-6 text-center">
+          <p className="text-sm font-bold text-red-700 mb-2">Something went wrong</p>
+          <p className="text-xs text-red-600 mb-4">{error}</p>
+          <button onClick={refetch} className="px-4 py-2 bg-red-600 text-white text-sm font-bold rounded-xl hover:bg-red-700 transition-colors">
+            Try Again
+          </button>
+        </div>
+      )}
+
+      {/* Empty State */}
+      {!loading && !error && filteredCards.length === 0 && (
+        <div className="bg-white border border-slate-200 rounded-2xl p-12 text-center">
+          <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <CreditCard size={32} className="text-slate-400" />
+          </div>
+          <h3 className="text-xl font-bold text-slate-900 mb-2">
+            {filter === 'all' ? "You don't have any cards yet" : `No ${filter.toLowerCase()} cards`}
+          </h3>
+          <p className="text-sm text-slate-500 mb-6 max-w-sm mx-auto">
+            Order your first CardsFlow Visa card to get started with instant payments and card management.
+          </p>
+          <Link
+            href={CARD_ROUTES.apply}
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#E5B220] text-[#0F172A] text-sm font-bold rounded-xl hover:bg-[#D4A017] transition-colors"
+          >
+            <Plus size={16} /> Order Your First Card
+          </Link>
+        </div>
+      )}
+
+      {/* Card Grid */}
+      {!loading && !error && filteredCards.length > 0 && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {filteredCards.map((card) => (
+            <CardTile key={card.userBankcardId} card={card} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

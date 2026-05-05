@@ -2,101 +2,108 @@
 // Maps to the Apifox card-supplier-api-en endpoints.
 // All endpoints require RSA signing on the backend side.
 
-import apiClient from './client';
 import type { Card, CardProduct, CardApplyResponse, Transaction, PaginatedResponse } from '@/lib/types/dashboard';
 
+const MOCK_PRODUCTS: CardProduct[] = [
+  { id: 1, bankCardNature: 'VIRTUAL', title: 'CardsFlow Onyx Virtual', ccy: 'USD', applyFee: '5.00', cardBin: '409600', rechargeFee: '0.00', bankcardRegion: 'US', activeMinLimit: '0.00', rechargeMinLimit: '10.00', binType: 'onyx', supportsApplePay: true, supportsGooglePay: true },
+  { id: 2, bankCardNature: 'PHYSICAL', title: 'CardsFlow Onyx Physical', ccy: 'USD', applyFee: '50.00', cardBin: '409600', rechargeFee: '0.00', bankcardRegion: 'US', activeMinLimit: '0.00', rechargeMinLimit: '10.00', binType: 'onyx', supportsApplePay: true, supportsGooglePay: true },
+  { id: 3, bankCardNature: 'VIRTUAL', title: 'CardsFlow Volt Virtual', ccy: 'USD', applyFee: '5.00', cardBin: '523400', rechargeFee: '0.00', bankcardRegion: 'EU', activeMinLimit: '0.00', rechargeMinLimit: '10.00', binType: 'volt', supportsApplePay: false, supportsGooglePay: true },
+  { id: 4, bankCardNature: 'PHYSICAL', title: 'CardsFlow Volt Physical', ccy: 'USD', applyFee: '50.00', cardBin: '523400', rechargeFee: '0.00', bankcardRegion: 'EU', activeMinLimit: '0.00', rechargeMinLimit: '10.00', binType: 'volt', supportsApplePay: false, supportsGooglePay: true },
+];
+
+const MOCK_CARDS: Card[] = [
+  { userBankcardId: 101, cardNo: '4096 0012 3456 7890', bankCardNature: 'VIRTUAL', status: 'active', balance: '1250.00', ccy: 'USD', cardBin: '409600', binType: 'onyx', expiryDate: '12/28', cvv: '123', cardholderName: 'JOHN DOE', supportsApplePay: true, supportsGooglePay: true },
+  { userBankcardId: 102, cardNo: '5234 0098 7654 3210', bankCardNature: 'PHYSICAL', status: 'inactive', balance: '0.00', ccy: 'USD', cardBin: '523400', binType: 'volt', expiryDate: '10/27', cvv: '456', cardholderName: 'JOHN DOE', supportsApplePay: false, supportsGooglePay: true },
+];
+
+const MOCK_TRANSACTIONS: Transaction[] = [
+  { id: 'tx_1', cardId: 101, cardLastFour: '7890', amount: '12.50', currency: 'USD', merchant: 'Netflix', date: '2023-10-01', status: 'completed', type: 'purchase' },
+  { id: 'tx_2', cardId: 101, cardLastFour: '7890', amount: '100.00', currency: 'USD', merchant: 'Top-up', date: '2023-09-28', status: 'completed', type: 'topup' },
+];
+
 export const cardsService = {
-  /** Get available card products (BINs) */
   async getCardProducts(): Promise<CardProduct[]> {
-    const res = await apiClient.post<CardProduct[]>('/cards/products');
-    return res.data;
+    return MOCK_PRODUCTS;
   },
-
-  /** Get user's card list */
   async getUserCards(): Promise<Card[]> {
-    const res = await apiClient.post<Card[]>('/cards/list');
-    return res.data;
+    return MOCK_CARDS;
   },
-
-  /** Apply for a new card */
   async applyCard(productId: number, deliveryAddressId?: number): Promise<CardApplyResponse> {
-    const res = await apiClient.post<CardApplyResponse>('/cards/apply', { productId, deliveryAddressId });
-    return res.data;
-  },
+    const product = MOCK_PRODUCTS.find(p => p.id === productId);
+    if (!product) throw new Error('Product not found');
 
-  /** Activate a card */
+    const newCard: Card = {
+      userBankcardId: Math.floor(Math.random() * 10000) + 200,
+      cardNo: `${product.cardBin} ${Math.floor(Math.random() * 9000 + 1000)} ${Math.floor(Math.random() * 9000 + 1000)} ${Math.floor(Math.random() * 9000 + 1000)}`,
+      bankCardNature: product.bankCardNature,
+      status: product.bankCardNature === 'PHYSICAL' ? 'inactive' : 'active',
+      balance: '0.00',
+      ccy: product.ccy,
+      cardBin: product.cardBin,
+      binType: product.binType,
+      expiryDate: `12/${new Date().getFullYear() + 3 - 2000}`,
+      cvv: Math.floor(Math.random() * 900 + 100).toString(),
+      cardholderName: 'NEW USER',
+      supportsApplePay: product.supportsApplePay,
+      supportsGooglePay: product.supportsGooglePay,
+    };
+
+    MOCK_CARDS.push(newCard);
+    
+    return { success: true, message: 'Card applied successfully' };
+  },
   async activateCard(userBankcardId: number): Promise<void> {
-    await apiClient.post('/cards/activate', { userBankcardId });
+    const card = MOCK_CARDS.find(c => c.userBankcardId === userBankcardId);
+    if (card) card.status = 'active';
   },
-
-  /** Get full card info (number, CVV, expiry) */
   async getCardInfo(userBankcardId: number): Promise<Card> {
-    const res = await apiClient.post<Card>('/cards/info', { userBankcardId });
-    return res.data;
+    const card = MOCK_CARDS.find(c => c.userBankcardId === userBankcardId);
+    if (!card) throw new Error('Card not found');
+    return card;
   },
-
-  /** Get card balance */
   async getCardBalance(userBankcardId: number): Promise<{ balance: string; ccy: string }> {
-    const res = await apiClient.post<{ balance: string; ccy: string }>('/cards/balance', { userBankcardId });
-    return res.data;
+    const card = MOCK_CARDS.find(c => c.userBankcardId === userBankcardId);
+    return { balance: card?.balance || '0.00', ccy: card?.ccy || 'USD' };
   },
-
-  /** Set card PIN */
   async setPin(userBankcardId: number, pin: string): Promise<void> {
-    await apiClient.post('/cards/pin/set', { userBankcardId, pin });
+    // Mock success
   },
-
-  /** Query card PIN */
   async getPin(userBankcardId: number): Promise<{ pin: string }> {
-    const res = await apiClient.post<{ pin: string }>('/cards/pin/query', { userBankcardId });
-    return res.data;
+    return { pin: '1234' };
   },
-
-  /** Top up card */
   async topUpCard(userBankcardId: number, amount: number): Promise<void> {
-    await apiClient.post('/cards/recharge', { userBankcardId, amount });
+    const card = MOCK_CARDS.find(c => c.userBankcardId === userBankcardId);
+    if (card) card.balance = (parseFloat(card.balance) + amount).toFixed(2);
   },
-
-  /** Unload card (Withdraw from card to internal wallet) */
   async unloadCard(userBankcardId: number, amount: number): Promise<void> {
-    await apiClient.post('/cards/unload', { userBankcardId, amount });
+    const card = MOCK_CARDS.find(c => c.userBankcardId === userBankcardId);
+    if (card) card.balance = (parseFloat(card.balance) - amount).toFixed(2);
   },
-
-  /** Update card status (freeze/unfreeze) */
   async updateCardStatus(userBankcardId: number, status: 'active' | 'frozen'): Promise<void> {
-    await apiClient.post('/cards/status/update', { userBankcardId, status });
+    const card = MOCK_CARDS.find(c => c.userBankcardId === userBankcardId);
+    if (card) card.status = status;
   },
-
-  /** Cancel card */
   async cancelCard(userBankcardId: number): Promise<void> {
-    await apiClient.post('/cards/cancel', { userBankcardId });
+    const card = MOCK_CARDS.find(c => c.userBankcardId === userBankcardId);
+    if (card) card.status = 'cancelled';
   },
-
-  /** Update card email */
   async updateCardEmail(userBankcardId: number, email: string): Promise<void> {
-    await apiClient.post('/cards/email/update', { userBankcardId, email });
+    // Mock success
   },
-
-  /** Get transaction list for a card */
   async getTransactions(userBankcardId: number, page: number = 1, size: number = 20): Promise<PaginatedResponse<Transaction>> {
-    const res = await apiClient.post<PaginatedResponse<Transaction>>('/cards/transactions', { userBankcardId, page, size });
-    return res.data;
+    const items = MOCK_TRANSACTIONS.filter(t => t.cardId === userBankcardId);
+    return { items, total: items.length, page, pageSize: size, totalPages: 1 };
   },
-
-  /** Get transaction detail */
   async getTransactionDetail(transactionId: string): Promise<Transaction> {
-    const res = await apiClient.post<Transaction>('/cards/transactions/detail', { transactionId });
-    return res.data;
+    const tx = MOCK_TRANSACTIONS.find(t => t.id === transactionId);
+    if (!tx) throw new Error('Transaction not found');
+    return tx;
   },
-
-  /** Approve 3DS transaction */
   async approve3DS(transactionId: string): Promise<void> {
-    await apiClient.post('/cards/3ds/approve', { transactionId });
+    // Mock success
   },
-
-  /** Deny 3DS transaction */
   async deny3DS(transactionId: string): Promise<void> {
-    await apiClient.post('/cards/3ds/deny', { transactionId });
+    // Mock success
   },
 };
 

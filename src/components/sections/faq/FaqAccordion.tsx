@@ -88,7 +88,7 @@ export function AccordionComponent() {
   return (
     <section
       id="faq"
-      className="w-full py-16 md:py-24 px-4 md:px-6 bg-white"
+      className="w-full py-12 md:py-16 px-4 md:px-6 bg-white"
     >
       <div className="max-w-3xl w-full mx-auto">
         <h2 className="mb-8 md:mb-10 text-center text-2xl md:text-4xl font-black text-slate-900 tracking-tight">

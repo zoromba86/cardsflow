@@ -10,7 +10,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://cardsflow.net"),
-  title: "CardsFlow — Reliable Virtual Cards for Modern Online Payments",
+  title: "CardsFlow — Privacy-First Virtual & Physical Visa Cards",
   description: "The world's first virtual card issuance platform built on absolute zero-knowledge protocols. Experience total financial privacy with an industry-leading global merchant acceptance rate.",
   openGraph: {
     type: "website",

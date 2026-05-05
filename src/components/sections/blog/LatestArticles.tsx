@@ -41,7 +41,7 @@ const ARTICLES = [
 
 export function LatestArticles() {
   return (
-    <section className="w-full bg-slate-50 py-24 relative overflow-hidden">
+    <section className="w-full bg-slate-50 py-12 md:py-16 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-5 sm:px-12 lg:px-20 relative z-10">
         
         {/* Header Section */}

@@ -181,14 +181,15 @@ const ElectricCard = ({
             rgba(0, 0, 0, 0.04);
           position: relative;
           transition: background 0.3s ease;
-          border-radius: 14px;
+          border-radius: 999px;
           width: fit-content;
           height: fit-content;
-          padding: 0.5em 1em;
+          padding: 0.5em 1.25em;
           text-transform: uppercase;
-          font-weight: bold;
-          font-size: 0.85em;
-          color: rgba(0, 0, 0, 0.8);
+          font-weight: 700;
+          font-size: 0.75em;
+          letter-spacing: 0.08em;
+          color: rgba(0, 0, 0, 0.75);
         }
         .ec-badge::before {
           content: "";
@@ -210,16 +211,17 @@ const ElectricCard = ({
         }
 
         .ec-title {
-          font-size: 1.75em;
-          font-weight: 500;
-          line-height: 1.2;
+          font-size: 1.85em;
+          font-weight: 700;
+          letter-spacing: -0.02em;
+          line-height: 1.15;
           margin-top: auto;
           color: #0f172a;
         }
 
         .ec-desc {
-          opacity: 0.6;
-          font-size: 0.9em;
+          opacity: 0.75;
+          font-size: 0.95em;
           line-height: 1.5;
           color: #334155;
         }

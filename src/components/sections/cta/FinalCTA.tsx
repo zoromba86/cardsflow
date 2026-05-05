@@ -23,7 +23,7 @@ export function FinalCTA() {
   }, []);
 
   return (
-    <section className="w-full py-24 md:py-32 bg-white relative overflow-hidden">
+    <section className="w-full py-16 md:py-20 bg-white relative overflow-hidden">
       {/* Background glow effects - more vibrant for light mode */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full bg-[#E5B220]/10 blur-[120px]" />

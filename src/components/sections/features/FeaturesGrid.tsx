@@ -76,7 +76,7 @@ export function FeaturesGrid() {
     <section
       id="features"
       ref={sectionRef}
-      className="w-full py-16 md:py-20 bg-slate-50 relative overflow-hidden"
+      className="w-full py-12 md:py-16 bg-slate-50 relative overflow-hidden"
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8 relative z-10">
 
