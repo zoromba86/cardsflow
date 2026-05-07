@@ -2,22 +2,25 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
-
   // CSP notes:
-  //  - 'unsafe-inline' is required for the Next.js App Router runtime (inline
-  //    bootstrap, RSC payloads, font-loader CSS) until Next's nonce propagation
-  //    is wired through the root layout (read headers().get('x-nonce') in
-  //    layout.tsx and pass to a custom Script). Until then, omitting it makes
-  //    every page render as a blank screen on a strict CSP.
-  //  - 'unsafe-eval' is required by some Tailwind / Turbopack dev runtimes and
-  //    a few third-party libs; matched to the production nginx CSP for parity.
-  //  - The nonce is still emitted so that future migration to a strict CSP only
-  //    needs the layout-side change; the header is already generated per
-  //    request.
+  //  - The Next.js App Router emits inline bootstrap / RSC payload <script>
+  //    tags without a nonce. Without 'unsafe-inline' on script-src, every
+  //    page renders as a blank screen because the entrance animations
+  //    (framer-motion `opacity:0` -> 1) never execute.
+  //  - Browsers enforce CSP Level 3: when ANY nonce or hash is present in
+  //    script-src, 'unsafe-inline' is silently ignored. So we must NOT include
+  //    a nonce here -- otherwise we are effectively back to a strict CSP and
+  //    every inline script is blocked.
+  //  - 'unsafe-eval' is required by some Tailwind / Turbopack runtimes.
+  //  - This matches the production nginx CSP currently served on
+  //    cardsflow.net, so behaviour is consistent between dev/preview/prod.
+  //  - When Next's nonce propagation is wired (read `headers().get('x-nonce')`
+  //    in `src/app/layout.tsx` and propagate to all <script> tags), we can
+  //    re-introduce the nonce + 'strict-dynamic' and drop 'unsafe-inline'
+  //    safely.
   const cspHeader = `
     default-src 'self';
-    script-src 'self' 'unsafe-inline' 'unsafe-eval' 'nonce-${nonce}' https: blob:;
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' https: blob:;
     style-src 'self' 'unsafe-inline' https:;
     img-src 'self' blob: data: https:;
     font-src 'self' data: https:;
@@ -32,7 +35,6 @@ export function middleware(request: NextRequest) {
   `.replace(/\s{2,}/g, ' ').trim();
 
   const requestHeaders = new Headers(request.headers);
-  requestHeaders.set('x-nonce', nonce);
   requestHeaders.set('Content-Security-Policy', cspHeader);
 
   const response = NextResponse.next({
