@@ -144,7 +144,7 @@ const FAQ_ITEMS: { category: string; question: string; answer: string }[] = [
     category: "workspace",
     question: "Can I issue cards for multiple team members without sharing my account login?",
     answer:
-      "Yes — you issue and manage all cards from your central CardsFlow dashboard without sharing login credentials with anyone. Each card can be assigned to a specific team member, vendor, or spend category. You set individual spending limits per card (up to $100,000/day and $1,000,000/month per card), apply merchant restrictions, and freeze or permanently delete any card instantly from the dashboard — without affecting any other active cards.",
+      "Yes — you issue and manage all cards from your central CardsFlow dashboard without sharing login credentials with anyone. Each card can be assigned to a specific team member, vendor, or spend category. You set individual spending limits per card (up to $180,000/day and $1,000,000/month per card), apply merchant restrictions, and freeze or permanently delete any card instantly from the dashboard — without affecting any other active cards.",
   },
   {
     category: "workspace",

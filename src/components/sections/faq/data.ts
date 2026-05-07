@@ -46,7 +46,7 @@ export const FAQ_ITEMS: FaqItem[] = [
   {
     question: "Can I issue cards for my team without giving them access to my account?",
     answer:
-      "Yes — you can issue multiple cards from a single dashboard without sharing login credentials. Each card can be assigned to a specific team member, vendor, or spend category. You set per-card spending limits (up to $100,000 per day and $1,000,000 per month), apply merchant-category restrictions, and freeze or delete any card instantly. All cards are managed centrally while remaining operationally independent.",
+      "Yes — you can issue multiple cards from a single dashboard without sharing login credentials. Each card can be assigned to a specific team member, vendor, or spend category. You set per-card spending limits (up to $180,000 per day and $1,000,000 per month), apply merchant-category restrictions, and freeze or delete any card instantly. All cards are managed centrally while remaining operationally independent.",
   },
   {
     question: "How does CardsFlow protect my wallet and account from unauthorised access?",

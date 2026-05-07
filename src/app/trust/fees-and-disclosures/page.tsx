@@ -119,13 +119,13 @@ export default function FeesAndDisclosuresPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 bg-white">
-              <tr><td className="py-4 px-6 text-slate-700">Maximum single transaction</td><td className="py-4 px-6 font-medium text-slate-900">$20,000</td></tr>
-              <tr><td className="py-4 px-6 text-slate-700">Daily spend per card</td><td className="py-4 px-6 font-medium text-slate-900">$100,000</td></tr>
-              <tr><td className="py-4 px-6 text-slate-700">Monthly spend per card</td><td className="py-4 px-6 font-medium text-slate-900">$1,000,000</td></tr>
+              <tr><td className="py-4 px-6 text-slate-700">Per-transaction limit</td><td className="py-4 px-6 font-medium text-slate-900">$30,000</td></tr>
+              <tr><td className="py-4 px-6 text-slate-700">Daily limit</td><td className="py-4 px-6 font-medium text-slate-900">$180,000</td></tr>
+              <tr><td className="py-4 px-6 text-slate-700">Monthly limit</td><td className="py-4 px-6 font-medium text-slate-900">$1,000,000</td></tr>
               <tr><td className="py-4 px-6 text-slate-700">Cards per account</td><td className="py-4 px-6 font-medium text-slate-900">3</td></tr>
-              <tr><td className="py-4 px-6 text-slate-700">Single ATM withdrawal</td><td className="py-4 px-6 font-medium text-slate-900">$2,500</td></tr>
-              <tr><td className="py-4 px-6 text-slate-700">Daily ATM withdrawals</td><td className="py-4 px-6 font-medium text-slate-900">6 / day</td></tr>
-              <tr><td className="py-4 px-6 text-slate-700">Monthly ATM cap</td><td className="py-4 px-6 font-medium text-slate-900">$100,000</td></tr>
+              <tr><td className="py-4 px-6 text-slate-700">Single ATM limit</td><td className="py-4 px-6 font-medium text-slate-900">$3,500</td></tr>
+              <tr><td className="py-4 px-6 text-slate-700">Single day ATM limit</td><td className="py-4 px-6 font-medium text-slate-900">6 times / day</td></tr>
+              <tr><td className="py-4 px-6 text-slate-700">Monthly ATM limit</td><td className="py-4 px-6 font-medium text-slate-900">$100,000</td></tr>
               <tr><td className="py-4 px-6 text-slate-700">Card validity</td><td className="py-4 px-6 font-medium text-slate-900">5 years from issuance</td></tr>
             </tbody>
           </table>
@@ -142,7 +142,7 @@ export default function FeesAndDisclosuresPage() {
             </thead>
             <tbody className="divide-y divide-slate-100 bg-white">
               <tr><td className="py-4 px-6 text-slate-700">Foreign exchange (non-USD merchants)</td><td className="py-4 px-6 font-medium text-slate-900">+1.2% above interbank</td></tr>
-              <tr><td className="py-4 px-6 text-slate-700">ATM withdrawal handling</td><td className="py-4 px-6 font-medium text-slate-900">$2.00 + 2.5% of amount</td></tr>
+              <tr><td className="py-4 px-6 text-slate-700">Withdrawal handling fee</td><td className="py-4 px-6 font-medium text-slate-900">$2.00 + 2.0% of amount</td></tr>
               <tr><td className="py-4 px-6 text-slate-700">Pre-authorization network fee</td><td className="py-4 px-6 font-medium text-slate-900">$0.20 / transaction</td></tr>
               <tr><td className="py-4 px-6 text-slate-700">Dispute / chargeback handling</td><td className="py-4 px-6 font-medium text-slate-900">$35 / case (refunded if upheld)</td></tr>
               <tr><td className="py-4 px-6 text-slate-700">Refund processing</td><td className="py-4 px-6 font-medium text-slate-900">Manual review - paid in USDT (Tron / TRC20) only - 1-10 business days</td></tr>
