@@ -4,6 +4,9 @@ const nextConfig: NextConfig = {
   // Compress responses
   compress: true,
 
+  // Strip the X-Powered-By header (defence-in-depth: don't advertise stack)
+  poweredByHeader: false,
+
   // HTTP security & cache headers
   async headers() {
     return [

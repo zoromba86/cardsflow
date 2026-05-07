@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Create Account | CardsFlow",
   description:
     "Create a CardsFlow account to start issuing virtual and physical Visa cards with cryptocurrency funding.",
+  robots: { index: false, follow: false, nocache: true },
 };
 
 export default function RegisterPage() {

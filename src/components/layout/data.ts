@@ -46,6 +46,9 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
       { label: "Privacy Policy", href: "/legal/privacy/" },
       { label: "Terms of Service", href: "/legal/terms/" },
       { label: "Cookie Policy", href: "/legal/cookies/" },
+      { label: "Imprint", href: "/legal/imprint/" },
+      { label: "Regulatory Information", href: "/legal/regulatory-information/" },
+      { label: "AML & Travel Rule", href: "/legal/aml-travel-rule/" },
     ],
   },
 ];

@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Sign In | CardsFlow",
   description:
     "Sign in to manage wallets, deposits, withdrawals, cards, and transaction activity from your CardsFlow workspace.",
+  robots: { index: false, follow: false, nocache: true },
 };
 
 export default function LoginPage() {

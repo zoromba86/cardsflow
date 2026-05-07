@@ -1,0 +1,14 @@
+Contact: mailto:security@cardsflow.net
+Expires: 2027-05-07T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://cardsflow.net/.well-known/security.txt
+Policy: https://cardsflow.net/trust/security-and-data-handling
+
+# How to report a security issue
+# 1. Email security@cardsflow.net with a clear description and reproduction steps.
+# 2. Please give us a reasonable timeframe to respond before any public disclosure.
+# 3. We do not run a public bug bounty at this time, but we do acknowledge
+#    valid researchers in writing on request.
+# 4. Out of scope: social engineering of CardsFlow staff, denial-of-service,
+#    physical attacks, and findings that require an already-compromised user
+#    device.

@@ -6,6 +6,7 @@ import { HeroSection, CTASection } from "@/components/blocks";
 export const metadata: Metadata = {
   title: "Get Started | CardsFlow",
   description: "Create your CardsFlow account and start issuing virtual cards for ad spend, travel, and online subscriptions.",
+  robots: { index: false, follow: false, nocache: true },
 };
 
 export default function OnboardingPage() {

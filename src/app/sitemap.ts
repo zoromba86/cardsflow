@@ -44,6 +44,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/legal/terms',
     '/legal/cookies',
     '/legal/aml-policy',
+    '/legal/imprint',
+    '/legal/regulatory-information',
+    '/legal/aml-travel-rule',
+    '/refund-policy',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),

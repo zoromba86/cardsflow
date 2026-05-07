@@ -12,8 +12,8 @@ const MOCK_PRODUCTS: CardProduct[] = [
 ];
 
 const MOCK_CARDS: Card[] = [
-  { userBankcardId: 101, cardNo: '4096 0012 3456 7890', bankCardNature: 'VIRTUAL', status: 'active', balance: '1250.00', ccy: 'USD', cardBin: '409600', binType: 'onyx', expiryDate: '12/28', cvv: '123', cardholderName: 'JOHN DOE', supportsApplePay: true, supportsGooglePay: true },
-  { userBankcardId: 102, cardNo: '5234 0098 7654 3210', bankCardNature: 'PHYSICAL', status: 'inactive', balance: '0.00', ccy: 'USD', cardBin: '523400', binType: 'volt', expiryDate: '10/27', cvv: '456', cardholderName: 'JOHN DOE', supportsApplePay: false, supportsGooglePay: true },
+  { userBankcardId: 101, cardNo: '4096 0012 3456 7890', bankCardNature: 'VIRTUAL', status: 'active', balance: '1250.00', ccy: 'USD', cardBin: '409600', binType: 'onyx', expiryDate: '12/28', cvv: '123', cardholderName: 'JOHN DOE', supportsApplePay: true, supportsGooglePay: true, maskedNumber: '4096 **** **** 7890', lastFour: '7890' },
+  { userBankcardId: 102, cardNo: '5234 0098 7654 3210', bankCardNature: 'PHYSICAL', status: 'inactive', balance: '0.00', ccy: 'USD', cardBin: '523400', binType: 'volt', expiryDate: '10/27', cvv: '456', cardholderName: 'JOHN DOE', supportsApplePay: false, supportsGooglePay: true, maskedNumber: '5234 **** **** 3210', lastFour: '3210' },
 ];
 
 const MOCK_TRANSACTIONS: Transaction[] = [
@@ -32,25 +32,35 @@ export const cardsService = {
     const product = MOCK_PRODUCTS.find(p => p.id === productId);
     if (!product) throw new Error('Product not found');
 
+    const block1 = Math.floor(Math.random() * 9000 + 1000).toString();
+    const block2 = Math.floor(Math.random() * 9000 + 1000).toString();
+    const block3 = Math.floor(Math.random() * 9000 + 1000).toString();
+    const newCardNo = `${product.cardBin} ${block1} ${block2} ${block3}`;
     const newCard: Card = {
       userBankcardId: Math.floor(Math.random() * 10000) + 200,
-      cardNo: `${product.cardBin} ${Math.floor(Math.random() * 9000 + 1000)} ${Math.floor(Math.random() * 9000 + 1000)} ${Math.floor(Math.random() * 9000 + 1000)}`,
+      cardNo: newCardNo,
       bankCardNature: product.bankCardNature,
       status: product.bankCardNature === 'PHYSICAL' ? 'inactive' : 'active',
       balance: '0.00',
       ccy: product.ccy,
       cardBin: product.cardBin,
-      binType: product.binType,
+      binType: product.binType ?? 'onyx',
       expiryDate: `12/${new Date().getFullYear() + 3 - 2000}`,
       cvv: Math.floor(Math.random() * 900 + 100).toString(),
       cardholderName: 'NEW USER',
-      supportsApplePay: product.supportsApplePay,
-      supportsGooglePay: product.supportsGooglePay,
+      supportsApplePay: product.supportsApplePay ?? true,
+      supportsGooglePay: product.supportsGooglePay ?? true,
+      maskedNumber: `${product.cardBin.slice(0, 4)} **** **** ${block3}`,
+      lastFour: block3,
     };
 
     MOCK_CARDS.push(newCard);
-    
-    return { success: true, message: 'Card applied successfully' };
+
+    return {
+      userBankcardId: newCard.userBankcardId,
+      cardNo: newCard.cardNo,
+      orderNo: `ORD-${Date.now()}`,
+    };
   },
   async activateCard(userBankcardId: number): Promise<void> {
     const card = MOCK_CARDS.find(c => c.userBankcardId === userBankcardId);
