@@ -35,13 +35,13 @@ export default function FeesAndDisclosuresPage() {
           </div>
           <div className="bg-white border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl p-6">
             <span className="text-slate-500 text-xs uppercase tracking-wider font-bold mb-1 block">VIRTUAL CARD</span>
-            <span className="text-slate-900 text-3xl font-bold block mb-2">$5</span>
-            <span className="text-slate-600 text-sm">Issuance fee, one-time</span>
+            <span className="text-slate-900 text-3xl font-bold block mb-2">$5&ndash;$10</span>
+            <span className="text-slate-600 text-sm">Volt $5 &middot; Onyx $10 &mdash; one-time</span>
           </div>
           <div className="bg-white border border-slate-200 shadow-[0_8px_30px_rgb(0,0,0,0.04)] rounded-2xl p-6">
             <span className="text-slate-500 text-xs uppercase tracking-wider font-bold mb-1 block">PHYSICAL CARD</span>
-            <span className="text-slate-900 text-3xl font-bold block mb-2">$50</span>
-            <span className="text-slate-600 text-sm">Issuance fee, one-time</span>
+            <span className="text-slate-900 text-3xl font-bold block mb-2">$50&ndash;$80</span>
+            <span className="text-slate-600 text-sm">Volt $50 &middot; Onyx $80 &mdash; one-time</span>
           </div>
         </div>
 
@@ -52,7 +52,7 @@ export default function FeesAndDisclosuresPage() {
 
         <div className="not-prose p-5 bg-amber-50 rounded-xl border border-amber-200 text-amber-900 mb-12 shadow-sm">
           <p className="m-0 text-sm leading-relaxed">
-            <strong>How it works:</strong> send $60 or more in any supported coin. Funds typically credit in minutes. Once credited, you can issue a virtual ($5) or physical ($50) CardsFlow Visa from your dashboard.
+            <strong>How it works:</strong> send $60 or more in any supported coin. Funds typically credit in minutes. Once credited, you can issue a virtual (from $5) or physical (from $50) CardsFlow Visa from your dashboard.
           </p>
         </div>
 

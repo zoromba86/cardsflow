@@ -12,12 +12,10 @@ import {
   ArrowDownLeft,
   Clock,
   CheckCircle2,
-  AlertCircle,
   ShieldCheck,
 } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { useAuth } from '@/lib/hooks/useAuth';
-import { formatUSD } from '@/lib/utils/fees';
 
 // Mock data — will be replaced by API calls once backend is connected
 const mockStats = {
@@ -166,7 +164,7 @@ export default function DashboardOverview() {
                   <Tooltip
                     contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)' }}
                     itemStyle={{ color: '#0F172A', fontWeight: 'bold' }}
-                    formatter={(value: any) => [`$${value}`, 'Balance']}
+                    formatter={(value) => [`$${value ?? 0}`, 'Balance']}
                   />
                   <Area type="monotone" dataKey="balance" stroke="#E5B220" strokeWidth={3} fillOpacity={1} fill="url(#colorBalance)" />
                 </AreaChart>

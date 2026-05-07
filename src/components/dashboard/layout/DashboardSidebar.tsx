@@ -15,7 +15,6 @@ import {
   Settings,
   HelpCircle,
   LogOut,
-  ChevronRight,
   Shield,
 } from 'lucide-react';
 import { useAuth } from '@/lib/hooks/useAuth';

@@ -131,8 +131,8 @@ export default function termsPage() {
             <tbody className="divide-y divide-slate-100 text-sm text-slate-600">
               <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Account Setup</td><td className="py-3 px-4">Free</td></tr>
               <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Monthly Platform Fee</td><td className="py-3 px-4">None</td></tr>
-              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Virtual Card Issuance (per card)</td><td className="py-3 px-4">$5.00</td></tr>
-              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Physical Card Issuance (per card)</td><td className="py-3 px-4">$50.00</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Virtual Card Issuance (per card)</td><td className="py-3 px-4">$5.00 (Volt) &middot; $10.00 (Onyx)</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Physical Card Issuance (per card)</td><td className="py-3 px-4">$50.00 (Volt) &middot; $80.00 (Onyx)</td></tr>
               <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Top-Up Fee &mdash; $25 to $1,999</td><td className="py-3 px-4">Flat 7% (minimum $25)</td></tr>
               <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Top-Up Fee &mdash; $2,000 to $4,999</td><td className="py-3 px-4">Flat 6%</td></tr>
               <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Top-Up Fee &mdash; $5,000 and above</td><td className="py-3 px-4">Flat 5%</td></tr>

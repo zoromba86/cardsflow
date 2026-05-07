@@ -1,7 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 const LOGOS = [
   "APPLE PAY", "GOOGLE PAY", "ALIPAY", "WECHAT HK", "EBAY", "LAZADA", 
   "AMAZON", "SHOPIFY", "ALIEXPRESS", "TIKTOK", "FACEBOOK", "YANGO", 

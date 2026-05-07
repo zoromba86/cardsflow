@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { Plus, CreditCard, Monitor } from 'lucide-react';
 import { useCardList } from '@/features/cards/hooks/useCardList';
 import { CardTile } from '@/features/cards/components/CardTile';
-import type { CardKind } from '@/features/cards/types';
 import { CARD_ROUTES } from '@/features/cards/types';
 
 type FilterTab = 'all' | 'VIRTUAL' | 'PHYSICAL';

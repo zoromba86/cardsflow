@@ -5,8 +5,8 @@
 import type { Card, CardProduct, CardApplyResponse, Transaction, PaginatedResponse } from '@/lib/types/dashboard';
 
 const MOCK_PRODUCTS: CardProduct[] = [
-  { id: 1, bankCardNature: 'VIRTUAL', title: 'CardsFlow Onyx Virtual', ccy: 'USD', applyFee: '5.00', cardBin: '409600', rechargeFee: '0.00', bankcardRegion: 'US', activeMinLimit: '0.00', rechargeMinLimit: '10.00', binType: 'onyx', supportsApplePay: true, supportsGooglePay: true },
-  { id: 2, bankCardNature: 'PHYSICAL', title: 'CardsFlow Onyx Physical', ccy: 'USD', applyFee: '50.00', cardBin: '409600', rechargeFee: '0.00', bankcardRegion: 'US', activeMinLimit: '0.00', rechargeMinLimit: '10.00', binType: 'onyx', supportsApplePay: true, supportsGooglePay: true },
+  { id: 1, bankCardNature: 'VIRTUAL', title: 'CardsFlow Onyx Virtual', ccy: 'USD', applyFee: '10.00', cardBin: '409600', rechargeFee: '0.00', bankcardRegion: 'US', activeMinLimit: '0.00', rechargeMinLimit: '10.00', binType: 'onyx', supportsApplePay: true, supportsGooglePay: true },
+  { id: 2, bankCardNature: 'PHYSICAL', title: 'CardsFlow Onyx Physical', ccy: 'USD', applyFee: '80.00', cardBin: '409600', rechargeFee: '0.00', bankcardRegion: 'US', activeMinLimit: '0.00', rechargeMinLimit: '10.00', binType: 'onyx', supportsApplePay: true, supportsGooglePay: true },
   { id: 3, bankCardNature: 'VIRTUAL', title: 'CardsFlow Volt Virtual', ccy: 'USD', applyFee: '5.00', cardBin: '523400', rechargeFee: '0.00', bankcardRegion: 'EU', activeMinLimit: '0.00', rechargeMinLimit: '10.00', binType: 'volt', supportsApplePay: false, supportsGooglePay: true },
   { id: 4, bankCardNature: 'PHYSICAL', title: 'CardsFlow Volt Physical', ccy: 'USD', applyFee: '50.00', cardBin: '523400', rechargeFee: '0.00', bankcardRegion: 'EU', activeMinLimit: '0.00', rechargeMinLimit: '10.00', binType: 'volt', supportsApplePay: false, supportsGooglePay: true },
 ];
@@ -28,7 +28,7 @@ export const cardsService = {
   async getUserCards(): Promise<Card[]> {
     return MOCK_CARDS;
   },
-  async applyCard(productId: number, deliveryAddressId?: number): Promise<CardApplyResponse> {
+  async applyCard(productId: number, _deliveryAddressId?: number): Promise<CardApplyResponse> {
     const product = MOCK_PRODUCTS.find(p => p.id === productId);
     if (!product) throw new Error('Product not found');
 
@@ -75,10 +75,10 @@ export const cardsService = {
     const card = MOCK_CARDS.find(c => c.userBankcardId === userBankcardId);
     return { balance: card?.balance || '0.00', ccy: card?.ccy || 'USD' };
   },
-  async setPin(userBankcardId: number, pin: string): Promise<void> {
+  async setPin(_userBankcardId: number, _pin: string): Promise<void> {
     // Mock success
   },
-  async getPin(userBankcardId: number): Promise<{ pin: string }> {
+  async getPin(_userBankcardId: number): Promise<{ pin: string }> {
     return { pin: '1234' };
   },
   async topUpCard(userBankcardId: number, amount: number): Promise<void> {
@@ -97,7 +97,7 @@ export const cardsService = {
     const card = MOCK_CARDS.find(c => c.userBankcardId === userBankcardId);
     if (card) card.status = 'cancelled';
   },
-  async updateCardEmail(userBankcardId: number, email: string): Promise<void> {
+  async updateCardEmail(_userBankcardId: number, _email: string): Promise<void> {
     // Mock success
   },
   async getTransactions(userBankcardId: number, page: number = 1, size: number = 20): Promise<PaginatedResponse<Transaction>> {
@@ -109,10 +109,10 @@ export const cardsService = {
     if (!tx) throw new Error('Transaction not found');
     return tx;
   },
-  async approve3DS(transactionId: string): Promise<void> {
+  async approve3DS(_transactionId: string): Promise<void> {
     // Mock success
   },
-  async deny3DS(transactionId: string): Promise<void> {
+  async deny3DS(_transactionId: string): Promise<void> {
     // Mock success
   },
 };

@@ -56,22 +56,29 @@ export function middleware(request: NextRequest) {
     headers.set("x-md-path", pathname);
     return NextResponse.rewrite(target, { request: { headers } });
   }
-  // CSP notes:
-  //  - The Next.js App Router emits inline bootstrap / RSC payload <script>
-  //    tags without a nonce. Without 'unsafe-inline' on script-src, every
-  //    page renders as a blank screen because the entrance animations
-  //    (framer-motion `opacity:0` -> 1) never execute.
-  //  - Browsers enforce CSP Level 3: when ANY nonce or hash is present in
-  //    script-src, 'unsafe-inline' is silently ignored. So we must NOT include
-  //    a nonce here -- otherwise we are effectively back to a strict CSP and
-  //    every inline script is blocked.
-  //  - 'unsafe-eval' is required by some Tailwind / Turbopack runtimes.
+  // CSP — see https://nextjs.org/docs/app/guides/content-security-policy
+  //
+  // We deliberately do NOT include a nonce in script-src. Reason:
+  //  - Most marketing pages on this site are statically prerendered, so the
+  //    HTML (including Next.js's inline bootstrap/RSC <script> tags) is built
+  //    once at build time and cannot carry a per-request nonce.
+  //  - CSP Level 3: when a nonce or hash is present in script-src, browsers
+  //    silently ignore 'unsafe-inline'. So adding a nonce to the response
+  //    header — without ALSO injecting the same nonce into every prerendered
+  //    inline <script> — instantly blocks all hydration scripts and the page
+  //    renders blank.
+  //  - The remaining directives are still strict: 'unsafe-eval' is required
+  //    by Turbopack/some runtimes; 'self' restricts external script origins;
+  //    object-src 'none', frame-ancestors 'none', base-uri 'self', and
+  //    form-action 'self' close the dangerous attack surfaces. HSTS and the
+  //    other security headers are preserved below.
   //  - This matches the production nginx CSP currently served on
-  //    cardsflow.net, so behaviour is consistent between dev/preview/prod.
-  //  - When Next's nonce propagation is wired (read `headers().get('x-nonce')`
-  //    in `src/app/layout.tsx` and propagate to all <script> tags), we can
-  //    re-introduce the nonce + 'strict-dynamic' and drop 'unsafe-inline'
-  //    safely.
+  //    cardsflow.net, so behaviour is consistent across dev/preview/prod.
+  //
+  // To re-introduce nonce + 'strict-dynamic' safely, every page that runs
+  // scripts must opt out of static prerender (force-dynamic) so the nonce
+  // can be injected at request time — that is a deliberate site-wide change
+  // and out of scope for the current frontend-only patch.
   const cspHeader = `
     default-src 'self';
     script-src 'self' 'unsafe-inline' 'unsafe-eval' https: blob:;

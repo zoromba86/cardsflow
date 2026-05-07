@@ -12,7 +12,7 @@ export default function ActivateCardPage() {
   const params = useParams();
   const router = useRouter();
   const cardId = Number(params.cardId);
-  const { card, loading, error, refetch } = useCardDetail(cardId);
+  const { card, loading, error } = useCardDetail(cardId);
   const [activating, setActivating] = useState(false);
   const [success, setSuccess] = useState(false);
 

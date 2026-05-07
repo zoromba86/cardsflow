@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import { X, Loader2, Check, AlertCircle } from 'lucide-react';
+import React from 'react';
+import { Loader2, AlertCircle } from 'lucide-react';
 
 interface ConfirmActionDialogProps {
   open: boolean;

@@ -52,6 +52,9 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <link rel="preload" href="/frames/ezgif-frame-001.jpg" as="image" type="image/jpeg" fetchPriority="high" />
+        <noscript>
+          <style>{`[style*="opacity:0"],[style*="opacity: 0"]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         {children}
       </body>
     </html>
