@@ -131,14 +131,14 @@ export default function termsPage() {
             <tbody className="divide-y divide-slate-100 text-sm text-slate-600">
               <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Account Setup</td><td className="py-3 px-4">Free</td></tr>
               <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Monthly Platform Fee</td><td className="py-3 px-4">None</td></tr>
-              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Virtual Card Issuance (per card)</td><td className="py-3 px-4">$5.00</td></tr>
-              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Physical Card Issuance (per card)</td><td className="py-3 px-4">$50.00</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Virtual Card Issuance (per card)</td><td className="py-3 px-4">$5.00 (Volt) &middot; $10.00 (Onyx)</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Physical Card Issuance (per card)</td><td className="py-3 px-4">$50.00 (Volt) &middot; $80.00 (Onyx)</td></tr>
               <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Top-Up Fee &mdash; $25 to $1,999</td><td className="py-3 px-4">Flat 7% (minimum $25)</td></tr>
               <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Top-Up Fee &mdash; $2,000 to $4,999</td><td className="py-3 px-4">Flat 6%</td></tr>
               <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Top-Up Fee &mdash; $5,000 and above</td><td className="py-3 px-4">Flat 5%</td></tr>
               <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Foreign Exchange (non-USD merchants)</td><td className="py-3 px-4">1.2% above interbank rate</td></tr>
               <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Per-authorisation network fee</td><td className="py-3 px-4">$0.20 per transaction</td></tr>
-              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">ATM withdrawal handling fee</td><td className="py-3 px-4">$2.00 + 2.0% of amount</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Withdrawal handling fee</td><td className="py-3 px-4">$2.00 + 2.0% of amount</td></tr>
               <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Dispute / chargeback handling</td><td className="py-3 px-4">$35 per case (refunded if upheld)</td></tr>
               <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Refund / manual processing fee</td><td className="py-3 px-4">4% &mdash; returned in USDT (TRC20) only (1&ndash;10 business days)</td></tr>
               <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Inactivity Fee</td><td className="py-3 px-4">None</td></tr>
@@ -164,13 +164,13 @@ export default function termsPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 text-sm text-slate-600">
-              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Maximum single transaction</td><td className="py-3 px-4 font-mono text-slate-800">$30,000</td></tr>
-              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Maximum daily spend per card</td><td className="py-3 px-4 font-mono text-slate-800">$180,000</td></tr>
-              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Maximum monthly spend per card</td><td className="py-3 px-4 font-mono text-slate-800">$1,000,000</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Per-transaction limit</td><td className="py-3 px-4 font-mono text-slate-800">$30,000</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Daily limit</td><td className="py-3 px-4 font-mono text-slate-800">$180,000</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Monthly limit</td><td className="py-3 px-4 font-mono text-slate-800">$1,000,000</td></tr>
               <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Maximum cards per account</td><td className="py-3 px-4">3</td></tr>
-              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Single ATM withdrawal</td><td className="py-3 px-4 font-mono text-slate-800">$3,500</td></tr>
-              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Daily ATM withdrawals</td><td className="py-3 px-4">6 per day</td></tr>
-              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Monthly ATM cap</td><td className="py-3 px-4 font-mono text-slate-800">$100,000</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Single ATM limit</td><td className="py-3 px-4 font-mono text-slate-800">$3,500</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Single day ATM limit</td><td className="py-3 px-4">6 times / day</td></tr>
+              <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Monthly ATM limit</td><td className="py-3 px-4 font-mono text-slate-800">$100,000</td></tr>
               <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Card validity</td><td className="py-3 px-4">5 years from issuance</td></tr>
               <tr className="hover:bg-slate-50/50"><td className="py-3 px-4 font-semibold text-slate-900">Maximum E-Money balance</td><td className="py-3 px-4 font-mono text-slate-800">$1,000,000</td></tr>
             </tbody>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 import { SubPageLayout } from "@/components/layout";
-import { HeroSection, DirectAnswerBlock, CTASection, RelatedLinksModule } from "@/components/blocks";
+import { HeroSection, RelatedLinksModule } from "@/components/blocks";
 
 export const metadata: Metadata = {
   title: "Security & Data Handling | CardsFlow",

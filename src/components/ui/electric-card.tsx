@@ -40,8 +40,7 @@ const ElectricCard = ({
   aspectRatio = "7 / 10",
   className = "",
 }: ElectricCardProps) => {
-  const reactId = useId();
-  const key = reactId.replace(/:/g, "");
+  useId();
 
   // Determine animation speed based on variant
   const animDuration = variant === "hue" ? "3s" : "4s";

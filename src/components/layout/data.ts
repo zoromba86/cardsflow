@@ -10,19 +10,19 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
   {
     heading: "Use Cases",
     links: [
-      { label: "Ad Spend Management", href: "/use-cases/ad-spend-management/" },
+      { label: "Ad Spend", href: "/use-cases/ad-spend-management/" },
       { label: "Travel Spend", href: "/use-cases/travel-spend-management/" },
       { label: "Online Subscriptions", href: "/use-cases/online-service-subscriptions/" },
     ],
   },
   {
-    heading: "Resources & Guides",
+    heading: "Resources",
     links: [
       { label: "Blog", href: "/blog" },
-      { label: "Virtual vs Shared Team Card", href: "/compare/virtual-card-vs-shared-team-card-for-ad-spend/" },
+      { label: "Virtual vs Shared Card", href: "/compare/virtual-card-vs-shared-team-card-for-ad-spend/" },
       { label: "Virtual vs Corporate Card", href: "/compare/virtual-card-vs-corporate-card-for-travel-spend/" },
       { label: "How Virtual Cards Work", href: "/guides/how-virtual-cards-work-for-online-payments/" },
-      { label: "Manage Service Renewals", href: "/guides/how-to-manage-online-service-renewals/" },
+      { label: "Manage Renewals", href: "/guides/how-to-manage-online-service-renewals/" },
     ],
   },
   {
@@ -30,22 +30,30 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
     links: [
       { label: "Trust Center", href: "/trust/" },
       { label: "Fees & Disclosures", href: "/trust/fees-and-disclosures/" },
-      { label: "How We Review Content", href: "/trust/how-we-review-content/" },
+      { label: "Content Review", href: "/trust/how-we-review-content/" },
       { label: "Prohibited Use", href: "/trust/prohibited-use/" },
       { label: "Security & Data", href: "/trust/security-and-data-handling/" },
-      { label: "Support & Escalations", href: "/trust/support-and-escalations/" },
+      { label: "Support", href: "/trust/support-and-escalations/" },
     ],
   },
   {
-    heading: "Legal",
+    heading: "Company",
     links: [
       { label: "About Us", href: "/about/" },
       { label: "Contact Us", href: "/contact/" },
       { label: "FAQ", href: "/faq/" },
       { label: "Refund Policy", href: "/refund-policy/" },
+    ],
+  },
+  {
+    heading: "Legal",
+    links: [
       { label: "Privacy Policy", href: "/legal/privacy/" },
       { label: "Terms of Service", href: "/legal/terms/" },
       { label: "Cookie Policy", href: "/legal/cookies/" },
+      { label: "Imprint", href: "/legal/imprint/" },
+      { label: "Regulatory Info", href: "/legal/regulatory-information/" },
+      { label: "AML & Travel Rule", href: "/legal/aml-travel-rule/" },
     ],
   },
 ];

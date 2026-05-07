@@ -9,9 +9,8 @@ import {
   ProblemSolutionSection, 
   RecommendationCallout, 
   CTASection, 
-  HowItWorksSteps 
 } from "@/components/blocks";
-import { Check, Compass, Shield, Zap } from "lucide-react";
+import { Compass, Shield, Zap } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Travel Spend Management with Virtual Cards | CardsFlow",

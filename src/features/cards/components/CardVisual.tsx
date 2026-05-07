@@ -64,7 +64,7 @@ export function CardVisual({ card, showFullNumber = false }: CardVisualProps) {
         ref={cardRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className={`relative w-full rounded-2xl p-6 text-white overflow-hidden aspect-[1.6/1] flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.25)] border border-white/20 transition-all duration-200 ease-out group ${
+        className={`relative w-full rounded-2xl p-4 sm:p-6 text-white overflow-hidden aspect-[1.6/1] flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.25)] border border-white/20 transition-all duration-200 ease-out group ${
           isCancelled ? 'grayscale opacity-60 cursor-not-allowed' : 'cursor-pointer hover:shadow-[0_30px_60px_rgba(0,0,0,0.4)]'
         }`}
         style={{
@@ -133,32 +133,32 @@ export function CardVisual({ card, showFullNumber = false }: CardVisualProps) {
             </svg>
           </div>
 
-          <p className="text-xl sm:text-2xl font-mono tracking-[0.15em] sm:tracking-[0.2em] text-white/95" style={{ textShadow: '0px 2px 2px rgba(0,0,0,0.5), 0px -1px 1px rgba(255,255,255,0.2)' }}>
+          <p className="text-base sm:text-2xl font-mono tracking-[0.1em] sm:tracking-[0.2em] text-white/95 whitespace-nowrap" style={{ textShadow: '0px 2px 2px rgba(0,0,0,0.5), 0px -1px 1px rgba(255,255,255,0.2)' }}>
             {showFullNumber ? card.cardNo : card.maskedNumber}
           </p>
         </div>
 
         {/* Footer row */}
-        <div className="flex items-end justify-between relative z-20" style={{ transform: 'translateZ(20px)' }}>
-          <div className="flex gap-6">
+        <div className="flex items-end justify-between gap-2 relative z-20" style={{ transform: 'translateZ(20px)' }}>
+          <div className="flex gap-3 sm:gap-6 min-w-0">
             <div className="flex flex-col">
               <span className="text-[8px] text-white/50 uppercase tracking-widest mb-0.5">Valid Thru</span>
-              <span className="text-sm font-semibold tracking-wider" style={{ textShadow: '0px 1px 2px rgba(0,0,0,0.5)' }}>{card.expiryDate || '—'}</span>
+              <span className="text-xs sm:text-sm font-semibold tracking-wider" style={{ textShadow: '0px 1px 2px rgba(0,0,0,0.5)' }}>{card.expiryDate || '—'}</span>
             </div>
             {card.cardholderName && (
-              <div className="flex flex-col">
+              <div className="flex flex-col min-w-0">
                 <span className="text-[8px] text-white/50 uppercase tracking-widest mb-0.5">Cardholder</span>
-                <span className="text-sm font-semibold tracking-wider uppercase truncate max-w-[120px]" style={{ textShadow: '0px 1px 2px rgba(0,0,0,0.5)' }}>{card.cardholderName}</span>
+                <span className="text-xs sm:text-sm font-semibold tracking-wider uppercase truncate max-w-[88px] sm:max-w-[120px]" style={{ textShadow: '0px 1px 2px rgba(0,0,0,0.5)' }}>{card.cardholderName}</span>
               </div>
             )}
           </div>
-          
-          <div className="flex items-center gap-3">
+
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             <div className="flex flex-col items-end gap-1">
-              {card.supportsApplePay && <span className="text-[7px] font-extrabold uppercase tracking-widest bg-white/10 border border-white/20 px-1.5 py-0.5 rounded backdrop-blur-sm shadow-sm">Apple Pay</span>}
-              {card.supportsGooglePay && <span className="text-[7px] font-extrabold uppercase tracking-widest bg-white/10 border border-white/20 px-1.5 py-0.5 rounded backdrop-blur-sm shadow-sm">Google Pay</span>}
+              {card.supportsApplePay && <span className="text-[7px] font-extrabold uppercase tracking-widest whitespace-nowrap bg-white/10 border border-white/20 px-1.5 py-0.5 rounded backdrop-blur-sm shadow-sm">Apple Pay</span>}
+              {card.supportsGooglePay && <span className="text-[7px] font-extrabold uppercase tracking-widest whitespace-nowrap bg-white/10 border border-white/20 px-1.5 py-0.5 rounded backdrop-blur-sm shadow-sm">Google Pay</span>}
             </div>
-            <span className="text-3xl font-extrabold italic text-white drop-shadow-md tracking-tighter">VISA</span>
+            <span className="text-2xl sm:text-3xl font-extrabold italic text-white drop-shadow-md tracking-tighter">VISA</span>
           </div>
         </div>
 

@@ -21,7 +21,7 @@ export const FEES = {
   // Other charges
   FX_MARKUP: 0.012,          // +1.2% above interbank
   ATM_FLAT: 2.00,            // $2.00 flat
-  ATM_RATE: 0.025,           // + 2.5%
+  ATM_RATE: 0.02,            // + 2.0%
   PREAUTH_FEE: 0.20,         // $0.20 per transaction
   DISPUTE_FEE: 35,            // $35 per case
 
@@ -29,11 +29,11 @@ export const FEES = {
   AFFILIATE_COMMISSION_RATE: 0.01, // 1% lifetime
 
   // Limits
-  MAX_SINGLE_TXN: 20000,
-  DAILY_SPEND_LIMIT: 100000,
+  MAX_SINGLE_TXN: 30000,
+  DAILY_SPEND_LIMIT: 180000,
   MONTHLY_SPEND_LIMIT: 1000000,
   CARDS_PER_ACCOUNT: 3,
-  SINGLE_ATM_WITHDRAWAL: 2500,
+  SINGLE_ATM_WITHDRAWAL: 3500,
   DAILY_ATM_WITHDRAWALS: 6,
   MONTHLY_ATM_CAP: 100000,
   CARD_VALIDITY_YEARS: 5,

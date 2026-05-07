@@ -26,8 +26,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   useEffect(() => {
-    refreshUser();
-    setIsLoading(false);
+    queueMicrotask(() => {
+      refreshUser();
+      setIsLoading(false);
+    });
   }, [refreshUser]);
 
   const login = async (email: string, password: string) => {
