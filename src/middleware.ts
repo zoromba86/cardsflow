@@ -3,15 +3,27 @@ import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
-  
-  // Note: We are allowing 'unsafe-inline' for styles because many component libraries (like Radix UI) require it,
-  // but we are restricting script execution to our nonce.
+
+  // CSP notes:
+  //  - 'unsafe-inline' is required for the Next.js App Router runtime (inline
+  //    bootstrap, RSC payloads, font-loader CSS) until Next's nonce propagation
+  //    is wired through the root layout (read headers().get('x-nonce') in
+  //    layout.tsx and pass to a custom Script). Until then, omitting it makes
+  //    every page render as a blank screen on a strict CSP.
+  //  - 'unsafe-eval' is required by some Tailwind / Turbopack dev runtimes and
+  //    a few third-party libs; matched to the production nginx CSP for parity.
+  //  - The nonce is still emitted so that future migration to a strict CSP only
+  //    needs the layout-side change; the header is already generated per
+  //    request.
   const cspHeader = `
     default-src 'self';
-    script-src 'self' 'nonce-${nonce}' 'strict-dynamic';
-    style-src 'self' 'unsafe-inline';
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' 'nonce-${nonce}' https: blob:;
+    style-src 'self' 'unsafe-inline' https:;
     img-src 'self' blob: data: https:;
     font-src 'self' data: https:;
+    connect-src 'self' https:;
+    worker-src 'self' blob:;
+    manifest-src 'self';
     object-src 'none';
     base-uri 'self';
     form-action 'self';
