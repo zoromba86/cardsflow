@@ -9,7 +9,7 @@ export default function Footer() {
 
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         {/* ── Main grid: brand-left · columns-right ───────────────────────── */}
-        <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-16 lg:gap-24 pb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-12 lg:gap-16 pb-16">
 
           {/* ── Brand column (left-aligned) ───────────────────────────────── */}
           <div className="flex flex-col items-start">
@@ -53,7 +53,7 @@ export default function Footer() {
           </div>
 
           {/* ── Link columns (right side) ─────────────────────────────────── */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-8 gap-y-10">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-x-6 gap-y-10">
             {FOOTER_COLUMNS.map((col) => (
               <div key={col.heading}>
                 <h4 className="text-white font-semibold text-xs uppercase tracking-[0.15em] mb-5">
