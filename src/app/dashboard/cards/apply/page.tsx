@@ -3,11 +3,12 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Wifi, ArrowRight, ArrowLeft, CheckCircle2, Loader2, MapPin } from 'lucide-react';
+import { Wifi, ArrowRight, ArrowLeft, CheckCircle2, Loader2, MapPin, Truck, Clock, AlertTriangle, ShieldOff } from 'lucide-react';
 import { CARD_ROUTES } from '@/features/cards/types';
 import type { CardKind, CardBinType } from '@/features/cards/types';
 import { cardsService } from '@/features/cards/api';
 import { useCardProducts } from '@/features/cards/hooks/useCardProducts';
+import { ALLOWED_COUNTRIES, isMiddleEast } from '@/features/cards/data/countries';
 
 const noiseTexture = "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')";
 
@@ -187,7 +188,27 @@ export default function ApplyCardPage() {
                   { key: 'addressLine2', label: 'Address Line 2 (optional)', placeholder: 'Apt 4B' },
                   { key: 'city', label: 'City', placeholder: 'New York' },
                   { key: 'state', label: 'State / Province', placeholder: 'NY' },
-                  { key: 'country', label: 'Country', placeholder: 'United States' },
+                ].map((f) => (
+                  <div key={f.key}>
+                    <label className="block text-sm font-bold text-slate-700 mb-1">{f.label}</label>
+                    <input type="text" placeholder={f.placeholder} value={(address as Record<string, string>)[f.key]} onChange={(e) => setAddress((prev) => ({ ...prev, [f.key]: e.target.value }))} className="block w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#E5B220] focus:border-transparent" />
+                  </div>
+                ))}
+                <div>
+                  <label htmlFor="country-select" className="block text-sm font-bold text-slate-700 mb-1">Country</label>
+                  <select
+                    id="country-select"
+                    value={address.country}
+                    onChange={(e) => setAddress((prev) => ({ ...prev, country: e.target.value }))}
+                    className="block w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-[#E5B220] focus:border-transparent appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23475569%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.4-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[length:10px] bg-[position:right_1rem_center] pr-10"
+                  >
+                    <option value="" disabled>Select your country…</option>
+                    {ALLOWED_COUNTRIES.map((c) => (
+                      <option key={c.code} value={c.code}>{c.name}</option>
+                    ))}
+                  </select>
+                </div>
+                {[
                   { key: 'postalCode', label: 'Postal Code', placeholder: '10001' },
                   { key: 'phone', label: 'Phone (optional)', placeholder: '+1 555 123 4567' },
                 ].map((f) => (
@@ -197,6 +218,42 @@ export default function ApplyCardPage() {
                   </div>
                 ))}
               </div>
+
+              {/* Delivery information card */}
+              <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+                <div className="px-6 py-4 border-b border-slate-100 flex items-center gap-3">
+                  <div className="w-9 h-9 bg-emerald-50 rounded-xl flex items-center justify-center">
+                    <Truck size={18} className="text-emerald-600" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold text-[#0F172A]">Delivery information</h3>
+                    <p className="text-xs text-slate-500">What to expect after you place your order</p>
+                  </div>
+                </div>
+                <ul className="divide-y divide-slate-100 text-sm text-slate-600">
+                  <li className="flex items-start gap-3 px-6 py-4">
+                    <Clock size={16} className="text-slate-400 mt-0.5 shrink-0" />
+                    <p><span className="font-semibold text-slate-900">Standard delivery:</span> most countries arrive within <span className="font-semibold text-slate-900">7&ndash;14 working days</span> from dispatch.</p>
+                  </li>
+                  {isMiddleEast(address.country) && (
+                    <li className="flex items-start gap-3 px-6 py-4 bg-amber-50/60">
+                      <AlertTriangle size={16} className="text-amber-600 mt-0.5 shrink-0" />
+                      <p><span className="font-semibold text-amber-900">Middle East shipments:</span> due to ongoing regional conflict, deliveries may be delayed by approximately <span className="font-semibold text-amber-900">5 additional working days</span>.</p>
+                    </li>
+                  )}
+                  {!isMiddleEast(address.country) && (
+                    <li className="flex items-start gap-3 px-6 py-4">
+                      <AlertTriangle size={16} className="text-amber-600 mt-0.5 shrink-0" />
+                      <p><span className="font-semibold text-slate-900">Middle East shipments:</span> due to ongoing regional conflict, deliveries to the region may be delayed by approximately <span className="font-semibold text-slate-900">5 additional working days</span>.</p>
+                    </li>
+                  )}
+                  <li className="flex items-start gap-3 px-6 py-4">
+                    <ShieldOff size={16} className="text-slate-400 mt-0.5 shrink-0" />
+                    <p><span className="font-semibold text-slate-900">Restricted destinations:</span> we cannot ship to Syria, Afghanistan, Yemen, Somalia, the DPRK (North Korea), or Sudan.</p>
+                  </li>
+                </ul>
+              </div>
+
               <div className="flex gap-3">
                 <button onClick={() => setStep(2)} className="px-5 py-2.5 text-sm font-bold text-slate-600 bg-slate-100 rounded-xl hover:bg-slate-200">Back</button>
                 <button onClick={() => setStep(4)} disabled={!address.fullName || !address.addressLine1 || !address.city || !address.country || !address.postalCode} className="px-5 py-2.5 text-sm font-bold text-[#0F172A] bg-[#E5B220] rounded-xl hover:bg-[#D4A017] flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">Continue <ArrowRight size={14} /></button>
