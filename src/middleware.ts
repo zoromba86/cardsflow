@@ -45,7 +45,7 @@ export function middleware(request: NextRequest) {
   // public marketing allowlist, rewrite to the markdown renderer route.
   const { pathname } = request.nextUrl;
   if (
-    request.method === "GET" &&
+    (request.method === "GET" || request.method === "HEAD") &&
     wantsMarkdown(request.headers.get("accept")) &&
     isMarkdownAllowed(pathname)
   ) {
