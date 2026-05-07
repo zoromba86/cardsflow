@@ -1,7 +1,61 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
+// Public marketing routes that opt in to markdown content negotiation.
+// Authenticated routes (/dashboard, /login, /register, /onboarding,
+// /forgot-password) are intentionally excluded -- they must never be
+// agent-readable.
+const MARKDOWN_ALLOWLIST_EXACT = new Set<string>([
+  "/",
+  "/about",
+  "/contact",
+  "/faq",
+  "/features",
+  "/pricing",
+  "/refund-policy",
+  "/blog",
+  "/use-cases",
+  "/trust",
+]);
+const MARKDOWN_ALLOWLIST_PREFIXES = [
+  "/legal/",
+  "/trust/",
+  "/blog/",
+  "/use-cases/",
+  "/compare/",
+  "/guides/",
+];
+
+function isMarkdownAllowed(pathname: string): boolean {
+  if (MARKDOWN_ALLOWLIST_EXACT.has(pathname)) return true;
+  return MARKDOWN_ALLOWLIST_PREFIXES.some((p) => pathname.startsWith(p));
+}
+
+function wantsMarkdown(accept: string | null): boolean {
+  if (!accept) return false;
+  // Accept: text/markdown[;q=...]  OR  text/markdown ranked above text/html.
+  // Keep parsing minimal -- exact substring match is enough for the agents
+  // that actually send this header.
+  return /\btext\/markdown\b/i.test(accept);
+}
+
 export function middleware(request: NextRequest) {
+  // ── Markdown content negotiation (P2) ─────────────────────────────────
+  // If the agent explicitly asks for text/markdown AND the path is on the
+  // public marketing allowlist, rewrite to the markdown renderer route.
+  const { pathname } = request.nextUrl;
+  if (
+    request.method === "GET" &&
+    wantsMarkdown(request.headers.get("accept")) &&
+    isMarkdownAllowed(pathname)
+  ) {
+    const target = request.nextUrl.clone();
+    target.pathname = "/api/md";
+    target.search = "";
+    const headers = new Headers(request.headers);
+    headers.set("x-md-path", pathname);
+    return NextResponse.rewrite(target, { request: { headers } });
+  }
   // CSP notes:
   //  - The Next.js App Router emits inline bootstrap / RSC payload <script>
   //    tags without a nonce. Without 'unsafe-inline' on script-src, every

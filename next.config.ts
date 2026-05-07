@@ -46,6 +46,20 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      // ── Discovery Link headers on the homepage (RFC 8288). Helps AI agents
+      //    locate the sitemap and security contact without parsing HTML.
+      {
+        source: "/",
+        headers: [
+          {
+            key: "Link",
+            value:
+              '</sitemap.xml>; rel="sitemap"; type="application/xml", ' +
+              '</.well-known/security.txt>; rel="security-contact", ' +
+              '</robots.txt>; rel="describedby"; type="text/plain"',
+          },
+        ],
+      },
     ];
   },
 
