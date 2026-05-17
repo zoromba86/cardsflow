@@ -126,19 +126,52 @@ export default function CardsflowCanvas() {
     const imgR = srcW / srcH;
     const canR = rect.width / rect.height;
 
-    let dw: number, dh: number;
-    if (canR > imgR) {
-      dw = rect.width;
-      dh = dw / imgR;
+    const isPortrait = rect.height > rect.width;
+
+    if (!isPortrait) {
+      // ── Landscape / desktop — cover (identical to today) ──
+      let dw: number, dh: number;
+      if (canR > imgR) {
+        dw = rect.width;
+        dh = dw / imgR;
+      } else {
+        dh = rect.height;
+        dw = dh * imgR;
+      }
+      const offsetX = (rect.width  - dw) / 2;
+      const offsetY = (rect.height - dh) / 2;
+      ctx.drawImage(img, 0, 0, srcW, srcH, offsetX, offsetY, dw, dh);
     } else {
-      dh = rect.height;
-      dw = dh * imgR;
+      // ── Portrait — UX Option 1: "Bleed & Fade" ──
+      // 1. Fill canvas background to match site
+      ctx.fillStyle = '#0F1B2D';
+      ctx.fillRect(0, 0, rect.width, rect.height);
+
+      // 2. Goldilocks scale: height is 60% of viewport
+      const dh = rect.height * 0.60;
+      const dw = dh * imgR;
+      const offsetX = (rect.width - dw) / 2;
+      const offsetY = (rect.height - dh) / 2;
+
+      ctx.drawImage(img, 0, 0, srcW, srcH, offsetX, offsetY, dw, dh);
+
+      // 3. Feather edges so image dissolves perfectly into background
+      const fadeH = rect.height * 0.15; // 15% fade gradient
+      
+      // Top feather
+      const topGrad = ctx.createLinearGradient(0, offsetY - 1, 0, offsetY + fadeH);
+      topGrad.addColorStop(0, '#0F1B2D');
+      topGrad.addColorStop(1, 'rgba(15,27,45,0)');
+      ctx.fillStyle = topGrad;
+      ctx.fillRect(0, offsetY - 1, rect.width, fadeH + 1);
+
+      // Bottom feather
+      const botGrad = ctx.createLinearGradient(0, offsetY + dh - fadeH, 0, offsetY + dh + 1);
+      botGrad.addColorStop(0, 'rgba(15,27,45,0)');
+      botGrad.addColorStop(1, '#0F1B2D');
+      ctx.fillStyle = botGrad;
+      ctx.fillRect(0, offsetY + dh - fadeH, rect.width, fadeH + 1);
     }
-
-    const offsetX = (rect.width  - dw) / 2;
-    const offsetY = (rect.height - dh) / 2;
-
-    ctx.drawImage(img, 0, 0, srcW, srcH, offsetX, offsetY, dw, dh);
 
     // Mark ready — functional update is safe across Fast Refresh cycles
     setIsReady((prev) => prev ? prev : true);
