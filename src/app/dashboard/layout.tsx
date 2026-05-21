@@ -3,6 +3,7 @@
 import React from 'react';
 import { AuthProvider } from '@/lib/hooks/useAuth';
 import DashboardLayout from '@/components/dashboard/layout/DashboardLayout';
+import RequireAuth from '@/components/dashboard/layout/RequireAuth';
 
 export default function DashboardRootLayout({
   children,
@@ -11,7 +12,9 @@ export default function DashboardRootLayout({
 }) {
   return (
     <AuthProvider>
-      <DashboardLayout>{children}</DashboardLayout>
+      <RequireAuth>
+        <DashboardLayout>{children}</DashboardLayout>
+      </RequireAuth>
     </AuthProvider>
   );
 }

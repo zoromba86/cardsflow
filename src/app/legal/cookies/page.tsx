@@ -16,7 +16,7 @@ export default function cookiesPage() {
         supportCopy="Cardsflow policies and documentation for users and partners."
       />
       <div className="max-w-4xl mx-auto px-5 sm:px-12 lg:px-20 py-16 prose prose-slate prose-p:text-slate-600 prose-headings:text-slate-900 prose-headings:font-bold prose-headings:tracking-tight prose-li:text-slate-600 prose-a:text-teal-600">
-        <p className="text-sm text-slate-500 italic mb-8">Last Updated: April 29, 2026  |  Version: 2.0</p>
+        <p className="text-sm text-slate-500 italic mb-8">Last Updated: May 21, 2026  |  Version: 2.1</p>
         <p>We use no tracking cookies, no advertising cookies, and no third-party profiling tools.</p>
         <p>Questions? privacy@cardsflow.net</p>
         <h3>1.  WHAT ARE COOKIES?</h3>
@@ -30,20 +30,24 @@ export default function cookiesPage() {
         <p>CardsFlow uses no third-party cookies of any kind.</p>
         <h3>2.  COOKIES WE USE</h3>
         <p>We use only the minimum number of cookies required to operate the platform securely and keep you logged in.</p>
-        <h4>2.1  Strictly Necessary Cookies</h4>
-        <p>These cookies are essential for the platform to work. They cannot be switched off. They do not track you, store personal data beyond your session, or share anything with third parties.</p>
-        <p>Cookie Name</p>
+        <h4>2.1  Strictly Necessary Storage</h4>
+        <p>The platform currently uses a small amount of browser local storage (not cookies) to keep you signed in during your session. We do not use any tracking cookies, advertising cookies, third-party profiling tools, or session-replay scripts.</p>
+        <p>Storage Key</p>
         <p>Purpose</p>
         <p>Duration</p>
-        <p>session_id</p>
-        <p>Keeps you securely logged in and authenticates your Account requests during your visit.</p>
+        <p>cardsflow_token</p>
+        <p>Short-lived authentication token. Sent on every dashboard request to prove who you are.</p>
+        <p>Session (until logout or expiry)</p>
+        <p>cardsflow_user</p>
+        <p>Caches your display name and email so the dashboard can render the header without a round-trip.</p>
         <p>Session</p>
-        <p>csrf_token</p>
-        <p>Protects form submissions against cross-site request forgery (CSRF) attacks. A core security requirement.</p>
+        <p>cardsflow_token_expires_at</p>
+        <p>Lets the browser detect an expired token locally and force a fresh login.</p>
         <p>Session</p>
         <p>consent_pref</p>
-        <p>Stores your cookie preference choice so we do not ask again on every visit.</p>
+        <p>Stores your cookie-notice choice so we do not show it on every visit.</p>
         <p>6 months</p>
+        <p className="text-sm text-slate-500">A planned hardening release will move authentication from local storage into <code>HttpOnly; Secure; SameSite=Strict</code> cookies paired with a CSRF token. Until that release lands the storage keys above are the only mechanism used to keep you signed in.</p>
         <h4>2.2  Analytics — No Cookies Used</h4>
         <p>We use Simple Analytics (simpleanalytics.com) to understand basic platform usage.</p>
         <p>What Simple Analytics Does NOT Do</p>
@@ -122,16 +126,16 @@ export default function cookiesPage() {
             </thead>
             <tbody className="divide-y divide-slate-100 text-sm bg-white">
               <tr className="hover:bg-slate-50/80 transition-colors">
-                <td className="py-4 px-5 font-mono text-slate-900 font-semibold">session_id</td>
-                <td className="py-4 px-5 text-slate-600">Essential</td>
-                <td className="py-4 px-5"><span className="inline-flex items-center px-2.5 py-1 rounded-md bg-amber-50 border border-amber-200/60 text-amber-700 text-[11px] font-bold uppercase tracking-wider">Yes</span></td>
+                <td className="py-4 px-5 font-mono text-slate-900 font-semibold">cardsflow_token</td>
+                <td className="py-4 px-5 text-slate-600">Essential (local storage)</td>
+                <td className="py-4 px-5"><span className="inline-flex items-center px-2.5 py-1 rounded-md bg-emerald-50 border border-emerald-200/60 text-emerald-700 text-[11px] font-bold uppercase tracking-wider">No</span></td>
                 <td className="py-4 px-5 text-slate-600">No — session token only</td>
               </tr>
               <tr className="hover:bg-slate-50/80 transition-colors">
-                <td className="py-4 px-5 font-mono text-slate-900 font-semibold">csrf_token</td>
-                <td className="py-4 px-5 text-slate-600">Security</td>
-                <td className="py-4 px-5"><span className="inline-flex items-center px-2.5 py-1 rounded-md bg-amber-50 border border-amber-200/60 text-amber-700 text-[11px] font-bold uppercase tracking-wider">Yes</span></td>
-                <td className="py-4 px-5 text-slate-600">No</td>
+                <td className="py-4 px-5 font-mono text-slate-900 font-semibold">cardsflow_user</td>
+                <td className="py-4 px-5 text-slate-600">Essential (local storage)</td>
+                <td className="py-4 px-5"><span className="inline-flex items-center px-2.5 py-1 rounded-md bg-emerald-50 border border-emerald-200/60 text-emerald-700 text-[11px] font-bold uppercase tracking-wider">No</span></td>
+                <td className="py-4 px-5 text-slate-600">Display name and email cache</td>
               </tr>
               <tr className="hover:bg-slate-50/80 transition-colors">
                 <td className="py-4 px-5 font-mono text-slate-900 font-semibold">consent_pref</td>

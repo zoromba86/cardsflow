@@ -3,7 +3,6 @@
 import type { Card } from '@/lib/types/dashboard';
 import type { UserCard, CardBinType } from '../types';
 import { getDefaultCapabilities } from '../utils/capabilities';
-import { maskCardNumber, getLastFour } from '../utils/masks';
 
 /** Resolve a BIN type from the card's cardBin field. */
 function resolveBinType(cardBin: string): CardBinType {
@@ -18,18 +17,15 @@ export function mapApiCardToUserCard(apiCard: Card): UserCard {
 
   return {
     userBankcardId: apiCard.userBankcardId,
-    cardNo: apiCard.cardNo,
     bankCardNature: apiCard.bankCardNature,
     status: apiCard.status,
     balance: apiCard.balance,
     ccy: apiCard.ccy,
     cardBin: apiCard.cardBin,
     expiryDate: apiCard.expiryDate,
-    cvv: apiCard.cvv,
-    cardholderName: apiCard.cardholderName,
     binType,
-    maskedNumber: maskCardNumber(apiCard.cardNo),
-    lastFour: getLastFour(apiCard.cardNo),
+    maskedNumber: apiCard.maskedNumber,
+    lastFour: apiCard.lastFour,
     capabilities: getDefaultCapabilities(apiCard.bankCardNature),
     supportsApplePay: apiCard.supportsApplePay ?? (binType === 'onyx'),
     supportsGooglePay: apiCard.supportsGooglePay ?? true,

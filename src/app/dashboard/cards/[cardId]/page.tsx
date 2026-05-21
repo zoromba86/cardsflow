@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { ArrowLeft, Eye, EyeOff, Copy, Check, Lock, CreditCard, Snowflake, Trash2, Mail, Package, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, Lock, CreditCard, Snowflake, Trash2, Mail, Package, ShieldCheck, Info } from 'lucide-react';
 import { useCardDetail } from '@/features/cards/hooks/useCardDetail';
 import { CardVisual } from '@/features/cards/components/CardVisual';
 import { BalanceWidget } from '@/features/cards/components/BalanceWidget';
@@ -13,7 +13,6 @@ import { DeliveryStatusTimeline } from '@/features/cards/components/DeliveryStat
 import { CardStatusBadge } from '@/features/cards/components/CardStatusBadge';
 import { CardTypeBadge } from '@/features/cards/components/CardTypeBadge';
 import { cardCan, isPhysicalCard, needsActivation } from '@/features/cards/utils/capabilities';
-import { formatCardNumber } from '@/features/cards/utils/masks';
 import { cardsService } from '@/features/cards/api';
 import { CARD_ROUTES } from '@/features/cards/types';
 
@@ -22,27 +21,10 @@ export default function CardDetailPage() {
   const cardId = Number(params.cardId);
   const { card, loading, error, refetch } = useCardDetail(cardId);
 
-  const [showNumber, setShowNumber] = useState(false);
-  const [showCvv, setShowCvv] = useState(false);
-  const [copied, setCopied] = useState('');
   const [topUpOpen, setTopUpOpen] = useState(false);
   const [freezeOpen, setFreezeOpen] = useState(false);
   const [cancelOpen, setCancelOpen] = useState(false);
   const [actionLoading, setActionLoading] = useState(false);
-
-  // Auto-hide reveals after 60s
-  useEffect(() => {
-    if (showNumber || showCvv) {
-      const t = setTimeout(() => { setShowNumber(false); setShowCvv(false); }, 60000);
-      return () => clearTimeout(t);
-    }
-  }, [showNumber, showCvv]);
-
-  const copyToClipboard = (text: string, field: string) => {
-    navigator.clipboard.writeText(text.replace(/\s/g, ''));
-    setCopied(field);
-    setTimeout(() => setCopied(''), 2000);
-  };
 
   const handleFreeze = async () => {
     if (!card) return;
@@ -137,37 +119,36 @@ export default function CardDetailPage() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left column */}
         <div className="lg:col-span-2 space-y-6">
-          <CardVisual card={card} showFullNumber={showNumber} />
+          <CardVisual card={card} />
 
-          {/* Card details reveal */}
+          {/* Card details (masked) — sensitive fields are no longer held in the
+              browser. Full PAN/CVV are rendered in a supplier-hosted iframe
+              served from the issuer domain when revealed. */}
           <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
             <h3 className="text-sm font-bold text-[#0F172A] uppercase tracking-wider mb-4">Card Details</h3>
             <div className="space-y-3">
-              {[
-                { label: 'Card Number', value: formatCardNumber(card.cardNo || ''), masked: card.maskedNumber, show: showNumber, toggle: () => setShowNumber(!showNumber), field: 'number' },
-                { label: 'CVV', value: card.cvv || '—', masked: '•••', show: showCvv, toggle: () => setShowCvv(!showCvv), field: 'cvv' },
-                { label: 'Expiry', value: card.expiryDate || '—', masked: card.expiryDate || '—', show: true, toggle: () => {}, field: 'expiry' },
-                { label: 'Cardholder', value: card.cardholderName || '—', masked: card.cardholderName || '—', show: true, toggle: () => {}, field: 'holder' },
-              ].map((item) => (
-                <div key={item.field} className="flex items-center justify-between py-3 border-b border-slate-100 last:border-0">
-                  <div>
-                    <p className="text-xs text-slate-500 font-medium">{item.label}</p>
-                    <p className="text-sm font-bold text-[#0F172A] font-mono tabular-nums">{item.show ? item.value : item.masked}</p>
-                  </div>
-                  {(item.field === 'number' || item.field === 'cvv') && (
-                    <div className="flex items-center gap-2">
-                      <button onClick={item.toggle} className="p-2 rounded-lg hover:bg-slate-100" aria-label={item.show ? `Hide ${item.label}` : `Reveal ${item.label}`} aria-pressed={item.show}>
-                        {item.show ? <EyeOff size={16} className="text-slate-500" /> : <Eye size={16} className="text-slate-500" />}
-                      </button>
-                      {item.show && (
-                        <button onClick={() => copyToClipboard(item.value, item.field)} className="p-2 rounded-lg hover:bg-slate-100" aria-label={`Copy ${item.label}`}>
-                          {copied === item.field ? <Check size={16} className="text-emerald-500" /> : <Copy size={16} className="text-slate-500" />}
-                        </button>
-                      )}
-                    </div>
-                  )}
+              <div className="flex items-center justify-between py-3 border-b border-slate-100">
+                <div>
+                  <p className="text-xs text-slate-500 font-medium">Card Number</p>
+                  <p className="text-sm font-bold text-[#0F172A] font-mono tabular-nums">{card.maskedNumber}</p>
                 </div>
-              ))}
+              </div>
+              <div className="flex items-center justify-between py-3 border-b border-slate-100">
+                <div>
+                  <p className="text-xs text-slate-500 font-medium">CVV</p>
+                  <p className="text-sm font-bold text-[#0F172A] font-mono tabular-nums">•••</p>
+                </div>
+              </div>
+              <div className="flex items-center justify-between py-3 border-b border-slate-100 last:border-0">
+                <div>
+                  <p className="text-xs text-slate-500 font-medium">Expiry</p>
+                  <p className="text-sm font-bold text-[#0F172A] font-mono tabular-nums">{card.expiryDate || '—'}</p>
+                </div>
+              </div>
+            </div>
+            <div className="mt-4 flex items-start gap-2 text-xs text-slate-500 bg-slate-50 rounded-xl p-3 border border-slate-100">
+              <Info size={14} className="mt-0.5 shrink-0 text-slate-400" />
+              <span>For PCI-DSS compliance the full card number and CVV are never sent to your browser. Reveal happens in a secure window hosted by the issuer.</span>
             </div>
           </div>
 

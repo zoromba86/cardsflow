@@ -22,8 +22,7 @@ export type CardCapability =
   | 'update_email'
   | 'delivery'
   | 'activate'
-  | 'set_pin'
-  | 'query_pin';
+  | 'set_pin';
 
 // ── Card Product ───────────────────────────────────────────────────────
 
@@ -47,15 +46,12 @@ export interface CardProduct {
 
 export interface UserCard {
   userBankcardId: number;
-  cardNo: string;
   bankCardNature: CardKind;
   status: CardStatus;
   balance: string;
   ccy: string;
   cardBin: string;
   expiryDate?: string;
-  cvv?: string;
-  cardholderName?: string;
   binType: CardBinType;
   maskedNumber: string;
   lastFour: string;
