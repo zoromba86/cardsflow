@@ -67,7 +67,7 @@ export default function WalletsPage() {
         <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
           <p className="text-xs text-slate-500 font-medium uppercase tracking-wider mb-1">Card Transfers</p>
           <p className="text-xl font-extrabold text-[#0F172A]">Instant</p>
-          <p className="text-xs text-slate-400 mt-1">Move funds to and from cards instantly</p>
+          <p className="text-xs text-slate-400 mt-1">Move funds to cards instantly</p>
         </div>
       </div>
 

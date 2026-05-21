@@ -14,7 +14,6 @@ export type CardCapability =
   | 'view_details'
   | 'view_balance'
   | 'top_up'
-  | 'unload'
   | 'freeze'
   | 'unfreeze'
   | 'cancel'

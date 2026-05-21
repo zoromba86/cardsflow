@@ -85,10 +85,6 @@ export const cardsService = {
     const card = MOCK_CARDS.find(c => c.userBankcardId === userBankcardId);
     if (card) card.balance = (parseFloat(card.balance) + amount).toFixed(2);
   },
-  async unloadCard(userBankcardId: number, amount: number): Promise<void> {
-    const card = MOCK_CARDS.find(c => c.userBankcardId === userBankcardId);
-    if (card) card.balance = (parseFloat(card.balance) - amount).toFixed(2);
-  },
   async updateCardStatus(userBankcardId: number, status: 'active' | 'frozen'): Promise<void> {
     const card = MOCK_CARDS.find(c => c.userBankcardId === userBankcardId);
     if (card) card.status = status;
