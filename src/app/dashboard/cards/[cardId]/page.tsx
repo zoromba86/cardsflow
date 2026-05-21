@@ -8,7 +8,6 @@ import { useCardDetail } from '@/features/cards/hooks/useCardDetail';
 import { CardVisual } from '@/features/cards/components/CardVisual';
 import { BalanceWidget } from '@/features/cards/components/BalanceWidget';
 import { TopUpModal } from '@/features/cards/components/TopUpModal';
-import { UnloadModal } from '@/features/cards/components/UnloadModal';
 import { ConfirmActionDialog } from '@/features/cards/components/ConfirmActionDialog';
 import { DeliveryStatusTimeline } from '@/features/cards/components/DeliveryStatusTimeline';
 import { CardStatusBadge } from '@/features/cards/components/CardStatusBadge';
@@ -27,7 +26,6 @@ export default function CardDetailPage() {
   const [showCvv, setShowCvv] = useState(false);
   const [copied, setCopied] = useState('');
   const [topUpOpen, setTopUpOpen] = useState(false);
-  const [unloadOpen, setUnloadOpen] = useState(false);
   const [freezeOpen, setFreezeOpen] = useState(false);
   const [cancelOpen, setCancelOpen] = useState(false);
   const [actionLoading, setActionLoading] = useState(false);
@@ -70,12 +68,6 @@ export default function CardDetailPage() {
   const handleTopUp = async (amount: number) => {
     if (!card) return;
     await cardsService.topUpCard(card.userBankcardId, amount);
-    refetch();
-  };
-
-  const handleUnload = async (amount: number) => {
-    if (!card) return;
-    await cardsService.unloadCard(card.userBankcardId, amount);
     refetch();
   };
 
@@ -198,7 +190,6 @@ export default function CardDetailPage() {
             ccy={card.ccy}
             disabled={!canAct || isFrozen}
             onTopUp={() => setTopUpOpen(true)}
-            onUnload={() => setUnloadOpen(true)}
           />
 
           {/* Card management */}
@@ -246,7 +237,6 @@ export default function CardDetailPage() {
 
       {/* Modals */}
       <TopUpModal open={topUpOpen} balance={card.balance} ccy={card.ccy} onConfirm={handleTopUp} onClose={() => setTopUpOpen(false)} />
-      <UnloadModal open={unloadOpen} balance={card.balance} ccy={card.ccy} onConfirm={handleUnload} onClose={() => setUnloadOpen(false)} />
 
       <ConfirmActionDialog
         open={freezeOpen}
