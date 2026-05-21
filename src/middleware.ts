@@ -39,6 +39,18 @@ function wantsMarkdown(accept: string | null): boolean {
   return /\btext\/markdown\b/i.test(accept);
 }
 
+// Routes that must never be cached by intermediaries / indexed / framed.
+const PRIVATE_PATH_PREFIXES = [
+  "/dashboard",
+  "/login",
+  "/register",
+  "/forgot-password",
+  "/onboarding",
+];
+function isPrivatePath(pathname: string): boolean {
+  return PRIVATE_PATH_PREFIXES.some((p) => pathname === p || pathname.startsWith(p + "/"));
+}
+
 export function middleware(request: NextRequest) {
   // ── Markdown content negotiation (P2) ─────────────────────────────────
   // If the agent explicitly asks for text/markdown AND the path is on the
@@ -78,7 +90,7 @@ export function middleware(request: NextRequest) {
   // To re-introduce nonce + 'strict-dynamic' safely, every page that runs
   // scripts must opt out of static prerender (force-dynamic) so the nonce
   // can be injected at request time — that is a deliberate site-wide change
-  // and out of scope for the current frontend-only patch.
+  // tracked in docs/SECURITY.md.
   const cspHeader = `
     default-src 'self';
     script-src 'self' 'unsafe-inline' 'unsafe-eval' https: blob:;
@@ -107,10 +119,25 @@ export function middleware(request: NextRequest) {
   response.headers.set('Content-Security-Policy', cspHeader);
   response.headers.set('X-Content-Type-Options', 'nosniff');
   response.headers.set('X-Frame-Options', 'DENY');
-  response.headers.set('X-XSS-Protection', '1; mode=block');
   response.headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
   response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
-  response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), browsing-topics=()');
+  // Keep Permissions-Policy aligned with next.config.ts (which sets the
+  // baseline on every route). Listing both interest-cohort and browsing-topics
+  // covers the Chrome FLoC rename and any other UAs that still honour either.
+  response.headers.set(
+    'Permissions-Policy',
+    'camera=(), microphone=(), geolocation=(), interest-cohort=(), browsing-topics=()'
+  );
+
+  // Authenticated / sensitive routes: never index, never share-cache, isolate
+  // origin against cross-origin window/Spectre-style leaks.
+  if (isPrivatePath(pathname)) {
+    response.headers.set('Cache-Control', 'private, no-store, max-age=0, must-revalidate');
+    response.headers.set('Pragma', 'no-cache');
+    response.headers.set('X-Robots-Tag', 'noindex, nofollow, noarchive, nosnippet');
+    response.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
+    response.headers.set('Cross-Origin-Resource-Policy', 'same-site');
+  }
 
   return response;
 }

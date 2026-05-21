@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { User, Shield, Lock, Eye, EyeOff, Loader2, CheckCircle2 } from 'lucide-react';
 import { useAuth } from '@/lib/hooks/useAuth';
+import { checkPassword, PASSWORD_MIN_LENGTH } from '@/lib/utils/password';
 
 export default function SettingsPage() {
   const { user } = useAuth();
@@ -18,8 +19,9 @@ export default function SettingsPage() {
   const handlePasswordChange = async (e: React.FormEvent) => {
     e.preventDefault();
     setPwError('');
-    if (newPw.length < 8) { setPwError('New password must be at least 8 characters.'); return; }
     if (newPw !== confirmPw) { setPwError('Passwords do not match.'); return; }
+    const policy = checkPassword(newPw);
+    if (!policy.ok) { setPwError(policy.message || 'Password does not meet the security policy.'); return; }
     setPwLoading(true);
     await new Promise((r) => setTimeout(r, 1500));
     setPwLoading(false);
@@ -111,7 +113,7 @@ export default function SettingsPage() {
               </div>
               <div>
                 <label htmlFor="set-new-pw" className="block text-sm font-semibold text-[#0F172A] mb-2">New Password</label>
-                <input id="set-new-pw" type="password" value={newPw} onChange={(e) => setNewPw(e.target.value)} placeholder="Min. 8 characters"
+                <input id="set-new-pw" type="password" value={newPw} onChange={(e) => setNewPw(e.target.value)} placeholder={`Min. ${PASSWORD_MIN_LENGTH} characters`}
                   className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm text-[#0F172A] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#E5B220]/50" required disabled={pwLoading} />
               </div>
               <div>

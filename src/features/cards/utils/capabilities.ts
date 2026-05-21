@@ -19,7 +19,6 @@ const PHYSICAL_CAPABILITIES: CardCapability[] = [
   'delivery',
   'activate',
   'set_pin',
-  'query_pin',
 ];
 
 /** Returns the default capability set for a card kind. */

@@ -105,13 +105,62 @@ function htmlToMarkdown(rawHtml: string): string {
   return html + "\n";
 }
 
+// ── SSRF / DOS guards ───────────────────────────────────────────────────
+const FETCH_TIMEOUT_MS = 3000;
+const MAX_UPSTREAM_BYTES = 1_000_000; // 1MB
+
+/**
+ * Normalise an incoming path. We refuse anything that contains a scheme,
+ * authority, fragment, or backslash so a caller cannot redirect us to an
+ * external host or bypass the allowlist via percent-encoded slashes.
+ */
+function normalisePath(raw: string): string | null {
+  if (typeof raw !== "string" || raw.length === 0 || raw.length > 512) return null;
+  // Reject any character that could change URL parsing semantics.
+  if (/[\s\\#?]/.test(raw)) return null;
+  if (!raw.startsWith("/")) return null;
+  // Resolve to a path against a synthetic origin so percent-decoding /
+  // dot-segment normalisation runs in URL parser, not regex.
+  let url: URL;
+  try {
+    url = new URL(raw, "https://example.invalid");
+  } catch {
+    return null;
+  }
+  if (url.origin !== "https://example.invalid") return null; // protocol-relative
+  return url.pathname;
+}
+
+async function readBoundedBody(res: Response): Promise<string | null> {
+  if (!res.body) return await res.text();
+  const reader = res.body.getReader();
+  const chunks: Uint8Array[] = [];
+  let total = 0;
+  try {
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      total += value.byteLength;
+      if (total > MAX_UPSTREAM_BYTES) return null;
+      chunks.push(value);
+    }
+  } finally {
+    reader.releaseLock();
+  }
+  const merged = new Uint8Array(total);
+  let offset = 0;
+  for (const c of chunks) { merged.set(c, offset); offset += c.byteLength; }
+  return new TextDecoder("utf-8").decode(merged);
+}
+
 // ── Route handler ───────────────────────────────────────────────────────
 export async function GET(req: NextRequest) {
   // Path is provided either via the `x-md-path` header (set by middleware
   // when handling Accept: text/markdown content negotiation) or via the
   // `?path=` query string for direct programmatic access.
-  const path = req.headers.get("x-md-path") || req.nextUrl.searchParams.get("path") || "/";
-  if (!isAllowed(path)) {
+  const rawPath = req.headers.get("x-md-path") || req.nextUrl.searchParams.get("path") || "/";
+  const path = normalisePath(rawPath);
+  if (!path || !isAllowed(path)) {
     return new NextResponse("Not allowed.\n", {
       status: 404,
       headers: { "content-type": "text/plain; charset=utf-8" },
@@ -124,14 +173,23 @@ export async function GET(req: NextRequest) {
     const r = await fetch(`${origin}${path}`, {
       headers: { accept: "text/html", "user-agent": "cardsflow-md-renderer/1.0" },
       cache: "no-store",
+      redirect: "manual",
+      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
     });
-    if (!r.ok) {
+    if (!r.ok || r.status >= 300) {
       return new NextResponse(`# ${path}\n\nUpstream returned ${r.status}.\n`, {
-        status: r.status,
+        status: r.ok ? 502 : r.status,
         headers: { "content-type": "text/markdown; charset=utf-8" },
       });
     }
-    html = await r.text();
+    const body = await readBoundedBody(r);
+    if (body === null) {
+      return new NextResponse(`# ${path}\n\nUpstream response exceeded ${MAX_UPSTREAM_BYTES} bytes; refusing to render.\n`, {
+        status: 502,
+        headers: { "content-type": "text/markdown; charset=utf-8" },
+      });
+    }
+    html = body;
   } catch (e) {
     const msg = e instanceof Error ? e.message : "fetch failed";
     return new NextResponse(`# ${path}\n\nRender error: ${msg}\n`, {

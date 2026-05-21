@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { Eye, EyeOff, Loader2, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import authService from '@/lib/api/auth';
 import BrandLogo from '@/components/ui/brand-logo';
+import { checkPassword, PASSWORD_MIN_LENGTH } from '@/lib/utils/password';
 
 export default function RegisterPageClient() {
   const router = useRouter();
@@ -29,8 +30,9 @@ export default function RegisterPageClient() {
       setError('Passwords do not match.');
       return;
     }
-    if (password.length < 8) {
-      setError('Password must be at least 8 characters.');
+    const policy = checkPassword(password);
+    if (!policy.ok) {
+      setError(policy.message || 'Password does not meet the security policy.');
       return;
     }
     if (!agreedToTerms) {
@@ -154,7 +156,7 @@ export default function RegisterPageClient() {
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Min. 8 characters"
+                  placeholder={`Min. ${PASSWORD_MIN_LENGTH} characters`}
                   className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm text-[#0F172A] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#0D9488]/50 focus:border-[#0D9488] transition-all pr-12"
                   required
                   disabled={isLoading}

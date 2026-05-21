@@ -58,15 +58,12 @@ export interface CardProduct {
 
 export interface Card {
   userBankcardId: number;
-  cardNo: string;
   bankCardNature: CardNature;
   status: CardStatus;
   balance: string;
   ccy: string;
   cardBin: string;
   expiryDate?: string;
-  cvv?: string;
-  cardholderName?: string;
   // Frontend-enriched
   binType: CardBinType;
   supportsApplePay: boolean;

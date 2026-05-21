@@ -14,6 +14,16 @@ class ApiClient {
 
   private getToken(): string | null {
     if (typeof window === 'undefined') return null;
+    const expiresAt = localStorage.getItem('cardsflow_token_expires_at');
+    if (expiresAt) {
+      const ts = Date.parse(expiresAt);
+      if (!Number.isNaN(ts) && ts <= Date.now()) {
+        localStorage.removeItem('cardsflow_token');
+        localStorage.removeItem('cardsflow_user');
+        localStorage.removeItem('cardsflow_token_expires_at');
+        return null;
+      }
+    }
     return localStorage.getItem('cardsflow_token');
   }
 
@@ -23,6 +33,7 @@ class ApiClient {
       if (typeof window !== 'undefined') {
         localStorage.removeItem('cardsflow_token');
         localStorage.removeItem('cardsflow_user');
+        localStorage.removeItem('cardsflow_token_expires_at');
         window.location.href = '/login';
       }
       throw new Error('Session expired. Please log in again.');

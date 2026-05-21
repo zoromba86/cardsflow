@@ -1,8 +1,29 @@
 // ─── Card Supplier API Service ─────────────────────────────────────────
 // Maps to the Apifox card-supplier-api-en endpoints.
 // All endpoints require RSA signing on the backend side.
+//
+// SECURITY: This module is a frontend-side mock that runs ONLY when
+// NEXT_PUBLIC_API_URL is unset (i.e. the app is being run without a real
+// backend wired up). In production the bundle calls /api/* on the real
+// supplier-proxy backend, which performs RSA signing server-side and never
+// exposes full PAN, CVV, PIN, or cardholder name to the browser. See
+// docs/SECURITY.md for the integration contract.
 
 import type { Card, CardProduct, CardApplyResponse, Transaction, PaginatedResponse } from '@/lib/types/dashboard';
+
+/** Strong-random integer in [min, max] inclusive, using the platform CSPRNG. */
+function secureRandomInt(min: number, max: number): number {
+  const range = max - min + 1;
+  if (range <= 0) throw new Error('secureRandomInt: invalid range');
+  const arr = new Uint32Array(1);
+  // Modern browsers and Node 18+ both expose globalThis.crypto.getRandomValues.
+  globalThis.crypto.getRandomValues(arr);
+  return min + (arr[0] % range);
+}
+
+function secureBlock4(): string {
+  return secureRandomInt(1000, 9999).toString();
+}
 
 const MOCK_PRODUCTS: CardProduct[] = [
   { id: 1, bankCardNature: 'VIRTUAL', title: 'CardsFlow Onyx Virtual', ccy: 'USD', applyFee: '10.00', cardBin: '409600', rechargeFee: '0.00', bankcardRegion: 'US', activeMinLimit: '0.00', rechargeMinLimit: '10.00', binType: 'onyx', supportsApplePay: true, supportsGooglePay: true },
@@ -12,8 +33,8 @@ const MOCK_PRODUCTS: CardProduct[] = [
 ];
 
 const MOCK_CARDS: Card[] = [
-  { userBankcardId: 101, cardNo: '4096 0012 3456 7890', bankCardNature: 'VIRTUAL', status: 'active', balance: '1250.00', ccy: 'USD', cardBin: '409600', binType: 'onyx', expiryDate: '12/28', cvv: '123', cardholderName: 'JOHN DOE', supportsApplePay: true, supportsGooglePay: true, maskedNumber: '4096 **** **** 7890', lastFour: '7890' },
-  { userBankcardId: 102, cardNo: '5234 0098 7654 3210', bankCardNature: 'PHYSICAL', status: 'inactive', balance: '0.00', ccy: 'USD', cardBin: '523400', binType: 'volt', expiryDate: '10/27', cvv: '456', cardholderName: 'JOHN DOE', supportsApplePay: false, supportsGooglePay: true, maskedNumber: '5234 **** **** 3210', lastFour: '3210' },
+  { userBankcardId: 101, bankCardNature: 'VIRTUAL', status: 'active', balance: '1250.00', ccy: 'USD', cardBin: '409600', binType: 'onyx', expiryDate: '12/28', supportsApplePay: true, supportsGooglePay: true, maskedNumber: '4096 **** **** 7890', lastFour: '7890' },
+  { userBankcardId: 102, bankCardNature: 'PHYSICAL', status: 'inactive', balance: '0.00', ccy: 'USD', cardBin: '523400', binType: 'volt', expiryDate: '10/27', supportsApplePay: false, supportsGooglePay: true, maskedNumber: '5234 **** **** 3210', lastFour: '3210' },
 ];
 
 const MOCK_TRANSACTIONS: Transaction[] = [
@@ -32,13 +53,9 @@ export const cardsService = {
     const product = MOCK_PRODUCTS.find(p => p.id === productId);
     if (!product) throw new Error('Product not found');
 
-    const block1 = Math.floor(Math.random() * 9000 + 1000).toString();
-    const block2 = Math.floor(Math.random() * 9000 + 1000).toString();
-    const block3 = Math.floor(Math.random() * 9000 + 1000).toString();
-    const newCardNo = `${product.cardBin} ${block1} ${block2} ${block3}`;
+    const lastFour = secureBlock4();
     const newCard: Card = {
-      userBankcardId: Math.floor(Math.random() * 10000) + 200,
-      cardNo: newCardNo,
+      userBankcardId: secureRandomInt(200, 9999),
       bankCardNature: product.bankCardNature,
       status: product.bankCardNature === 'PHYSICAL' ? 'inactive' : 'active',
       balance: '0.00',
@@ -46,19 +63,20 @@ export const cardsService = {
       cardBin: product.cardBin,
       binType: product.binType ?? 'onyx',
       expiryDate: `12/${new Date().getFullYear() + 3 - 2000}`,
-      cvv: Math.floor(Math.random() * 900 + 100).toString(),
-      cardholderName: 'NEW USER',
       supportsApplePay: product.supportsApplePay ?? true,
       supportsGooglePay: product.supportsGooglePay ?? true,
-      maskedNumber: `${product.cardBin.slice(0, 4)} **** **** ${block3}`,
-      lastFour: block3,
+      maskedNumber: `${product.cardBin.slice(0, 4)} **** **** ${lastFour}`,
+      lastFour,
     };
 
     MOCK_CARDS.push(newCard);
 
     return {
       userBankcardId: newCard.userBankcardId,
-      cardNo: newCard.cardNo,
+      // No full PAN is exposed to the client; the real backend returns a
+      // masked PAN or a supplier-hosted cardPanUrl. We return the same here
+      // so the mock surface mirrors production behaviour.
+      cardNo: newCard.maskedNumber,
       orderNo: `ORD-${Date.now()}`,
     };
   },
@@ -77,9 +95,6 @@ export const cardsService = {
   },
   async setPin(_userBankcardId: number, _pin: string): Promise<void> {
     // Mock success
-  },
-  async getPin(_userBankcardId: number): Promise<{ pin: string }> {
-    return { pin: '1234' };
   },
   async topUpCard(userBankcardId: number, amount: number): Promise<void> {
     const card = MOCK_CARDS.find(c => c.userBankcardId === userBankcardId);

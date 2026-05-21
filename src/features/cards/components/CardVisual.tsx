@@ -7,12 +7,11 @@ import { CardStatusBadge } from './CardStatusBadge';
 
 interface CardVisualProps {
   card: UserCard;
-  showFullNumber?: boolean;
 }
 
 const noiseTexture = "url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E')";
 
-export function CardVisual({ card, showFullNumber = false }: CardVisualProps) {
+export function CardVisual({ card }: CardVisualProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [glare, setGlare] = useState({ x: 50, y: 50, opacity: 0 });
@@ -134,7 +133,7 @@ export function CardVisual({ card, showFullNumber = false }: CardVisualProps) {
           </div>
 
           <p className="text-base sm:text-2xl font-mono tracking-[0.1em] sm:tracking-[0.2em] text-white/95 whitespace-nowrap" style={{ textShadow: '0px 2px 2px rgba(0,0,0,0.5), 0px -1px 1px rgba(255,255,255,0.2)' }}>
-            {showFullNumber ? card.cardNo : card.maskedNumber}
+            {card.maskedNumber}
           </p>
         </div>
 
@@ -145,12 +144,6 @@ export function CardVisual({ card, showFullNumber = false }: CardVisualProps) {
               <span className="text-[8px] text-white/50 uppercase tracking-widest mb-0.5">Valid Thru</span>
               <span className="text-xs sm:text-sm font-semibold tracking-wider" style={{ textShadow: '0px 1px 2px rgba(0,0,0,0.5)' }}>{card.expiryDate || '—'}</span>
             </div>
-            {card.cardholderName && (
-              <div className="flex flex-col min-w-0">
-                <span className="text-[8px] text-white/50 uppercase tracking-widest mb-0.5">Cardholder</span>
-                <span className="text-xs sm:text-sm font-semibold tracking-wider uppercase truncate max-w-[88px] sm:max-w-[120px]" style={{ textShadow: '0px 1px 2px rgba(0,0,0,0.5)' }}>{card.cardholderName}</span>
-              </div>
-            )}
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
